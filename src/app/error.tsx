@@ -16,7 +16,7 @@ export default function Error({
         <p className="text-base font-semibold text-emerald-700 text-emerald-500">
           There was a problem{' '}
         </p>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 text-zinc-50 sm:text">
+        <h1 className="mt-4 text-3xl font-bold tracking-tight text-zinc-50 sm:text">
           {error.message || 'Something went wrong'}{' '}
         </h1>
         `
