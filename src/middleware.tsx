@@ -4,17 +4,20 @@ import { getToken } from 'next-auth/jwt';
 import { HOST_API_KEY } from './config-global';
 import { AuthProvider } from './auth/JwtContext';
 
+function isLocalhost(url:string ): boolean {
+    return url.includes('localhost') || url.includes('127.0.0.1');
+}
 export default async function middleware(req: NextRequest) {
-  // const token = await getToken({ req })
-  // if (!token) {
+  const { href , pathname,port } = req.nextUrl
+  const token = await getToken({ req })
+  console.log("----------------------",href, pathname,"===========",port)
+  // if (token) {
   //     return NextResponse.redirect(new URL('/sign-in', req.nextUrl))
   //   }
+   if (isLocalhost(href)){
+     return NextResponse.rewrite(new URL('http://www.mbz2.ir:80/',req.nextUrl))
+   }
 
-  console.log('HOST_API_KEY :>> ', HOST_API_KEY);
-  // console.log('HOST_API_KEY ------------token 0000000:>> ', );
-  console.log('HOST_API_KEY ------------token req:>> ', { req });
-
-  // return <AuthProvider>stes etsst</AuthProvider>
 }
 
 export const config = {
