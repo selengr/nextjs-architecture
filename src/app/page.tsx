@@ -1,4 +1,3 @@
-import { ErrorText } from '@/lib/exceptions/ErrorText';
 import { Box, Paper, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 

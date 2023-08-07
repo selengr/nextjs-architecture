@@ -5,7 +5,7 @@
 //   page?: number;
 //   size?: number;
 //   type?: string;
-//   sort?: string;
+//   // sort?: string;
 // }): Promise<{ content: BookProps[]; total: number; error?: any }> {
 //   try {
 //     const queryArray = Object.keys(data).reduce((prev: string[], item) => {

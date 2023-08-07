@@ -78,15 +78,20 @@ export default async function Page() {
               variant="caption"
               sx={{ paddingTop: 2, borderRadius: 1.5 }}
             >
-              {posts[index]?.title}
+                {posts[index]?.title ?? Math.floor(Math.random() * (100 - 1 + 1) + 1)}
             </Typography>
           )}
           <Typography
               variant="caption"
               sx={{ paddingTop: 2, borderRadius: 1.5 }}
             >
-              <p>name: {comments[index]?.name}</p> 
-              <p>email: {comments[index]?.email}</p> 
+              name: {comments[index]?.name ?? Math.floor(Math.random() * (100 - 1 + 1) + 1)}
+              </Typography>
+              <Typography
+              variant="caption"
+              sx={{ paddingTop: 2, borderRadius: 1.5 }}
+            >
+              email: {comments[index]?.email ?? Math.floor(Math.random() * (100 - 1 + 1) + 1)}
             </Typography>
         </Stack>
       </Paper>  
