@@ -31,3 +31,17 @@ in order to use 👆
 - <strong>route</strong> Server-side API endpoint (specifcally for backend which we do not need that at all)
 - <strong>tstrongplate</strong> Specialized re-rendered Layout UI
 - <strong>default</strong> Fallback UI for Parallel Routes
+
+
+## this is way to use SSR
+- by default each page and request are SSG
+
+## this is way to use ISR
+- ------1
+- export const revalidate = 3600 // revalidate every hour
+- ------2
+- fetch('https://...', { next: { revalidate: 60 } })
+
+
+## this is way to use SSR
+- fetch('https://...', { cache: 'no-store' })
