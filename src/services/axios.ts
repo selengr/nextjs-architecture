@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 // config
 import { HOST_API_KEY } from '../config-global';
 import ValidationError from '@/lib/exceptions/validationError';
+import { AxiosError } from 'axios';
 
 // ----------------------------------------------------------------------
 
@@ -38,29 +39,32 @@ axiosInstance.interceptors.response.use(
     //  handle successful responses here
     return response.data;
   },
-  (error) => {
-    const res = error?.response
-    // Handle different types of errors such as (network, server, etc.)
-    if (error.response) {
-      console.error('Server Error:', error.response.status, error.response.data);
 
-      if (res.status === 401) {
+    (error: AxiosError) => {
+      const { message,name,response,request,status } = error;
+    const res = error?.response
+
+    // Handle different types of errors such as (network, server, etc.)
+    if (response) {
+      console.error('Server Error:', response.status, response.data);
+
+      if (response.status === 401) {
         // Redirect to login or show unauthorized message
-      } else if (res.status === 404) {
+      } else if (response.status === 404) {
         // Show not found message
-      } else if(res.status === 422) {
-        throw new ValidationError(res.data.errors)
+      } else if(response.status === 422) {
+        throw new ValidationError(message,name)
      }
        else {
         // Handle other server errors
       }
 
-    } else if (error.request) {
+    } else if (request) {
       // Handle network errors
-      console.error('Network Error:', error.message);
+      console.error('Network Error:', message);
     } else {
       // Handle other errors
-      console.error('Error:', error.message);
+      console.error('Error:', message);
     }
 
     return Promise.reject(error);
