@@ -25,3 +25,6 @@ https://github.com/joschan21/bmicalc-react/blob/main/src/redux/store.js
 
 perfect for auth jwt
 https://gist.github.com/zsumair/906b44f08546a26048796a3c418e6604
+https://www.loginradius.com/blog/engineering/guest-post/jwt-authentication-best-practices-and-when-to-use/
+refresh token -=========> https://www.loginradius.com/blog/engineering/guest-post/what-are-refresh-tokens-and-when-to-use-them/
+https://blog.logrocket.com/jwt-authentication-best-practices/
