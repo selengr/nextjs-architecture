@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { HOST_API_KEY } from './config-global';
+import { verifyAuth } from './auth/JwtContext';
 
 
 
@@ -28,32 +29,98 @@ import { HOST_API_KEY } from './config-global';
 //   }
 // }
 
-function isLocalhost(url:string ) {
-    return url.includes('localhost') || url.includes('127.0.0.1');
-}
+
+
+
+
+
+
+
+// function isLocalhost(url:string ) {
+//     return url.includes('localhost') || url.includes('127.0.0.1');
+// }
+
+// export async function middleware(req: NextRequest) {
+//   const { href , pathname,port } = req.nextUrl
+//   const token = await getToken({ req })
+
+
+//   if (isLocalhost(href)){
+//    return NextResponse.rewrite(new URL('http://www.mbz2.ir:80/',req.nextUrl))
+//  }
+
+//   // const token = req ? req.cookies?.token : null;
+//   // const profile = await getProfile(token);
+ 
+//   // if ( pathname.includes("/login") || profile ) {
+//   //   return NextResponse.next();
+//   // }
+//   // if (!profile && pathname !== "/login") {
+//   //   return NextResponse.redirect("/");
+//   // }
+
+
+ 
+
+// //   console.log("-----------------------------------",Login())
+//   return NextResponse.next();
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export async function middleware(req: NextRequest) {
   const { href , pathname,port } = req.nextUrl
-  const token = await getToken({ req })
+
+const token = await localStorage.getItem('token')
 
 
-  if (isLocalhost(href)){
-   return NextResponse.rewrite(new URL('http://www.mbz2.ir:80/',req.nextUrl))
- }
-
-  // const token = req ? req.cookies?.token : null;
-  // const profile = await getProfile(token);
- 
-  // if ( pathname.includes("/login") || profile ) {
-  //   return NextResponse.next();
-  // }
-  // if (!profile && pathname !== "/login") {
-  //   return NextResponse.redirect("/");
-  // }
+const verifiedToken = 
+token && 
+    (await verifyAuth(token).catch((err) => {
+      console.log('err :>> ', err);
+    }))
 
 
- 
+    if(pathname.startsWith("/login") && !verifiedToken ) {
+      return
+    }
 
-//   console.log("-----------------------------------",Login())
-  return NextResponse.next();
+    if(req.url.includes("/login") && verifiedToken ) {
+      return NextResponse.redirect(new URL('dashboard', req.url))
+    }
+
+    if(!verifiedToken ) {
+      return NextResponse.redirect(new URL('/login', req.url))
+    }
+
+}
+
+
+
+export const config = {
+  matcher: ['/']
 }

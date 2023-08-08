@@ -21,3 +21,7 @@ https://libraries.excalidraw.com/?target=_excalidraw&referrer=https%3A%2F%2Fexca
 
 redux
 https://github.com/joschan21/bmicalc-react/blob/main/src/redux/store.js
+
+
+perfect for auth jwt
+https://gist.github.com/zsumair/906b44f08546a26048796a3c418e6604
