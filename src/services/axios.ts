@@ -1,11 +1,29 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios,{
+  AxiosError,
+  AxiosResponse,
+  AxiosInstance,
+  InternalAxiosRequestConfig,
+} from "axios";
+
 // config
 import { HOST_API_KEY } from '../config-global';
 import ValidationError from '@/lib/exceptions/validationError';
-import { AxiosError } from 'axios';
+
+/**
+	 * Make request to IG API
+	 * @param baseURL 
+	 * @param url 
+	 * @param agent 
+	 * @param options 
+	 */
+
+interface ApiResponse<T> {
+  data: T;
+}
 
 // ----------------------------------------------------------------------
 
+const AUTH_TOKEN = 'your_auth_token';
 
 const callApi = () => {
 
@@ -14,20 +32,35 @@ const callApi = () => {
    timeout: 12000,
    headers: {
        'Accept': 'application/vnd.GitHub.v3+json',
-       // config.headers['Authorization'] = 'Bearer ' + getToken(); 
+      //  config.headers['Authorization'] = 'Bearer ' + getToken(); 
        Authorization: 'Bearer YOUR_TOKEN' // AUTH_TOKEN
     },
+    transformRequest: [
+      (data) => {
+        return JSON.stringify(data);
+      },
+    ],
+    transformResponse: [
+      (data) => {
+        return JSON.parse(data);
+      },
+    ],
   });
 
 
   axiosInstance.interceptors.request.use(
-  (config) => {
+  (config : InternalAxiosRequestConfig) => {
+
+    if ("token") {
+       // console.log('config================================ :>> ', config.);
     //  add authorization logic here
-    // config.headers['Authorization'] = 'Bearer ' + getToken();
+    config.headers['Authorization'] = 'Bearer ' ; // + getToken();
     config.withCredentials = true;
+      // config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
-  (error) => {
+  (error : AxiosError | Error) => {
     return Promise.reject(error);
   }
 );
@@ -40,7 +73,7 @@ axiosInstance.interceptors.response.use(
     return response.data;
   },
 
-    (error: AxiosError) => {
+    (error:  AxiosError ) => {
       const { message,name,response,request,status } = error;
     const res = error?.response
 
@@ -48,15 +81,29 @@ axiosInstance.interceptors.response.use(
     if (response) {
       console.error('Server Error:', response.status, response.data);
 
-      if (response.status === 401) {
-        // Redirect to login or show unauthorized message
-      } else if (response.status === 404) {
-        // Show not found message
-      } else if(response.status === 422) {
-        throw new ValidationError(message,name)
-     }
-       else {
-        // Handle other server errors
+      switch (status) {
+        case 401: {
+            // "Login required"
+            // Delete Token & Go To Login Page if you required.
+            sessionStorage.removeItem("token")
+            break;
+        }
+        case 403: {
+          // "Permission denied"
+          break;
+        }
+        case 404: {
+          // "Invalid request"
+          break;
+        }
+        case 500: {
+          // "Server error"
+          break;
+        }
+        default: {
+          // "Unknown error occurred"
+          break;
+        }
       }
 
     } else if (request) {
@@ -70,6 +117,8 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+  return axiosInstance;
 }
 
 
