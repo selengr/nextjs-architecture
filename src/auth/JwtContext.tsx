@@ -7,7 +7,7 @@ import {
   useMemo
 } from 'react';
 // utils
-import axios from '../utils/axios';
+import callApi from '../utils/axios';
 import localStorageAvailable from '../utils/localStorageAvailable';
 //
 import { isValidToken, setSession } from './utils';
@@ -18,6 +18,7 @@ import {
   JWTContextType
 } from './types';
 import { jwtVerify  } from 'jose';
+import { cookies } from 'next/headers'; 
 
 // ----------------------------------------------------------------------
 
@@ -114,7 +115,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
 
-        const response = await axios.get('/api/account/my-account');
+        const response = await callApi.get('/api/account/my-account');
 
         const { user } = response.data;
 
@@ -152,7 +153,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   // LOGIN
   const login = useCallback(async (email: string, password: string) => {
-    const response = await axios.post('/api/oauth/v1/authenticate', {
+    const response = await callApi.post('/api/oauth/v1/authenticate', {
       email,
       password
     });
@@ -176,7 +177,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       firstName: string,
       lastName: string
     ) => {
-      const response = await axios.post('/api/account/register', {
+      const response = await callApi.post('/api/account/register', {
         email,
         password,
         firstName,
@@ -237,11 +238,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
 
 
+
+// new featuer to andle auth varification
 interface UserJwtPayload {
   jti: string
   iat: number
 }
-
 
 export const getJwtSecretKey = () => {
   const secret = process.env.JWT_SECRET_KEY
@@ -253,7 +255,7 @@ export const getJwtSecretKey = () => {
 }
 
 
-export  const verifyAuth = async (token: string) => {
+export  const verifyAuth = async (token: string | Uint8Array) => {
   try {
     const verified = await jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()))
     return verified.payload as UserJwtPayload
@@ -261,3 +263,34 @@ export  const verifyAuth = async (token: string) => {
     throw new Error('your token has expired')
   }
 }
+
+
+export const getUser = async (accessToken : string | null) => {
+  if(!accessToken) {
+    throw new Error("Missing token")
+  }
+  try {
+    if (accessToken && isValidToken(accessToken)) {
+      setSession(accessToken)
+
+      const response = await callApi.get("/user")
+      const { user } = response.data;
+      // dispatch({
+      //   type: Types.INITIAL,
+      //   payload: {
+      //     isAuthenticated: true,
+      //     user
+      //   }
+    }
+   } catch (err: any) {
+     console.log(err.response.data);
+    //  dispatch({
+    //   type: Types.INITIAL,
+    //   payload: {
+    //     isAuthenticated: false,
+    //     user: null
+    //   }
+    // });
+     return null;
+   }
+};
