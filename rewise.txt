@@ -28,3 +28,11 @@ https://gist.github.com/zsumair/906b44f08546a26048796a3c418e6604
 https://www.loginradius.com/blog/engineering/guest-post/jwt-authentication-best-practices-and-when-to-use/
 refresh token -=========> https://www.loginradius.com/blog/engineering/guest-post/what-are-refresh-tokens-and-when-to-use-them/
 https://blog.logrocket.com/jwt-authentication-best-practices/
+
+
+redux
+https://codevoweb.com/setup-redux-toolkit-in-nextjs-13-app-directory/
+https://blog.logrocket.com/use-redux-next-js/
+
+https://www.linkedin.com/advice/3/how-do-you-comply-oauth-21-specification-authorization
+https://connect2id.com/learn/oauth-2-1
