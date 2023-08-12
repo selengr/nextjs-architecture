@@ -19,6 +19,7 @@ import {
 } from './types';
 import { jwtVerify  } from 'jose';
 import { cookies } from 'next/headers'; 
+import axios from '../utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -294,3 +295,48 @@ export const getUser = async (accessToken : string | null) => {
      return null;
    }
 };
+
+
+
+export const Login = async () => {
+  
+    // let data = {
+    //   client_id: "ssoClient-2",
+    //   redirect_uri: "http://localhost",
+    //   client_secret: "ssoClientSecret-2",
+    //   grant_type:  "authorization_code",
+    //   code,
+    // }
+
+    const params = [
+      "client_id=ssoClient-2",
+      "redirect_uri=" + "http://localhost",
+      "response_type=code",
+      "scope=openid",
+      "response_mode=form_post"
+  ];
+
+      // LOGIN
+      // try {
+      //   const response = await axios.get("http://apifpr.mresalat1.com:8080/sso/oauth2/authorize?client_id=ssoClient-2&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug&scope=openid&response_type=code&response_mode=query&state=n458mqq15e&nonce=imx79nid8c")
+      //   console.log('response.data ================================= :>> ', response);
+      // } catch (error) {
+      //   console.error('Error:========', error);
+      // }
+      
+};
+
+// export const getToken = async (code : string | null, redirectUrl :string | null) => {
+  
+//     let data = {
+//       client_id: "ssoClient-2",
+//       redirect_uri: "http://localhost",
+//       client_secret: "ssoClientSecret-2",
+//       grant_type:  "authorization_code",
+//       code,
+//     }
+
+//        const response = await callApi.post("http://apifpr.mresalat2.com/sso/oauth2/?"+ data)
+//        const { accessToken, user } = response.data;
+
+// };
