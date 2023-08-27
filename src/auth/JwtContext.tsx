@@ -18,8 +18,7 @@ import {
   JWTContextType
 } from './types';
 import { jwtVerify  } from 'jose';
-import { cookies } from 'next/headers'; 
-import axios from '../utils/axios';
+import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
@@ -106,7 +105,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const storageAvailable = localStorageAvailable();
-
   const initialize = useCallback(async () => {
     try {
       const accessToken = storageAvailable
@@ -114,10 +112,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
         : '';
 
       if (accessToken && isValidToken(accessToken)) {
-        setSession(accessToken);
+        setSession(accessToken,undefined);
 
         const response = await callApi.get('/api/account/my-account');
-
+ 
         const { user } = response.data;
 
         dispatch({
@@ -128,6 +126,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
           }
         });
       } else {
+
+
+        // If the token isn't valid for any reason, we want to clear it from localstorage and redirect to login page
+
+
         dispatch({
           type: Types.INITIAL,
           payload: {
@@ -153,14 +156,27 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [initialize]);
 
   // LOGIN
-  const login = useCallback(async (email: string, password: string) => {
-    const response = await callApi.post('/api/oauth/v1/authenticate', {
-      email,
-      password
-    });
-    const { accessToken, user } = response.data;
+  const login = useCallback(async (code : string  , redirectUrl: string) => {
 
-    setSession(accessToken);
+    const urlencoded = new URLSearchParams({
+      client_id: "ssoClient-2",
+      client_secret: "ssoClientSecret-2",
+      redirect_uri: redirectUrl,
+      grant_type:  "authorization_code",
+      // code_verifier : "Bq187ESUqFq7lEoxJJw0wZndiojms9mPjdzOJbOfBet",
+      code,
+    });
+  
+    var requestOptions : any = {
+      method: 'POST',
+      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      body: urlencoded,
+      redirect: 'follow'
+    };
+
+    const response = await axios.post('http://apifpr.mresalat1.com/sso/oauth2/token',requestOptions);
+    const { access_token, user } = response.data;
+    setSession(access_token);
 
     dispatch({
       type: Types.LOGIN,
@@ -248,7 +264,6 @@ interface UserJwtPayload {
 
 export const getJwtSecretKey = () => {
   const secret = process.env.JWT_SECRET_KEY
-
   if( !secret || secret?.length === 0 ){
     throw new Error('The environment variable JWT_SECRET KEY is not set.')
   }
@@ -272,7 +287,7 @@ export const getUser = async (accessToken : string | null) => {
   }
   try {
     if (accessToken && isValidToken(accessToken)) {
-      setSession(accessToken)
+      setSession(accessToken,"")
 
       const response = await callApi.get("/user")
       const { user } = response.data;
@@ -297,46 +312,4 @@ export const getUser = async (accessToken : string | null) => {
 };
 
 
-
-export const Login = async () => {
-  
-    // let data = {
-    //   client_id: "ssoClient-2",
-    //   redirect_uri: "http://localhost",
-    //   client_secret: "ssoClientSecret-2",
-    //   grant_type:  "authorization_code",
-    //   code,
-    // }
-
-    const params = [
-      "client_id=ssoClient-2",
-      "redirect_uri=" + "http://localhost",
-      "response_type=code",
-      "scope=openid",
-      "response_mode=form_post"
-  ];
-
-      // LOGIN
-      // try {
-      //   const response = await axios.get("http://apifpr.mresalat1.com:8080/sso/oauth2/authorize?client_id=ssoClient-2&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug&scope=openid&response_type=code&response_mode=query&state=n458mqq15e&nonce=imx79nid8c")
-      //   console.log('response.data ================================= :>> ', response);
-      // } catch (error) {
-      //   console.error('Error:========', error);
-      // }
-      
-};
-
-// export const getToken = async (code : string | null, redirectUrl :string | null) => {
-  
-//     let data = {
-//       client_id: "ssoClient-2",
-//       redirect_uri: "http://localhost",
-//       client_secret: "ssoClientSecret-2",
-//       grant_type:  "authorization_code",
-//       code,
-//     }
-
-//        const response = await callApi.post("http://apifpr.mresalat2.com/sso/oauth2/?"+ data)
-//        const { accessToken, user } = response.data;
-
-// };
+ 

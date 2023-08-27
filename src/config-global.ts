@@ -29,5 +29,4 @@ export const AUTH0_API = {
 export const MAP_API = process.env.MAPBOX_API;
 
 // ROOT PATH AFTER LOGIN SUCCESSFUL
-export const PATH_AFTER_LOGIN = HOST_API_KEY; // as '/dashboard/app'
-export const LOCALHOST_PORT = process.env.LOCALHOST + ':' + process.env.PORT;
+export const LOCALHOST = process.env.LOCALHOST! + process.env.LOCALPORT;

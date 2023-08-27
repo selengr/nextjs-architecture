@@ -28,12 +28,12 @@ const AUTH_TOKEN = 'your_auth_token';
 const callApi = () => {
 
  const axiosInstance =  axios.create({
-   baseURL: HOST_API_KEY,
+  //  baseURL: HOST_API_KEY,
    timeout: 12000,
    headers: {
        'Accept': 'application/vnd.GitHub.v3+json',
       //  config.headers['Authorization'] = 'Bearer ' + getToken(); 
-       Authorization: 'Bearer YOUR_TOKEN' // AUTH_TOKEN
+      //  Authorization: 'Bearer YOUR_TOKEN' // AUTH_TOKEN
     },
     transformRequest: [
       (data) => {
@@ -51,13 +51,13 @@ const callApi = () => {
   axiosInstance.interceptors.request.use(
   (config : InternalAxiosRequestConfig) => {
 
-    if ("token") {
-       // console.log('config================================ :>> ', config.);
-    //  add authorization logic here
-    config.headers['Authorization'] = 'Bearer ' ; // + getToken();
-    config.withCredentials = true;
-      // config.headers.Authorization = `Bearer ${token}`;
-    }
+    // if ("token") {
+    //    // console.log('config================================ :>> ', config.);
+    // //  add authorization logic here
+    // config.headers['Authorization'] = 'Bearer ' ; // + getToken();
+    // config.withCredentials = true;
+    //   // config.headers.Authorization = `Bearer ${token}`;
+    // }
     return config;
   },
   (error : AxiosError | Error) => {

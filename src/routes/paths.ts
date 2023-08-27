@@ -1,17 +1,26 @@
 // ----------------------------------------------------------------------
+import { LOCALHOST } from "@/config-global";
 
 function path(root: string, sublink: string) {
   return `${root}${sublink}`;
 }
 
-const ROOTS_AUTH = '/auth';
+const ROOTS_AUTH = "http://apifpr.mresalat1.com:8080";
 const ROOTS_DASHBOARD = '/dashboard';
 
+// ----------------------------------------------------------------------
+const AuthParams = [
+  "client_id=ssoClient-2",
+  "redirect_uri=" + LOCALHOST,
+  "response_type=code",
+  "scope=openid",
+  "response_mode=form_post"
+];
 // ----------------------------------------------------------------------
 
 export const PATH_AUTH = {
   root: ROOTS_AUTH,
-  login: path(ROOTS_AUTH, '/login'),
+  login: path(ROOTS_AUTH, '/sso/oauth2/authorize?'+ AuthParams.join('&')),
   register: path(ROOTS_AUTH, '/register')
 };
 

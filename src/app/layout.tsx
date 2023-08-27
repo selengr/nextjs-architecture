@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Providers } from "@/redux/provider";
-
+import { Providers } from '@/redux/provider';
+import { AuthProvider } from '@/auth/JwtContext';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,10 +14,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-      <html lang="en">
-        <body>
-          <Providers>{children}</Providers>
-        </body>
-      </html>
+    <html lang="en">
+      <body>
+        {/* <AuthProvider> */}
+            {/* <Providers> */}
+              {children}
+              {/* </Providers> */}
+        {/* </AuthProvider> */}
+      </body>
+    </html>
   );
 }

@@ -2,9 +2,8 @@ import { Box, Paper, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 
 export default async function Home() {
-  // const [post,users] = await Prop
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-  //  throw new ErrorText("متن ارور در اینجا نمایش داده می شود")
+await new Promise((resolve) => setTimeout(resolve, 5000));
+//  throw new ErrorText("متن ارور در اینجا نمایش داده می شود")
 
   return (
     <Box
