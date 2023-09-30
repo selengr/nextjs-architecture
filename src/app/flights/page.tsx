@@ -7,7 +7,8 @@ import UiCustomizedTabOne from '@/components/UI/ui-tabs/UiCustomizedTabOne';
 import UiCustomizedTabTwo from '@/components/UI/ui-tabs/UiCustomizedTabTwo';
 import TransportTypeSelector from '@/components/UI/ui-transport-type-selector/TransportTypeSelector';
 import ModalGestures from '@/components/common/modal/ModalGestures ';
-import TabPanel from '@mui/joy/TabPanel';
+import TabPanel from '@mui/joy/TabPanel/TabPanel';
+
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -27,8 +28,9 @@ const Flights = () => {
       <Banner
         bannerPic="/static/images/flights/header_[fpdl 1.svg"
         alt="header"
-        width={500}
+        width={0}
         height={500}
+        className="w-full"
       />
 
       <div className="relative flex justify-center align-middle items-center">

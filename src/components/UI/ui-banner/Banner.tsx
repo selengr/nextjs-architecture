@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { TBannerPic } from '.';
 
-export default function Banner({ bannerPic, alt, width, height }: TBannerPic) {
+export default function Banner({ bannerPic, alt, width, height,className }: TBannerPic) {
   return (
     <div className=''>
       <Image
@@ -11,6 +11,7 @@ export default function Banner({ bannerPic, alt, width, height }: TBannerPic) {
         height={height} //automatically provided
         // blurDataURL="data:..." automatically provided
         // placeholder="blur" // Optional blur-up while loading
+        className={className}
       />
     </div>
   );

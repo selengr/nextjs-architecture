@@ -32,9 +32,9 @@ export async function middleware(req: NextRequest,res:NextResponse) {
       return response
   }
   
-   if(!has_token){
-      return NextResponse.redirect(new URL( PATH_AUTH.login ))
-    }
+  //  if(!has_token){
+  //     return NextResponse.redirect(new URL( PATH_AUTH.login ))
+  //   }
 
     // const verifiedToken = 
     // access_token && 

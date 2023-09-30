@@ -36,14 +36,17 @@ const ModalGestures = ({
         // onCloseEnd={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest55")}
         snapPoints={[600, 400, 100]} isOpen={isOpen} onClose={onClose}
          className={className} 
-         style={{maxWidth:"576px",display:"flex",alignItems:"center",
-         justifyContent:"center",
-         transform:" translate(-54%, 0%)",
-         left:"50%",
+         style={{
+          // maxWidth:"576px",
+          width:"100%",
+          display:"flex",alignItems:"center",
+          justifyContent:"center",
+          transform:" translate(-50%, 0%)",
+          left:"50%",
         //  width:"99%"
         //  right: "50%"
         }}>
-          <Sheet.Container>
+          <Sheet.Container style={{maxWidth:"576px",left:"auto"}}>
             <Sheet.Header />
             <Sheet.Content >{children}
             <button onClick={() => snapTo(0)}>Snap to index 0</button>

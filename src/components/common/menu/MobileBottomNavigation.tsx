@@ -201,9 +201,17 @@ export default function MobileBottomNavigation(
   return (
     <div className='overflow-hidden'>
       {children}
-    <div className="bg-ms-white rounded-3xl max-w-[512px] w-full z-50 fixed bottom-6 ml-8 mr-8">
+
+      {/* <div className="w-full flex justify-center align-middle items-center mt-[24px] mb-[32px]">
+        <button className="h-[50px] w-full border-none text-ms-white font-ms-medium mx-[32px] bg-ms-btn-green-23 rounded-[15px]">
+          جستجو
+        </button>
+      </div> */}
+
+
+    <div className="flex justify-center align-middle items-center max-w-[576px] w-full z-50 fixed bottom-6 ">
  
-      <ul className="menu menu-horizontal bg-ms-white rounded-3xl h-[50px] flex flex-row">
+      <ul className="menu menu-horizontal w-full bg-ms-white rounded-3xl mx-[32px] h-[50px] flex flex-row">
         {menuItems.map((item, key) => (
           <li
             key={key}
