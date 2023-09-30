@@ -39,7 +39,7 @@ const Flights = () => {
 
       <Box sx={{ height: '74px' }}></Box>
 
-      <div className="w-full flex justify-center align-middle items-center space-t-32">
+      <div className="w-full flex justify-center align-middle items-center space-t-32 ">
         <UiSwitchSelector />
       </div>
 

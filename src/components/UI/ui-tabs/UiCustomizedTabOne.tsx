@@ -4,7 +4,7 @@ const UiCustomizedTabOne = () => {
     return (
         <>
              <div className="h-[116px] mt-[16px] relative bg-ms-white w-full rounded-[30px]  shadow-[0px 0px 1px 0px #11111126]">
-              <div className="flex justify-end flex-row align-middle items-center mx-5 mt-5">
+              <div className="flex justify-end flex-row align-middle items-center mx-5 mt-5 font-ms-iranSansMobile">
                 <span className="text-[#969F9F] text-ms-sm mx-2 font-ms-regular">(شهر)</span>
                 <span className="text-ms-thick-green font-ms-medium">مبدا</span>
                 <Image
@@ -30,7 +30,7 @@ const UiCustomizedTabOne = () => {
                     </div>
               </div>
 
-              <div className="flex justify-end flex-row align-middle items-center mx-5 -mt-2">
+              <div className="flex justify-end flex-row align-middle items-center mx-5 -mt-2 font-ms-iranSansMobile">
                 <span className="text-[#969F9F] text-ms-sm mx-2 font-ms-regular">(شهر)</span>
                 <span className="text-ms-thick-green font-ms-medium">مقصد</span>
                 <Image
@@ -47,7 +47,7 @@ const UiCustomizedTabOne = () => {
 
 
 
-            <div className="h-[50px] relative flex align-middle items-center justify-end bg-ms-white w-full rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]">
+            <div className="h-[50px] relative flex align-middle items-center justify-end bg-ms-white w-full rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126] font-ms-iranSansMobile">
               <div className="flex flex-row  mx-5 ">
                 <span className="text-ms-thick-green font-ms-medium">تاریخ رفت</span>
                 <Image
@@ -60,7 +60,7 @@ const UiCustomizedTabOne = () => {
               </div>
               </div>
 
-              <div className="h-[50px] relative flex align-middle items-center justify-end bg-ms-white w-full rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]">
+              <div className="h-[50px] relative flex align-middle items-center justify-end bg-ms-white w-full rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126] font-ms-iranSansMobile">
               <div className="flex flex-row mx-5 ">
                 <span className="text-ms-thick-green font-ms-medium">1مسافر</span>
                 <Image

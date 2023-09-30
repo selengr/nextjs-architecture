@@ -104,10 +104,9 @@ export default function UICustomizedTabs({
     sx={{bgcolor:"transparent",
     '& .MuiTabs-indicator': {
       backgroundColor: '#02A95C',
-      borderBottom: "3px solid red",
     },
     }}  className="w-[100%] flex justify-center items-center" aria-label="Basic tabs" defaultValue={0}>
-      <TabList sx={{bgcolor:"transparent",borderBottom:"1px solid #EDEBEB" }} className="w-[100%] flex justify-center items-center">
+      <TabList sx={{bgcolor:"transparent",borderBottom:"1px solid #EDEBEB" }} className="w-[100%] flex justify-center items-center font-ms-iranSansMobile font-ms-medium">
       
       <Tab 
          sx={{
@@ -116,8 +115,11 @@ export default function UICustomizedTabs({
             // backgroundColor: "primary.main",
           },
           "&.Mui-selected": {
-            borderBottom: "3 solid #02A95C",
-            // backgroundColor: "transparent",
+            borderBottom: "2px solid red",
+            backgroundColor: "transparent",
+          },
+          '&[aria-selected="true"]': {
+            "--Tab-indicatorColor": "#02A95C !important"
           },
         }}
              className="w-[40%]">دو طرفه
@@ -127,16 +129,20 @@ export default function UICustomizedTabs({
         sx={{
           bgcolor:"transparent",
           '& .MuiTabs-indicator': {
-            backgroundColor: '#02A95C',
-            borderBottom: "3px solid red",
+            backgroundColor: 'red',
+            // --Tab-indicatorColor: currentColor;
+            borderBottom: "2px solid red !important",
+          },
+          '&[aria-selected="true"]': {
+            "--Tab-indicatorColor": "#02A95C !important"
           },
           "&:hover": {
             // backgroundColor: "primary.main",
-            // borderBottom: "3px solid red",
+            // borderBottom: "2px solid red !important",
           },
           "&.Mui-selected": {
-            // backgroundColor: "transparent",
-            // borderBottom: "3px solid red",
+            backgroundColor: "transparent",
+            borderBottom: "2px solid red !important",
           },          
         }}
            

@@ -29,8 +29,7 @@ const options = [
     fontColor:"#1B3D13",
     selectedBorder: "#000",
     // border : "#06AB5F",
-    border:"11px solid #000",
-    
+    border:"11px solid #000"
   }
 ];
 
