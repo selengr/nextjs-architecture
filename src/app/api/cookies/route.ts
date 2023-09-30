@@ -6,11 +6,10 @@ const { searchParams } = new URL(request.url)
   const name = searchParams.get('code')
   const cookieStore = cookies()
   const token = cookieStore.get(name!)
- 
+
   return new Response(`token=${token!.value}` , {
     status: 200
   })
-
 }
 
 export async function POST(request: Request) {
@@ -26,5 +25,5 @@ const res = await request.json()
   return new NextResponse(res, {
     status: 201
   })
-}
 
+}

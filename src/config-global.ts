@@ -29,4 +29,5 @@ export const AUTH0_API = {
 export const MAP_API = process.env.MAPBOX_API;
 
 // ROOT PATH AFTER LOGIN SUCCESSFUL
-export const LOCALHOST = process.env.LOCALHOST! + process.env.LOCALPORT;
+// export const LOCALHOST = process.env.LOCALHOST! + process.env.LOCALPORT;
+export const LOCALHOST = "http://www.mbz2.ir";

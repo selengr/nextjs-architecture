@@ -1,5 +1,6 @@
 // routes
 // utils
+import { PATH_AUTH } from '@/routes/paths';
 import axios from '../utils/axios';
 
 
@@ -15,6 +16,7 @@ import axios from '../utils/axios';
 //       .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
 //       .join('')
 //   );
+
 //   return JSON.parse(jsonPayload);
 // }
 
@@ -26,12 +28,12 @@ function jwtDecode(token: string) {
   return JSON.parse(jsonPayload);
 }
 
-
+// ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
 
-export const isValidToken = (accessToken: string | undefined ) => {
-
+export const isValidToken = (accessToken: string) => {
+  // console.log("-----------------------------------------------------------accessToken2",accessToken);
   if (!accessToken) {
     return false;
   }
@@ -48,52 +50,45 @@ export const isValidToken = (accessToken: string | undefined ) => {
   // }
   // const oneDay = 24 * 60 * 60 * 1000     //     { expires: Date.now() - oneDay }
   const currentTime = Date.now() / 1000;
-
   return decoded.exp > currentTime;
 };
 
-
 // ----------------------------------------------------------------------
 
-export const tokenExpired =  (exp: number,callback_tokenExpired:any) => {
+export const tokenExpired =  (exp: number) => {
   // eslint-disable-next-line prefer-const
   let expiredTimer;
 
   const currentTime = Date.now();
 
   // Test token expires after 10s
-  const timeLeft = currentTime + 10000 - currentTime; // ~10s
-  // const timeLeft = exp * 1000 - currentTime;
+  // const timeLeft = currentTime + 10000 - currentTime; // ~10s
+  const timeLeft = exp * 1000 - currentTime;
 
   clearTimeout(expiredTimer);
 
   expiredTimer = setTimeout(() => {
-    callback_tokenExpired()
-    // alert('Token expired');
-    // localStorage.removeItem('accessToken');
-    // window.location.href = PATH_AUTH.login;
+    // callback_tokenExpired()
+      alert('Token expired');
+      localStorage.removeItem('access_token');
+       window.location.href = PATH_AUTH.login;
   }, timeLeft);
 };
 
 // ----------------------------------------------------------------------
 
-export const setSession = (accessToken: string | undefined,callback_tokenExpired:any) => {
-
+export const setSession = (accessToken: string | any) => {
   if (accessToken) {
-    // localStorage.setItem('accessToken', accessToken);
-
+    localStorage.setItem('access_token', accessToken);
+    
     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-
+    
     // This function below will handle when token is expired
     const { exp } = jwtDecode(accessToken); // ~3 days by minimals server
-
-    tokenExpired(exp,callback_tokenExpired)
-    
+    tokenExpired(exp)
    
   } else {
-    // localStorage.removeItem('accessToken');
-
+    localStorage.removeItem('access_token');
     delete axios.defaults.headers.common.Authorization;
   }
- 
 };

@@ -108,28 +108,26 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const initialize = useCallback(async () => {
     try {
       const accessToken = storageAvailable
-        ? localStorage.getItem('accessToken')
-        : '';
-
+        ? localStorage.getItem('access_token') + ''
+        : '' ;
+  //  console.log("--------------------------------------------1",isValidToken(accessToken));
       if (accessToken && isValidToken(accessToken)) {
-        setSession(accessToken,undefined);
+        setSession(accessToken);
 
-        const response = await callApi.get('/api/account/my-account');
+        // const response = await callApi.get('/api/account/my-account');
  
-        const { user } = response.data;
+        // const { user } = response.data;
 
-        dispatch({
-          type: Types.INITIAL,
-          payload: {
-            isAuthenticated: true,
-            user
-          }
-        });
+        // dispatch({
+        //   type: Types.INITIAL,
+        //   payload: {
+        //     isAuthenticated: true,
+        //     user
+        //   }
+        // });
       } else {
 
-
         // If the token isn't valid for any reason, we want to clear it from localstorage and redirect to login page
-
 
         dispatch({
           type: Types.INITIAL,
@@ -174,16 +172,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
       redirect: 'follow'
     };
 
-    const response = await axios.post('http://apifpr.mresalat1.com/sso/oauth2/token',requestOptions);
-    const { access_token, user } = response.data;
-    setSession(access_token);
 
-    dispatch({
-      type: Types.LOGIN,
-      payload: {
-        user
-      }
-    });
+    const response = await axios.post('http://apifpr.mresalat1.com/sso/oauth2/token',requestOptions);
+    const { access_token, user } = response.data as {
+      access_token: string | undefined;
+      user?: string;
+    };
+
+    setSession(access_token)
+
+    // dispatch({
+    //   type: Types.LOGIN,
+    //   payload: {
+    //     user
+    //   }
+    // });
   }, []);
 
   // REGISTER
@@ -279,37 +282,3 @@ export  const verifyAuth = async (token: string | Uint8Array) => {
     throw new Error('your token has expired')
   }
 }
-
-
-export const getUser = async (accessToken : string | null) => {
-  if(!accessToken) {
-    throw new Error("Missing token")
-  }
-  try {
-    if (accessToken && isValidToken(accessToken)) {
-      setSession(accessToken,"")
-
-      const response = await callApi.get("/user")
-      const { user } = response.data;
-      // dispatch({
-      //   type: Types.INITIAL,
-      //   payload: {
-      //     isAuthenticated: true,
-      //     user
-      //   }
-    }
-   } catch (err: any) {
-     console.log(err.response.data);
-    //  dispatch({
-    //   type: Types.INITIAL,
-    //   payload: {
-    //     isAuthenticated: false,
-    //     user: null
-    //   }
-    // });
-     return null;
-   }
-};
-
-
- 

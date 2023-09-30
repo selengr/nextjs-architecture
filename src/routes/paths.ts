@@ -23,6 +23,11 @@ export const PATH_AUTH = {
   login: path(ROOTS_AUTH, '/sso/oauth2/authorize?'+ AuthParams.join('&')),
   register: path(ROOTS_AUTH, '/register')
 };
+export const BOOKING = {
+  bus: "bus",
+  train: "train",
+  flights : "flights" 
+};
 
 export const PATH_PAGE = {
   about: '/about-us',

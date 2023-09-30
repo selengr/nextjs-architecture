@@ -17,17 +17,25 @@
 }
 
 body {
-  font-family: IRANSans !important;
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  font-family: "IRANSansMobile" !important;
+  /* color: rgb(var(--foreground-rgb)); */
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    ) */
+    /* rgb(var(--background-start-rgb)); */
 }
 
-@font-face {
+@layer components {
+  .ms-center {
+    @apply flex justify-center align-middle;
+  } 
+}
+
+
+/* ------------------------------------------------------old */
+/* @font-face {
   font-family: 'IRANSans';
   font-weight: 700;
   font-style: normal;
@@ -39,4 +47,48 @@ body {
   font-style: normal;
   src: url('../../public/fonts/IRANSansWeb/IRANSansWeb_Bold.woff')
     format('opentype');
+}
+ */
+
+/* ------------------------------------------------------new */
+@font-face {
+  font-family: 'IRANSansMobile';
+  font-weight: 'black';
+  font-style: normal;
+  src: local('IRANSansMobile'), url('/static/fonts/MobileFonts/IRANSansMobile(FaNum)_Black.ttf') format('truetype');
+} 
+
+@font-face {
+  font-family: 'IRANSansMobile';
+  font-weight: 'bold';
+  font-style: normal;
+  src: local('IRANSansMobile'), url('/static/fonts/MobileFonts/IRANSansMobile(FaNum)_Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'IRANSansMobile';
+  font-weight: 'medium';
+  font-style: normal;
+  src: local('IRANSansMobile'), url('/static/fonts/MobileFonts/IRANSansMobile(FaNum)_Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'IRANSansMobile';
+  font-weight: 'regular';
+  font-style: normal;
+  src: local('IRANSansMobile'), url('/static/fonts/MobileFonts/IRANSansMobile(FaNum).ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'IRANSansMobile';
+  font-weight: 'light';
+  font-style: normal;
+  src: local('IRANSansMobile'), url('/static/fonts/MobileFonts/IRANSansMobile(FaNum)_Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'IRANSansMobile';
+  font-weight: 'UltraLight';
+  font-style: normal;
+  src: local('IRANSansMobile'), url('/static/fonts/MobileFonts/IRANSansMobile(FaNum)_UltraLight.ttf') format('truetype');
 }

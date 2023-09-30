@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getUser, verifyAuth } from './auth/JwtContext';
+import {  verifyAuth } from './auth/JwtContext';
 import { LOCALHOST } from './config-global';
 import { cookies } from 'next/headers';
-import { GetToken, VerifiedToken } from './auth/getToken';
+import { GetToken } from './auth/getToken';
 import { PATH_AUTH } from './routes/paths';
 
 
@@ -21,22 +21,20 @@ export async function middleware(req: NextRequest,res:NextResponse) {
 
   if (pathname.startsWith("/_next")) return NextResponse.next();
   if(isLocalhost(href)) localUrl()
-
+  
   if (req.nextUrl.search.includes('code') && !has_token) {
       const response = NextResponse.next()
-      let code : string = req.nextUrl?.searchParams?.get('code') ?? ""
-      const token = await GetToken(code, LOCALHOST)
-      req.nextUrl.searchParams.delete('code')
-      response.cookies.set("code", code) 
-      response.cookies.set("access_token", token)
-      NextResponse.redirect(new URL(LOCALHOST))
+      // let code : string = req.nextUrl?.searchParams?.get('code') ?? ""
+      // const token = await GetToken(code, LOCALHOST)
+      // req.nextUrl.searchParams.delete('code')
+      // response.cookies.set("access_token", token)
+      // NextResponse.redirect(new URL(LOCALHOST))
       return response
   }
   
-  
    if(!has_token){
-    return NextResponse.redirect(new URL( PATH_AUTH.login ))
-   }
+      return NextResponse.redirect(new URL( PATH_AUTH.login ))
+    }
 
     // const verifiedToken = 
     // access_token && 
@@ -45,16 +43,15 @@ export async function middleware(req: NextRequest,res:NextResponse) {
     // }))
 
 
- const callback_tokenExpired = async () => {
-     req.cookies.delete('code'); 
-     req.cookies.delete('access_token'); 
-     console.log(("you token has ex")); // this should be a alart in the future
-     return NextResponse.redirect(new URL( PATH_AUTH.login ))
-  }
+//  const callback_tokenExpired = async () => {
+//      req.cookies.delete('code'); 
+//      req.cookies.delete('access_token'); 
+//      console.log(("you token has ex")); // this should be a alart in the future
+//      return NextResponse.redirect(new URL( PATH_AUTH.login ))
+//   }
 
 
-    let verifiedToken2 = await VerifiedToken(access_token,callback_tokenExpired)
-      console.log('verifiedToken22222222 :>> ', verifiedToken2);
+  
     // if(verifiedToken) {
     //    await getUser(token);
     // }
