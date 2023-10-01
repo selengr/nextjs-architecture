@@ -40,13 +40,13 @@ export default function RootLayout({
     <html lang="en" className='w-full ms-center bg-ms-white '>
       <body className='ms-center max-w-[576px] w-full bg-ms-back-card-gray-12 flex flex-col relative overflow-scroll'>  
 
-        <AuthProvider>
+        {/* <AuthProvider> */}
         <MobileBottomNavigation>
              {/* <Providers> */}
               {children}
               {/* </Providers> */}
         </MobileBottomNavigation >    
-        </AuthProvider>
+        {/* </AuthProvider> */}
 
       </body>
     </html>

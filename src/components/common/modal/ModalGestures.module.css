@@ -1,5 +1,6 @@
-/* 
 
-.msModalGestures {
-    width: 100%;
-} */
+/* 
+.msModalGestures  {
+    overflow: scroll;
+    height: 100%;
+}  */

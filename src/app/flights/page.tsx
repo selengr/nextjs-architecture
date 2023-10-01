@@ -6,6 +6,7 @@ import UiCustomizedTabs from '@/components/UI/ui-tabs/UICustomizedTabs';
 import UiCustomizedTabOne from '@/components/UI/ui-tabs/UiCustomizedTabOne';
 import UiCustomizedTabTwo from '@/components/UI/ui-tabs/UiCustomizedTabTwo';
 import TransportTypeSelector from '@/components/UI/ui-transport-type-selector/TransportTypeSelector';
+import CustomizedOptions from '@/components/common/customized-options/CustomizedOptions';
 import ModalGestures from '@/components/common/modal/ModalGestures ';
 import TabPanel from '@mui/joy/TabPanel/TabPanel';
 
@@ -65,6 +66,7 @@ const Flights = () => {
          
         </UiCustomizedTabs>
       </div>
+      {/* <CustomizedOptions value="hhh" /> */}
  
       <div className="w-full flex justify-center align-middle items-center mt-[24px] mb-[32px]">
         <button className="h-[50px] w-full border-none text-ms-white font-ms-medium mx-[32px] bg-ms-btn-green-23 rounded-[15px]">

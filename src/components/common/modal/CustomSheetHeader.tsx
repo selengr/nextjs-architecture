@@ -1,24 +1,28 @@
 import Image from "next/image";
 
 interface IModalHeaderProps {
-    title : string;
-
+    title? : string;
+    onClose?: () => void;
   }
 
-const CustomSheetHeader = ({title}:IModalHeaderProps) => {
-    return (
-        <div className="w-full flex flex-row justify-between m-8 items-center">
-              
+const CustomSheetHeader = ({title,onClose}:IModalHeaderProps) => {
+    return (<>
+                <div className="w-full flex flex-row justify-between py-6 items-center">
+          {onClose&&
+                    
                 <Image
+                onClick={onClose}
                 className="ml-1"
                 src={'/static/images/flights/close_icon.svg'}
                 alt={'flight'}
                 width={23} //automatically provided
                 height={23} //automatically provide
-          />
-           <span>{title}</span>
-        </div>
-    );
+                />
+            }
+                <span className="text-ms-lg text-ms-thick-green font-ms-medium">{title}</span>
+                </div>
+        </>
+        );
 }
 
 export default CustomSheetHeader;
