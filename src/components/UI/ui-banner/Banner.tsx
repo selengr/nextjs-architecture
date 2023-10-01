@@ -7,8 +7,8 @@ export default function Banner({ bannerPic, alt, width, height,className }: TBan
       <Image
         src={bannerPic}
         alt={alt}
-        width={width} //automatically provided
-        height={height} //automatically provided
+        width={0} //automatically provided
+        height={0} //automatically provided
         // blurDataURL="data:..." automatically provided
         // placeholder="blur" // Optional blur-up while loading
         className={className}

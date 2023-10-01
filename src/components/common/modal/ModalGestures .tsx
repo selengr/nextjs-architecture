@@ -2,6 +2,9 @@
 
 import Sheet, { SheetRef } from 'react-modal-sheet';
 import { useState, useRef } from 'react';
+import styles from "./ModalGestures.module.css"
+import CustomSheetHeader from './CustomSheetHeader';
+import { title } from 'process';
 
 interface ModalProps {
   isOpen: boolean;
@@ -9,10 +12,12 @@ interface ModalProps {
   children: React.ReactNode;
   // title?: string;
   className?: string;
+  title?:string
 }
 
 const ModalGestures = ({
   isOpen,
+  title,
   onClose,
   children,
   className
@@ -23,7 +28,7 @@ const ModalGestures = ({
 
   return (
     <>
-      <div className='w-full '>
+      <div className={styles.msModalGestures}>
 
         <Sheet
           // detent="content-height"
@@ -37,17 +42,18 @@ const ModalGestures = ({
         snapPoints={[600, 400, 100]} isOpen={isOpen} onClose={onClose}
          className={className} 
          style={{
-          // maxWidth:"576px",
-          width:"100%",
           display:"flex",alignItems:"center",
           justifyContent:"center",
           transform:" translate(-50%, 0%)",
           left:"50%",
+          width:"100%"
         //  width:"99%"
         //  right: "50%"
         }}>
-          <Sheet.Container style={{maxWidth:"576px",left:"auto"}}>
-            <Sheet.Header />
+         <Sheet.Container className="max-w-[576px]" style={{left:"auto !important"}}>
+            <Sheet.Header>
+              <CustomSheetHeader title={title} />
+            </Sheet.Header>
             <Sheet.Content >{children}
             <button onClick={() => snapTo(0)}>Snap to index 0</button>
             <button onClick={() => snapTo(1)}>Snap to index 1</button>

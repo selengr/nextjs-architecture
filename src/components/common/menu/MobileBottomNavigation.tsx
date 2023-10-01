@@ -194,7 +194,7 @@ export default function MobileBottomNavigation(
       label: 'Home',
       icon: '/static/images/profile/home1.svg',
       activeIcon: '/static/images/profile/home2.svg',
-      route: '#',
+      route: '/flights',
     },
   ];
 

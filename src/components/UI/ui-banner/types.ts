@@ -4,7 +4,7 @@ export type TBannerPic = {
     alt: "picture" | string,
     width?: number | ""; //automatically provided
     height?: number | ""; //automatically provided
-    className?: string | ""; //automatically provided
+    className?: string | "";
     //   blurDataURL="data:..." //automatically provided
     //   placeholder="blur" // Optional blur-up while loading   
     

@@ -14,14 +14,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 const Flights = () => {
-    const [isOpen, setOpen] = useState(false);
     
-    const onOpen =()=> {
-        setOpen(true)
-    }
-    const onClose =()=> {
-        setOpen(true)
-    }
 
   return (
     <div className="h-full w-full overflow-hidden">
@@ -55,7 +48,7 @@ const Flights = () => {
               flexDirection:"column"
             }}
           >
-           <UiCustomizedTabOne />
+           <UiCustomizedTabTwo status="oneWay" />
           </TabPanel>
 
           <TabPanel value={0}
@@ -67,34 +60,11 @@ const Flights = () => {
                 flexDirection:"column"
               }}
           >
-             <UiCustomizedTabTwo />
+             <UiCustomizedTabTwo status="twoWay"/>
           </TabPanel>
          
         </UiCustomizedTabs>
       </div>
-
-      <div >
-                <button onClick={onOpen}>Open sheet</button>
-                <button onClick={onClose}>close sheet</button>
-      <ModalGestures isOpen={isOpen} onClose={onClose}>
-            <h1>
-                lets test sss
-            </h1>
-            <h1>
-                lets test sss
-            </h1>
-            <h1>
-                lets test sss
-            </h1>
-            <h1>
-                lets test sss
-            </h1>
-            <h1>
-                lets test sss
-            </h1>
-        </ModalGestures>
-    </div>
-
  
       <div className="w-full flex justify-center align-middle items-center mt-[24px] mb-[32px]">
         <button className="h-[50px] w-full border-none text-ms-white font-ms-medium mx-[32px] bg-ms-btn-green-23 rounded-[15px]">
