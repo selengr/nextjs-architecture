@@ -37,6 +37,7 @@ const ModalGestures = ({
         initialSnap={initialSnap}
         ref={ref}
         // onSnap={snapIndex  => alert(snapIndex)  }
+        // onSnap={snapIndex  => alert(snapIndex)  }
         // onOpenEnd={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest11")}
         // onOpenStart={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest22")}
         // onCloseStart={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest44")}
