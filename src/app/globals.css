@@ -16,8 +16,13 @@
   }
 }
 
+button,
+span {
+  font-family: "IRANSansMobile" !important;
+}
 body {
   font-family: "IRANSansMobile" !important;
+  /* direction: rtl */
   /* color: rgb(var(--foreground-rgb)); */
   /* background: linear-gradient(
       to bottom,

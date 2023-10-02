@@ -1,6 +1,7 @@
 "use client"
 
 import { Banner } from '@/components/UI/ui-banner';
+import UiButton from '@/components/UI/ui-button';
 import UiSwitchSelector from '@/components/UI/ui-switch-selector/UiSwitchSelector';
 import UiCustomizedTabs from '@/components/UI/ui-tabs/UICustomizedTabs';
 import UiCustomizedTabOne from '@/components/UI/ui-tabs/UiCustomizedTabOne';
@@ -12,7 +13,6 @@ import TabPanel from '@mui/joy/TabPanel/TabPanel';
 
 import { Box } from '@mui/material';
 import Image from 'next/image';
-import { useState } from 'react';
 
 const Flights = () => {
     
@@ -37,7 +37,7 @@ const Flights = () => {
         <UiSwitchSelector />
       </div>
 
-      <div className="w-full flex justify-center align-middle items-center mt-[32px]">
+      <div className="w-full flex justify-center align-middle items-center mt-[32px] mb-[24px]">
         <UiCustomizedTabs>
           <TabPanel
             value={1}
@@ -68,11 +68,11 @@ const Flights = () => {
       </div>
       {/* <CustomizedOptions value="hhh" /> */}
  
-      <div className="w-full flex justify-center align-middle items-center mt-[24px] mb-[32px]">
-        <button className="h-[50px] w-full border-none text-ms-white font-ms-medium mx-[32px] bg-ms-btn-green-23 rounded-[15px]">
-          جستجو
-        </button>
-      </div>
+ 
+        <div className='mx-8'>    
+            <UiButton onClick={(e)=>console.log('e :>> ', e)} className='mt-[24px] mb-[32px] px-6 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]' text='جستجو'/>
+        </div>
+  
 
       <div className='mt-24' />
 
