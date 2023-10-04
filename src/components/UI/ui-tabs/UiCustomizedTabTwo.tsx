@@ -1,10 +1,13 @@
-import DestinationView from '@/components/Layout/DestinationView';
-import OriginVeiw from '@/components/Layout/OriginVeiw';
-import PassengersVeiw from '@/components/Layout/PassengersVeiw';
+"use client"
+
+
 import DateRangeCalendar from '@/components/common/calanders/DateRangeCalendar';
 import CustomizedOptions from '@/components/common/customized-options/CustomizedOptions';
 import ModalGestures from '@/components/common/modal/ModalGestures ';
 import SearchBar from '@/components/common/search-bar/SearchBar';
+import DestinationView from '@/components/layout/DestinationView';
+import OriginVeiw from '@/components/layout/OriginVeiw';
+import PassengersVeiw from '@/components/layout/PassengersVeiw';
 import Image from 'next/image';
 import { useState } from 'react';
 

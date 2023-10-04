@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { toast } from 'sonner';
 import UiButton from '../UI/ui-button';
 
 interface Passenger {
@@ -101,7 +102,7 @@ const PassengersVeiw: React.FC = () => {
       </ul>
 
 
-           <UiButton onClick={(e)=>console.log('e :>> ', e)} className='bg-ms-btn-green-23 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] text-ms-white rounded-2xl w-full' text='تایید'/>
+           <UiButton onClick={()=> toast.error('please fill all input')} className='bg-ms-btn-green-23 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] text-ms-white rounded-2xl w-full' text='تایید'/>
 
     </div>
   );
