@@ -10,6 +10,7 @@ import TransportTypeSelector from '@/components/UI/ui-transport-type-selector/Tr
 import CustomizedOptions from '@/components/common/customized-options/CustomizedOptions';
 import ModalGestures from '@/components/common/modal/ModalGestures ';
 import TabPanel from '@mui/joy/TabPanel/TabPanel';
+import { Toaster, toast } from 'sonner';
 
 import { Box } from '@mui/material';
 import Image from 'next/image';
@@ -70,8 +71,12 @@ const Flights = () => {
  
  
         <div className='mx-8'>    
-            <UiButton onClick={(e)=>console.log('e :>> ', e)} className='mt-[24px] mb-[32px] px-6 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]' text='جستجو'/>
+        {/* <Toaster richColors/> */}
+            <UiButton onClick={()=> toast.error('please fill all input')} className='mt-[24px] mb-[32px] px-6 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]' text='جستجو'/>
         </div>
+
+    
+
   
 
       <div className='mt-24' />

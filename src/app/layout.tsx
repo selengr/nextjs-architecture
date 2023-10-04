@@ -1,6 +1,7 @@
 'use client'
 
 import './globals.css';
+import { Toaster } from 'sonner';
 // import type { Metadata } from 'next';
 import { Providers } from '@/redux/provider';
 import { AuthProvider } from '@/auth/JwtContext';
@@ -47,6 +48,7 @@ export default function RootLayout({
               {/* </Providers> */}
         </MobileBottomNavigation >    
         </AuthProvider>
+        <Toaster richColors/>
 
       </body>
     </html>
