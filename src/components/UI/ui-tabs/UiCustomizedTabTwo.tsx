@@ -214,6 +214,7 @@ const UiCustomizedTabTwo = ({status}:any) => {
                   onClose={onCloseReturnDate}
                   className='overflow-scroll'
                   // initialSnap={7}
+                  
                 >
 
                <DateRangeCalendar />

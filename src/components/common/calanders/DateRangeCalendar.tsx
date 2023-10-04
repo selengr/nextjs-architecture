@@ -36,8 +36,8 @@ const DateRangeCalendar = () => {
     className={"msCalendar"} 
     >
         <DatePicker
-
-
+            // locale={"fi"}
+            locale="es"
              className="custom-datepicker" 
               selected={startDate}
               onChange={onChange}
