@@ -20,6 +20,9 @@ const UiCustomizedTabTwo = ({status}:any) => {
   const [origin, setOrigin] = useState("Tehran");
   const [destination, setDestination] = useState("Mashhad");
 
+  const [isOpenReturnDate, setOpenReturnDate] = useState(false);
+  const [isOpenDepartureDate, setOpenDepartureDate] = useState(false);
+
 
 
   const ChangeOriginAndDestination = () => {
@@ -51,6 +54,12 @@ const UiCustomizedTabTwo = ({status}:any) => {
 
   const ChoosePassengers = () => setOpenPassengers(true);
   const onClosePassengers = () => setOpenPassengers(false);
+
+  const ChooseDepatureDate = () => setOpenDepartureDate(true);
+  const onCloseDepatureDate = () => setOpenDepartureDate(false);
+
+  const ChooseReturnDate = () => setOpenReturnDate(true);
+  const onCloseReturnDate = () => setOpenReturnDate(false);
   
 
 
@@ -103,7 +112,8 @@ const UiCustomizedTabTwo = ({status}:any) => {
         </div>
       </div>
 
-      <div className="h-[50px] relative flex align-middle items-center justify-end bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]">
+     
+      <div onClick={ChooseDepatureDate} className="h-[50px] relative flex align-middle items-center justify-end bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]">
         <div className="flex flex-row  mx-5 ">
           <span className="text-ms-thick-green font-ms-medium">تاریخ رفت</span>
           <Image
@@ -117,7 +127,7 @@ const UiCustomizedTabTwo = ({status}:any) => {
       </div>
 
       {status == 'twoWay' ? (
-        <div className="h-[50px] relative flex align-middle items-center justify-end bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]">
+        <div onClick={ChooseReturnDate} className="h-[50px] relative flex align-middle items-center justify-end bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]">
           <div className="flex flex-row  mx-5 ">
             <span className="text-ms-thick-green font-ms-medium">
               تاریخ برگشت
@@ -178,28 +188,41 @@ const UiCustomizedTabTwo = ({status}:any) => {
           </div>
         )}
         
-      {/* {true && (
+      {isOpenDepartureDate && (
           <div>
-           
-           
               <ModalGestures
-                  title='eeeeee'
-                  isOpen={isOpenPassengers}
-                  onClose={onClosePassengers}
+                  title='تاریخ رفت'
+                  isOpen={isOpenDepartureDate}
+                  onClose={onCloseDepatureDate}
                   className='overflow-scroll'
                   // initialSnap={7}
                 >
 
-              <DateRangeCalendar 
-                originDate={originDate}
-                setOriginDate={setOriginDate}
-                destinationDate={destinationDate}
-                setDestinationDate={setDestinationDate}
-                />
+               <DateRangeCalendar />
 
             </ModalGestures>
           </div>
-        )} */}
+        )}
+
+
+        
+{isOpenReturnDate && (
+          <div>
+              <ModalGestures
+                  title='تاریخ برگشت'
+                  isOpen={isOpenReturnDate}
+                  onClose={onCloseReturnDate}
+                  className='overflow-scroll'
+                  // initialSnap={7}
+                >
+
+               <DateRangeCalendar />
+
+            </ModalGestures>
+          </div>
+        )}
+        
+
       {isOpenPassengers && (
           <div>
            

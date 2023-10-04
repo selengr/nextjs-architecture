@@ -16,10 +16,19 @@
 /* .msCalendar :first-child :first-child {
     background: #F8F8F8;
  } */
-
+.react-datepicker__week {
+   /* min-height: 40px; */
+}
 .msCalendar .react-datepicker__header  {
     border: none !important;
     background: #FFFFFF;
+ }
+.msCalendar .react-datepicker,
+.msCalendar.react-datepicker__month-container  {
+    width: 100% !important;
+ }
+ .react-datepicker__month-container{
+   width: 100% !important;
  }
  .react-datepicker__day-names {
    background-color: #F8F8F8;
@@ -38,11 +47,25 @@
     /* font-family: IRANSansMobile !important; */
     font-size: 13px !important;
     font-weight: 400 !important;
+    /* width: calc(93% / 7); */
+    /* width: 12%; */
+    width: 9%;
+    /* height: 60px; */
+   /* height: 15%; */
+   margin: 1% 2%;
+
  }
      .msCalendar .react-datepicker__day {
          /* font-family: IRANSansMobile !important; */
          font-size: 13px !important;
          font-weight: 400 !important;
+         /* width: 1.7rem; */
+         line-height: 2rem;
+         /* width: calc(93% / 7); */
+          width: 9%;
+          /* height: 60px; */
+         /* height: 15%; */
+         margin: 1% 2%;
      } 
 
  .msCalendar .react-datepicker__day--in-range {
