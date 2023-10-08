@@ -50,7 +50,37 @@ const AvailableTickets = () => {
    
  
         <div className='mx-8'>    
-        
+              <div className='w-full flex flex-row bg-ms-white h-[50px] justify-center items-center rounded-3xl border-[1px] border-[#E4E4E4]'>
+                <span className='w-1/3 pl-4 flex items-center h-full'>
+                <Image
+                  className="ml-2 mr-4"
+                  src={`/static/images/flights/arrow-right.svg`}
+                  alt={'flight'}
+                  width={11} //automatically provided
+                  height={8} //automatically provide
+                /> 
+                  روز قبل
+              
+                </span>
+                <div className='w-1/3 flex justify-center'>
+                <Image
+                  className="ml-1"
+                  src={`/static/images/flights/filter-icon.svg`}
+                  alt={'flight'}
+                  width={42} //automatically provided
+                  height={42} //automatically provide
+                />
+                </div>
+                <span className='w-1/3 flex justify-end pl-4 items-center h-full'>روز بعد
+                <Image
+                  className="rotate-180 mr-2"
+                  src={`/static/images/flights/arrow-right.svg`}
+                  alt={'flight'}
+                  width={11} //automatically provided
+                  height={8} //automatically provide
+                />
+                </span>
+              </div>
          </div>
 
     
