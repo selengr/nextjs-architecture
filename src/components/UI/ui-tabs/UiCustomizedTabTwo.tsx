@@ -16,6 +16,15 @@ import { toast } from 'sonner';
 let dateReturnPreminent = '';
 let dateDeparturePreminent = '';
 
+interface DepartureAndReturnDate {
+  returnDay: string;
+  returnMonth: string;
+  returnYear: string;
+  departureDay: string;
+  departureMonth: string;
+  departureYear: string;
+}
+
 const UiCustomizedTabTwo = ({ status }: any) => {
   console.log('statusssssssss :>> ', status);
   const [isOpenOrigin, setOpenOrigin] = useState(false);
@@ -26,10 +35,17 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   const [origin, setOrigin] = useState('Tehran');
   const [destination, setDestination] = useState('Mashhad');
 
-  const [isOpenReturnDate, setOpenReturnDate] = useState(false);
+  const [isOpenDepatureAndReturnDate, setOpenDepatureAndReturnDate] = useState(false);
   const [isOpenDepartureDate, setOpenDepartureDate] = useState(false);
 
-  const [returnDate, setReturnDate] = useState<any>(false);
+  const [depatureAndReturnDate, setDepatureAndReturnDate] = useState<DepartureAndReturnDate>({
+    returnDay : "",
+    returnMonth: "",
+    returnYear : "",
+    departureDay : "",
+    departureMonth: "",
+    departureYear : ""
+  });
   const [departureDate, setDepartureDate] = useState({
     day : "",
     month: "",
@@ -68,8 +84,8 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   const ChooseDepatureDate = () => setOpenDepartureDate(true);
   const onCloseDepatureDate = () => setOpenDepartureDate(false);
 
-  const ChooseReturnDate = () => setOpenReturnDate(true);
-  const onCloseReturnDate = () => setOpenReturnDate(false);
+  const ChooseDepatureAndReturnDate = () => setOpenDepatureAndReturnDate(true);
+  const onCloseReturnDate = () => setOpenDepatureAndReturnDate(false);
 
   const handleDepartureDate = (time:any) => {
     // setDepartureDate(time.toString())
@@ -77,7 +93,7 @@ const UiCustomizedTabTwo = ({ status }: any) => {
     toast.success('soon')
   }
 
-  const handleReturnDate = () => setOpenReturnDate(false);
+  const handleReturnDate = () => setOpenDepatureAndReturnDate(false);
 
 
   console.log('departureDatetodayDate :>> ', todayDate);
@@ -201,7 +217,7 @@ const UiCustomizedTabTwo = ({ status }: any) => {
       {status == 'twoWay' ? (
 
 <div
-onClick={ChooseDepatureDate}
+onClick={ChooseDepatureAndReturnDate}
 className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
 >
 <div className="flex flex-row mx-5 justify-between w-full">
@@ -209,7 +225,7 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
   <Image
     className="ml-1"
     src={`/static/images/flights/${
-      departureDate.year ? 'calendar-choose.svg' : 'calendar-icon.svg'
+      depatureAndReturnDate.departureYear ? 'calendar-choose.svg' : 'calendar-icon.svg'
     }`}
     alt={'flight'}
     width={23} //automatically provided
@@ -217,10 +233,10 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
   />
   <span 
   className={`${
-    departureDate.year ? 'text-ms-green' : 'text-ms-thick-green'
+    depatureAndReturnDate.departureYear ? 'text-ms-green' : 'text-ms-thick-green'
   } font-ms-medium`}
   >
-    {departureDate.year ? departureDate.year : 'تاریخ رفت'}
+    {depatureAndReturnDate.departureYear ? depatureAndReturnDate.departureYear : 'تاریخ رفت'}
   </span>
   </div>
 
@@ -229,7 +245,7 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
           <Image
             className="ml-1"
             src={`/static/images/flights/${
-              departureDate.year ? 'calendar-choose.svg' : 'calendar-icon.svg'
+              depatureAndReturnDate.returnYear ? 'calendar-choose.svg' : 'calendar-icon.svg'
             }`}
             alt={'flight'}
             width={23} //automatically provided
@@ -237,10 +253,10 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
           />
           <span 
           className={`${
-            departureDate.year ? 'text-ms-green' : 'text-ms-thick-green'
+            depatureAndReturnDate.returnYear ? 'text-ms-green' : 'text-ms-thick-green'
           } font-ms-medium`}
           >
-            {returnDate.year ? returnDate.year : 'تاریخ برگشت'}
+            {depatureAndReturnDate.returnYear ? depatureAndReturnDate.returnYear : 'تاریخ برگشت'}
           </span>
           </div>
           </div>
@@ -395,11 +411,11 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
         </div>
       )}
 
-      {isOpenReturnDate && (
+      {isOpenDepatureAndReturnDate && (
         <div>
           <ModalGestures
             title="تاریخ برگشت"
-            isOpen={isOpenReturnDate}
+            isOpen={isOpenDepatureAndReturnDate}
             onClose={onCloseReturnDate}
             className="overflow-scroll"
             // initialSnap={7}
@@ -409,7 +425,7 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
               value={departureDate?.year}
               
               // value={departureDate?.year}
-              onChange={(time:any) => setReturnDate(time.toString())}
+              onChange={(time:any) => setDepartureDate(time.toString())}
               // onChange={(time: string) => (datePreminent = time)}
               selectDateRange={true}   
               dateFormat="DD/MM/YYYY"
@@ -428,13 +444,13 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
                   </span>
                 </span>
               )}
-              {returnDate && (
+              {isOpenDepatureAndReturnDate && (
                 <span className="px-2 text-[#000] text-ms-sm">
                   {' '}
                   برگشت
                   <span className="text-[#969696] text-ms-xs">
                     {' '}
-                    &nbsp; {returnDate}
+                    &nbsp; {isOpenDepatureAndReturnDate}
                   </span>
                 </span>
               )}
