@@ -179,10 +179,10 @@ export default function MobileBottomNavigation(
 
   const menuItems = [
     {
-      label: 'Profile',
-      icon: '/static/images/profile/profile-menu1.svg',
-      activeIcon: '/static/images/profile/profile-menu2.svg',
-      route: '#',
+      label: 'Home',
+      icon: '/static/images/profile/home1.svg',
+      activeIcon: '/static/images/profile/home2.svg',
+      route: '/flights',
     },
     {
       label: 'My Trips',
@@ -191,10 +191,10 @@ export default function MobileBottomNavigation(
       route: '#',
     },
     {
-      label: 'Home',
-      icon: '/static/images/profile/home1.svg',
-      activeIcon: '/static/images/profile/home2.svg',
-      route: '/flights',
+      label: 'Profile',
+      icon: '/static/images/profile/profile-menu1.svg',
+      activeIcon: '/static/images/profile/profile-menu2.svg',
+      route: '#',
     },
   ];
 

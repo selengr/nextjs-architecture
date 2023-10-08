@@ -63,7 +63,7 @@ const TransportTypeSelector = () => {
 
   return (
     <div
-      className="h-[4.5rem] -top-9 left-5 right-5 absolute z-20 w-11/12 rounded-2xl bg-ms-back-card-gray-22 flex flex-row-reverse"
+      className="h-[4.5rem] -top-9 left-5 right-5 absolute z-20 w-11/12 rounded-2xl bg-ms-back-card-gray-22 flex"
     >
       {transportTypes.map(renderTransportTypeSelector)}
     </div>

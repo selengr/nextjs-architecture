@@ -46,15 +46,17 @@ const ModalGestures = ({
          style={{
           display:"flex",alignItems:"center",
           justifyContent:"center",
-          transform:" translate(-50%, 0%)",
-          left:"50%",
+          // transform:" translate(-50%, 0%)",
+          left:"49%",
           width:"100%",
+          direction:"ltr"
+          // marginLeft:"1rem"
           // maxHeight:"",
           // overflow:"scroll"
         //  width:"99%"
         //  right: "50%"
         }}>
-         <Sheet.Container className="max-w-[576px] p-6" style={{left:"auto !important"}}>
+         <Sheet.Container className="max-w-[576px] p-6  " style={{left:"auto !important"}}>
             <Sheet.Header className='-mt-6'></Sheet.Header>
             <Sheet.Content>
               <CustomSheetHeader title={title} onClose={onClose}/>

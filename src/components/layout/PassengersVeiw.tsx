@@ -57,12 +57,12 @@ const PassengersVeiw: React.FC = () => {
                 passengers[passengers.length - 1] !== passenger
                   ? 'border-b-[1px] border-b-ms-gray border-dashed'
                   : ''
-              } h-16 flex flex-row-reverse justify-center items-center font-ms-regular w-11/12 `}
+              } h-16 flex justify-center items-center font-ms-regular w-11/12 `}
             >
-              <span className="w-1/3 flex justify-end font-ms-regular text-ms-sm">
+              <span className="w-1/3 flex font-ms-regular text-ms-sm">
                 {passenger.ageClass}
               </span>
-              <span className="w-1/3 flex justify-end font-ms-regular text-ms-sm">
+              <span className="w-1/3 flex font-ms-regular text-ms-sm">
                 {passenger.ageGrade}
               </span>
               <div className="w-1/3 flex justify-around -ml-8">
@@ -91,7 +91,7 @@ const PassengersVeiw: React.FC = () => {
         })}
       </div>
 
-      <ul className="flex flex-row justify-end my-8 text-[#969696] text-ms-xs">
+      <ul className="flex flex-row my-8 text-[#969696] text-ms-xs">
       {passengers.map((pass)=>{
         if(pass.count > 0) {
             return (
