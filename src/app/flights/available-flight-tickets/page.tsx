@@ -15,6 +15,7 @@ import { Toaster, toast } from 'sonner';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import CardFlight from '@/components/Layout/CardFlight';
+import PriceCalendar from '@/components/layout/PriceCalendar';
 
 const AvailableTickets = () => {
     
@@ -36,50 +37,21 @@ const AvailableTickets = () => {
       <Box sx={{ height: '74px' }}></Box>
 
 {/* ======================================== */}
+
+<div>
+  <PriceCalendar />
+</div>
+
+
           <div className='p-6'>
               <CardFlight flights={[1,2,3,4,5,6,7,8,9,10]} />
          </div>
 
-      <div className="w-full flex justify-center align-middle items-center space-t-32 ">
-        <UiSwitchSelector />
-      </div>
-
-      <div className="w-full flex justify-center align-middle items-center mt-[32px] mb-[24px]">
-        <UiCustomizedTabs>
-          <TabPanel
-            value={1}
-            sx={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              padding:"0 32px",
-              flexDirection:"column"
-            }}
-          >
-           <UiCustomizedTabTwo status="oneWay" />
-          </TabPanel>
-
-          <TabPanel value={0}
-            sx={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                padding:"0 32px",
-                flexDirection:"column"
-              }}
-          >
-             <UiCustomizedTabTwo status="twoWay"/>
-          </TabPanel>
-         
-        </UiCustomizedTabs>
-      </div>
-      {/* <CustomizedOptions value="hhh" /> */}
- 
+   
  
         <div className='mx-8'>    
-        {/* <Toaster richColors/> */}
-            <UiButton onClick={()=> toast.error('please fill all input')} className='mt-[24px] mb-[32px] px-6 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]' text='جستجو'/>
-        </div>
+        
+         </div>
 
     
 
