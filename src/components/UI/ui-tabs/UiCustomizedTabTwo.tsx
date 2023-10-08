@@ -161,6 +161,7 @@ const UiCustomizedTabTwo = ({ status }: any) => {
         </div>
       </div>
 
+      {status == 'oneWay' ? (
       <div
         onClick={ChooseDepatureDate}
         className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
@@ -195,31 +196,86 @@ const UiCustomizedTabTwo = ({ status }: any) => {
 
         </div>
       </div>
+      ):""}
 
       {status == 'twoWay' ? (
-        <div
-          onClick={ChooseReturnDate}
-          className="h-[50px] relative flex align-middle items-center bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
-        >
-          <div className="flex flex-row  mx-5 ">
-            <Image
-              className="ml-1"
-              src={`/static/images/flights/${
-                returnDate.year ? 'calendar-choose.svg' : 'calendar-icon.svg'
-              }`}
-              alt={'flight'}
-              width={23} //automatically provided
-              height={23} //automatically provide
-            />
-            <span
-            className={`${
-              returnDate.year ? 'text-ms-green' : 'text-ms-thick-green'
-              } font-ms-medium`}
-            >
-              {returnDate ? returnDate : 'تاریخ برگشت'}
-            </span>
+
+<div
+onClick={ChooseDepatureDate}
+className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
+>
+<div className="flex flex-row mx-5 justify-between w-full">
+  <div className='flex justify-start'>
+  <Image
+    className="ml-1"
+    src={`/static/images/flights/${
+      departureDate.year ? 'calendar-choose.svg' : 'calendar-icon.svg'
+    }`}
+    alt={'flight'}
+    width={23} //automatically provided
+    height={23} //automatically provide
+  />
+  <span 
+  className={`${
+    departureDate.year ? 'text-ms-green' : 'text-ms-thick-green'
+  } font-ms-medium`}
+  >
+    {departureDate.year ? departureDate.year : 'تاریخ رفت'}
+  </span>
+  </div>
+
+  <div className="flex flex-row mx-5 justify-between w-6/12 border-r-[1px] h-full border-r-ms-gray pr-4">
+       <div className='flex justify-start'>
+          <Image
+            className="ml-1"
+            src={`/static/images/flights/${
+              departureDate.year ? 'calendar-choose.svg' : 'calendar-icon.svg'
+            }`}
+            alt={'flight'}
+            width={23} //automatically provided
+            height={23} //automatically provide
+          />
+          <span 
+          className={`${
+            departureDate.year ? 'text-ms-green' : 'text-ms-thick-green'
+          } font-ms-medium`}
+          >
+            {returnDate.year ? returnDate.year : 'تاریخ برگشت'}
+          </span>
           </div>
-        </div>
+          </div>
+
+</div>
+</div>
+
+
+
+       
+// {/* 
+//             // -----------------------------------------------------------------
+//         // <div
+//         //   onClick={ChooseReturnDate}
+//         //   className="h-[50px] relative flex align-middle items-center bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
+//         // >
+//         //   <div className="flex flex-row  mx-5 ">
+//         //     <Image
+//         //       className="ml-1"
+//         //       src={`/static/images/flights/${
+//         //         returnDate.year ? 'calendar-choose.svg' : 'calendar-icon.svg'
+//         //       }`}
+//         //       alt={'flight'}
+//         //       width={23} //automatically provided
+//         //       height={23} //automatically provide
+//         //     />
+//         //     <span
+//         //     className={`${
+//         //       returnDate.year ? 'text-ms-green' : 'text-ms-thick-green'
+//         //       } font-ms-medium`}
+//         //     >
+//         //       {returnDate ? returnDate : 'تاریخ برگشت'}
+//         //     </span>
+//         //   </div>
+//         // </div> */}
       ) : (
         ''
       )}
