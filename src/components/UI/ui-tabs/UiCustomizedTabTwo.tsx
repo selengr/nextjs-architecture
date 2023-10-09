@@ -13,16 +13,24 @@ import { useState } from 'react';
 import UiButton from '../ui-button';
 import { toast } from 'sonner';
 
+
 let dateReturnPreminent = '';
 let dateDeparturePreminent = '';
 
 interface DepartureAndReturnDate {
-  returnDay: string;
-  returnMonth: string;
-  returnYear: string;
-  departureDay: string;
-  departureMonth: string;
-  departureYear: string;
+  departure: {
+    day: string;
+    month_name: string;
+    month_number: string;
+    year: string;
+  };
+  return: {
+    day: string;
+    month_name: string;
+    month_number: string;
+    year: string;
+  };
+  fullRangeDate : string
 }
 
 const UiCustomizedTabTwo = ({ status }: any) => {
@@ -35,21 +43,29 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   const [origin, setOrigin] = useState('Tehran');
   const [destination, setDestination] = useState('Mashhad');
 
-  const [isOpenDepatureAndReturnDate, setOpenDepatureAndReturnDate] = useState(false);
+  const [isOpenTwoWay, setOpenTwoWay] = useState<boolean>(false);
   const [isOpenDepartureDate, setOpenDepartureDate] = useState(false);
 
-  const [depatureAndReturnDate, setDepatureAndReturnDate] = useState<DepartureAndReturnDate>({
-    returnDay : "",
-    returnMonth: "",
-    returnYear : "",
-    departureDay : "",
-    departureMonth: "",
-    departureYear : ""
+  const [twoWay, setTwoWay] = useState<DepartureAndReturnDate>({
+    departure: {
+      day: '',
+      month_name: '',
+      month_number: '',
+      year: ''
+    },
+    return: {
+      day: '',
+      month_name: '',
+      month_number: '',
+      year: ''
+    },
+    fullRangeDate : ""
   });
+
   const [departureDate, setDepartureDate] = useState({
-    day : "",
-    month: "",
-    year : ""
+    day: '',
+    month: '',
+    year: ''
   });
 
   const ChangeOriginAndDestination = () => {
@@ -82,22 +98,60 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   const onClosePassengers = () => setOpenPassengers(false);
 
   const ChooseDepatureDate = () => setOpenDepartureDate(true);
-  const onCloseDepatureDate = () => setOpenDepartureDate(false);
-
-  const ChooseDepatureAndReturnDate = () => setOpenDepatureAndReturnDate(true);
-  const onCloseReturnDate = () => setOpenDepatureAndReturnDate(false);
-
-  const handleDepartureDate = (time:any) => {
-    // setDepartureDate(time.toString())
-    setOpenDepartureDate(false)
-    toast.success('soon')
+  const onCloseDepatureDate = () => {
+    setDepartureDate({
+      day: '',
+      month: '',
+      year: ''
+    })
+    setOpenDepartureDate(false);
   }
 
-  const handleReturnDate = () => setOpenDepatureAndReturnDate(false);
+  const ChooseDepatureAndReturnDate = () => setOpenTwoWay(true);
+  const onCloseTwoWay = () => {
+    setTwoWay({
+      departure: {
+        day: "",
+        month_name: "",
+        month_number: "",
+        year: ""
+      },
+      return: {
+        day: "",
+        month_name: "",
+        month_number: "",
+        year: ""
+      },
+      fullRangeDate :""
+    });
+    setOpenTwoWay(false);
+  }
 
+  const handleDepartureDate = () => {
+    if(departureDate.day && departureDate.month){
+       setOpenDepartureDate(false);
+       toast.success('تاریخ رفت انتخاب شد');
+    }else {
+      toast.error('ابتدا تاریخ رفت را انتخاب کنید');
+    }
+   
+  };
 
-  console.log('departureDatetodayDate :>> ', todayDate);
-  console.log('departureDate.year ? departureDate?.year  ', departureDate.year);
+  const handleTwoWay = () => {
+    if(twoWay.return.day  && twoWay.departure.day && twoWay.departure.year !== "undefined" && twoWay.return.year !== "undefined") {
+      setOpenTwoWay(false);
+      toast.success('تاریخ رفت و برگشت انتخاب شد');
+    }else if(!twoWay.departure.day || !twoWay.departure.month_name|| !twoWay.return.day && !twoWay.return.month_name){
+      toast.error(' تاریخ رفت و برگشت انتخاب شود');
+   }else  if(!twoWay.return.day && !twoWay.return.month_name) {
+     toast.error(' تاریخ برگشت انتخاب شود');
+   }else {
+    toast.error('لطفا تاریخ رفت و برگشت را انتخاب کنید');
+   }
+   console.log('[twoWay.fullRangeDate] :>> ', twoWay.fullRangeDate.split(","));
+  };
+
+  const handleReturnDate = () => setOpenTwoWay(false);
 
   return (
     <>
@@ -178,121 +232,182 @@ const UiCustomizedTabTwo = ({ status }: any) => {
       </div>
 
       {status == 'oneWay' ? (
-      <div
-        onClick={ChooseDepatureDate}
-        className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
-      >
-        <div className="flex flex-row mx-5 justify-between w-full">
-          <div className='flex justify-start'>
-          <Image
-            className="ml-1"
-            src={`/static/images/flights/${
-              departureDate.year ? 'calendar-choose.svg' : 'calendar-icon.svg'
-            }`}
-            alt={'flight'}
-            width={23} //automatically provided
-            height={23} //automatically provide
-          />
-          <span 
-          className={`${
-            departureDate.year ? 'text-ms-green' : 'text-ms-thick-green'
-          } font-ms-medium`}
-          >
-            {departureDate.year ? departureDate.year : 'تاریخ رفت'}
-          </span>
+        <div
+          onClick={ChooseDepatureDate}
+          className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
+        >
+          <div className="flex flex-row mx-5 justify-between w-full">
+            <div className="flex justify-start">
+              <Image
+                className="ml-1"
+                src={`/static/images/flights/${
+                  departureDate.year
+                    ? 'calendar-choose.svg'
+                    : 'calendar-icon.svg'
+                }`}
+                alt={'flight'}
+                width={23} //automatically provided
+                height={23} //automatically provide
+              />
+              <span
+                className={`${
+                  departureDate.year ? 'text-ms-green' : 'text-ms-thick-green'
+                } font-ms-medium`}
+              >
+                {departureDate.year ? (
+                  <span className="flex flex-row">
+                    {departureDate.year}
+                  </span>
+                ) : (
+                  'تاریخ رفت'
+                )}
+              </span>
+            </div>
+
+            {departureDate.year && (
+              <Image
+                onClick={(e) => {
+                  e.stopPropagation();
+                  // setOpenDepartureDate
+                  setDepartureDate({
+                    day: '',
+                    month: '',
+                    year: ''
+                  });
+                }}
+                className="ml-1"
+                src={'/static/images/flights/close_icon.svg'}
+                alt={'flight'}
+                width={20} //automatically provided
+                height={20} //automatically provide
+              />
+            )}
           </div>
-
-                   <Image
-                      className="ml-1"
-                      src={'/static/images/flights/close_icon.svg'}
-                      alt={'flight'}
-                      width={20} //automatically provided
-                      height={20} //automatically provide
-                    />
-
         </div>
-      </div>
-      ):""}
+      ) : (
+        ''
+      )}
 
       {status == 'twoWay' ? (
+        <div
+          onClick={ChooseDepatureAndReturnDate}
+          className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
+        >
+          <div className="flex flex-row mx-5 justify-between w-full">
+            <div className="flex justify-start">
+              <Image
+                className="ml-1"
+                src={`/static/images/flights/${
+                  twoWay.departure.day
+                    ? 'calendar-choose.svg'
+                    : 'calendar-icon.svg'
+                }`}
+                alt={'flight'}
+                width={23} //automatically provided
+                height={23} //automatically provide
+              />
+              <span
+                className={`${
+                  twoWay.departure.day ? 'text-ms-green' : 'text-ms-thick-green'
+                } font-ms-medium`}
+              >
+                {twoWay.departure.day ? (
+                  <>
+                    {twoWay.return.year}/{twoWay.return.month_number}/
+                    {twoWay.return.day}
+                  </>
+                ) : (
+                  'تاریخ رفت'
+                )}
+              </span>
+            </div>
 
-<div
-onClick={ChooseDepatureAndReturnDate}
-className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
->
-<div className="flex flex-row mx-5 justify-between w-full">
-  <div className='flex justify-start'>
-  <Image
-    className="ml-1"
-    src={`/static/images/flights/${
-      depatureAndReturnDate.departureYear ? 'calendar-choose.svg' : 'calendar-icon.svg'
-    }`}
-    alt={'flight'}
-    width={23} //automatically provided
-    height={23} //automatically provide
-  />
-  <span 
-  className={`${
-    depatureAndReturnDate.departureYear ? 'text-ms-green' : 'text-ms-thick-green'
-  } font-ms-medium`}
-  >
-    {depatureAndReturnDate.departureYear ? depatureAndReturnDate.departureYear : 'تاریخ رفت'}
-  </span>
-  </div>
-
-  <div className="flex flex-row mx-5 justify-between w-6/12 border-r-[1px] h-full border-r-ms-gray pr-4">
-       <div className='flex justify-start'>
-          <Image
-            className="ml-1"
-            src={`/static/images/flights/${
-              depatureAndReturnDate.returnYear ? 'calendar-choose.svg' : 'calendar-icon.svg'
-            }`}
-            alt={'flight'}
-            width={23} //automatically provided
-            height={23} //automatically provide
-          />
-          <span 
-          className={`${
-            depatureAndReturnDate.returnYear ? 'text-ms-green' : 'text-ms-thick-green'
-          } font-ms-medium`}
-          >
-            {depatureAndReturnDate.returnYear ? depatureAndReturnDate.returnYear : 'تاریخ برگشت'}
-          </span>
+            <div className="flex flex-row mx-5 justify-between w-6/12 border-r-[1px] h-full border-r-ms-gray pr-4">
+              <div className="flex justify-start">
+                <Image
+                  className="ml-1"
+                  src={`/static/images/flights/${
+                    twoWay.return.day
+                      ? 'calendar-choose.svg'
+                      : 'calendar-icon.svg'
+                  }`}
+                  alt={'flight'}
+                  width={23} //automatically provided
+                  height={23} //automatically provide
+                />
+                <span
+                  className={`${
+                    twoWay.return.day ? 'text-ms-green' : 'text-ms-thick-green'
+                  } font-ms-medium`}
+                >
+                  {twoWay.return.day ? (
+                    <>
+                      {twoWay.return.year}/{twoWay.return.month_number}/
+                      {twoWay.return.day}
+                    </>
+                  ) : (
+                    'تاریخ برگشت'
+                  )}
+                </span>
+              </div>
+            </div>
           </div>
-          </div>
 
-</div>
-</div>
-
-
-
-       
-// {/* 
-//             // -----------------------------------------------------------------
-//         // <div
-//         //   onClick={ChooseReturnDate}
-//         //   className="h-[50px] relative flex align-middle items-center bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
-//         // >
-//         //   <div className="flex flex-row  mx-5 ">
-//         //     <Image
-//         //       className="ml-1"
-//         //       src={`/static/images/flights/${
-//         //         returnDate.year ? 'calendar-choose.svg' : 'calendar-icon.svg'
-//         //       }`}
-//         //       alt={'flight'}
-//         //       width={23} //automatically provided
-//         //       height={23} //automatically provide
-//         //     />
-//         //     <span
-//         //     className={`${
-//         //       returnDate.year ? 'text-ms-green' : 'text-ms-thick-green'
-//         //       } font-ms-medium`}
-//         //     >
-//         //       {returnDate ? returnDate : 'تاریخ برگشت'}
-//         //     </span>
-//         //   </div>
-//         // </div> */}
+          {twoWay.return.year && (
+            <Image
+              onClick={(e) => {
+                e.stopPropagation();
+                // setOpenDepartureDate
+                setTwoWay({
+                  departure: {
+                    day: '',
+                    month_name: '',
+                    month_number: '',
+                    year: ''
+                  },
+                  return: {
+                    day: '',
+                    month_name: '',
+                    month_number: '',
+                    year: ''
+                  },
+                  fullRangeDate :""
+                });
+              }}
+              className="ml-2 -mr-6"
+              src={'/static/images/flights/close_icon.svg'}
+              alt={'flight'}
+              width={20} //automatically provided
+              height={20} //automatically provide
+            />
+          )}
+        </div>
       ) : (
+        // {/*
+        //             // -----------------------------------------------------------------
+        //         // <div
+        //         //   onClick={ChooseReturnDate}
+        //         //   className="h-[50px] relative flex align-middle items-center bg-ms-white w-full font-ms-iranSansMobile rounded-[30px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
+        //         // >
+        //         //   <div className="flex flex-row  mx-5 ">
+        //         //     <Image
+        //         //       className="ml-1"
+        //         //       src={`/static/images/flights/${
+        //         //         returnDate.year ? 'calendar-choose.svg' : 'calendar-icon.svg'
+        //         //       }`}
+        //         //       alt={'flight'}
+        //         //       width={23} //automatically provided
+        //         //       height={23} //automatically provide
+        //         //     />
+        //         //     <span
+        //         //     className={`${
+        //         //       returnDate.year ? 'text-ms-green' : 'text-ms-thick-green'
+        //         //       } font-ms-medium`}
+        //         //     >
+        //         //       {returnDate ? returnDate : 'تاریخ برگشت'}
+        //         //     </span>
+        //         //   </div>
+        //         // </div> */}
         ''
       )}
 
@@ -350,32 +465,43 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
 
             <CustomMultiDatePicker
               value={departureDate.year ? departureDate?.year : todayDate}
-              onChange={(time) =>{
+              onChange={(time) => {
                 //  console.log('time :>> ', time.day)
                 //  console.log('time ', time.month.name)
                 setDepartureDate({
-                  day : time.day,
-                  month : time.month.name,
-                  year : time.toString()
-                })
-                }
-              }
+                  day: time.day,
+                  month: time.month.name,
+                  year: time.toString()
+                });
+              }}
               // onChange={(time: string) => (dateDeparturePreminent = time)}
               selectDateRange={false}
-              dateFormat="DD/MM/YYYY"
-              locale='fa'
+              dateFormat="YYYY/MM/DD"
+              locale="fa"
               theme="dark"
             />
             {departureDate.day && (
               <div className="flex flex-row justify-between items-center mt-6 text-[#969696] text-ms-xs w-full">
              
-             <UiButton
+             <span className="px-2 text-[#000] text-ms-sm">
+                  {' '}
+                  رفت
+                  <span className="text-[#969696] text-ms-xs">
+                    {' '}
+                    &nbsp; {departureDate?.day} {departureDate?.month}
+                  </span>
+                </span>
+             
+                <UiButton
                   onClick={() => toast.error('please fill all input')}
                   className="bg-transparent border-ms-border-green-33 p-2 border-solid border-2 text-ms-lg h-[40px] text-ms-white rounded-xl w-full"
                   text=""
                 >
                   <div className="flex flex-row">
-                    <span className="text-ms-green text-ms-sm p-2 py-4"> انتخاب تاریخ برگشت </span>
+                    <span className="text-ms-green text-ms-sm p-2 py-4">
+                      {' '}
+                      انتخاب تاریخ برگشت{' '}
+                    </span>
                     <Image
                       className="ml-1"
                       src={'/static/images/flights/plus-green.svg'}
@@ -383,24 +509,12 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
                       width={10} //automatically provided
                       height={10} //automatically provide
                     />
-
-                  </div>   
+                  </div>
                 </UiButton>
-             
-             
-             
-             
-             
-                <span className="px-2 text-[#000] text-ms-sm">
-                  {' '}
-                  رفت
-                  <span className="text-[#969696] text-ms-xs">
-                    {' '}
-                    &nbsp; {departureDate?.day} {departureDate?.month}
-                  </span>
-                </span>   
+
+                
               </div>
-           )} 
+            )}
 
             <UiButton
               onClick={handleDepartureDate}
@@ -411,54 +525,76 @@ className="h-[50px] relative flex align-middle items-center  bg-ms-white w-full 
         </div>
       )}
 
-      {isOpenDepatureAndReturnDate && (
+      {isOpenTwoWay && (
         <div>
           <ModalGestures
             title="تاریخ برگشت"
-            isOpen={isOpenDepatureAndReturnDate}
-            onClose={onCloseReturnDate}
+            isOpen={isOpenTwoWay}
+            onClose={onCloseTwoWay}
             className="overflow-scroll"
             // initialSnap={7}
           >
             {/* =================================2 */}
             <CustomMultiDatePicker
-              value={departureDate?.year}
-              
-              // value={departureDate?.year}
-              onChange={(time:any) => setDepartureDate(time.toString())}
-              // onChange={(time: string) => (datePreminent = time)}
-              selectDateRange={true}   
+             value={ twoWay.fullRangeDate && twoWay.fullRangeDate !== "undefined" ? twoWay.fullRangeDate.split(",")
+                 : todayDate
+              }
+            // const [valuew, setValue] = useState(["2023-10-09", "2023-10-15"]);
+            // value={todayDate}
+              onChange={(time) => {
+                // console.log("tttttttttttttttttttttttt",time.toString());
+                setTwoWay({
+                  departure: {
+                    day: String(time?.[0].day),
+                    month_name: String(time?.[0].month.name),
+                    month_number: String(time?.[0].month.number),
+                    year: String(time?.[0].year)
+                  },
+                  return: {
+                    day: String(time?.[1]?.day),
+                    month_name: String(time?.[0].month.name),
+                    month_number: String(time?.[0].month.number),
+                    year: String(time?.[1]?.year)
+                  },
+                  fullRangeDate : time.toString()
+                });
+              }}
+              //  setDepartureDate(time.toString())}
+              // onChange={(time: string) => console.log(time)}
+              selectDateRange={true}
               dateFormat="DD/MM/YYYY"
-              theme="dark" 
-              locale='fa'
+              theme="dark"
+              locale="en"
             />
 
-            <div className="flex flex-row mt-8 text-[#969696] text-ms-xs">
-              {departureDate.day && (
+            <div className="flex flex-row mt-8 text-[#969696] text-ms-xs mb-6">
+              {twoWay.departure.day.length > 0 && (
                 <span className="px-2 text-[#000] text-ms-sm">
                   {' '}
                   رفت
                   <span className="text-[#969696] text-ms-xs">
                     {' '}
-                    &nbsp; {departureDate.day}
+                    &nbsp; {twoWay.departure.day} {twoWay.departure.month_name}
+                    &nbsp;
                   </span>
                 </span>
               )}
-              {isOpenDepatureAndReturnDate && (
+              {twoWay.return.day && twoWay.return.day !== 'undefined' && (
                 <span className="px-2 text-[#000] text-ms-sm">
                   {' '}
                   برگشت
                   <span className="text-[#969696] text-ms-xs">
                     {' '}
-                    &nbsp; {isOpenDepatureAndReturnDate}
+                    &nbsp; {twoWay.return.day} {twoWay.return.month_name}
                   </span>
                 </span>
               )}
             </div>
 
             <UiButton
-              onClick={() => toast.error('please fill all input')}
-              className="bg-ms-btn-green-23 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] text-ms-white rounded-2xl w-full"
+              onClick={handleTwoWay}
+              className="bg-ms-btn-green-23 hover:bg-ms-btn-green-33 text-ms-lg
+               h-[50px] text-ms-white rounded-2xl w-full"
               text="تایید"
             />
           </ModalGestures>

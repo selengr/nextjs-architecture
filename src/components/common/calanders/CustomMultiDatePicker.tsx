@@ -33,6 +33,7 @@ const PersianDatePicker: React.FC<PersianDatePickerProps> = ({
 }) => {
   const calendar = locale === "fa" ? persian : gregorian;
   const localeObj = locale === "fa" ? persian_fa : persian_en;
+  // const [valuew, setValue] = useState(["2023/10/09", "2023/10/15"]);
 
   const [isDateRangeOpen, setIsDateRangeOpen] = useState(false);
 
@@ -50,7 +51,7 @@ const PersianDatePicker: React.FC<PersianDatePickerProps> = ({
         locale={localeObj}
         value={value}
         onChange={onChange}
-      
+        minDate={new Date()}
         format={dateFormat}
       />
 )}
@@ -71,8 +72,8 @@ const PersianDatePicker: React.FC<PersianDatePickerProps> = ({
           <Calendar
             calendar={calendar}
             locale={localeObj}
-            // value={value}
-            
+            value={value}
+            minDate={new Date()}
             onChange={onChange}
             // selectRange={selectDateRange}
             range

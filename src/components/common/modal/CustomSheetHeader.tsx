@@ -8,6 +8,7 @@ interface IModalHeaderProps {
 const CustomSheetHeader = ({title,onClose}:IModalHeaderProps) => {
     return (<>
                 <div className="w-full flex flex-row justify-between py-6 items-center">
+                  <span className="text-ms-lg text-ms-thick-green font-ms-medium">{title}</span>
           {onClose&&
                     
                 <Image
@@ -19,7 +20,6 @@ const CustomSheetHeader = ({title,onClose}:IModalHeaderProps) => {
                 height={23} //automatically provide
                 />
             }
-                <span className="text-ms-lg text-ms-thick-green font-ms-medium">{title}</span>
                 </div>
         </>
         );

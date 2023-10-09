@@ -14,23 +14,15 @@ import { Toaster, toast } from 'sonner';
 
 import { Box } from '@mui/material';
 import Image from 'next/image';
+import CardFlight from '@/components/Layout/CardFlight';
 
-const Flights = () => {
+const AvailableTickets = () => {
     
-
-  const handle_search_in_tickets =()=>{
-
-  //  if("ss"="ss"){
-
-  //  }else {
-  //   toast.error('please fill all input')
-  //  }
-  }
 
   return (
     <div className="h-full w-full overflow-hidden">
       <Banner
-        bannerPic="/static/images/flights/header_[fpdl 1.svg"
+        bannerPic="/static/images/flights/header-available-tickets.svg"
         alt="header"
         width={0}
         height={500}
@@ -42,6 +34,11 @@ const Flights = () => {
       </div>
 
       <Box sx={{ height: '74px' }}></Box>
+
+{/* ======================================== */}
+          <div className='p-6'>
+              <CardFlight flights={[1,2,3,4,5,6,7,8,9,10]} />
+         </div>
 
       <div className="w-full flex justify-center align-middle items-center space-t-32 ">
         <UiSwitchSelector />
@@ -81,7 +78,7 @@ const Flights = () => {
  
         <div className='mx-8'>    
         {/* <Toaster richColors/> */}
-            <UiButton onClick={handle_search_in_tickets} className='mt-[24px] mb-[32px] px-6 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]' text='جستجو'/>
+            <UiButton onClick={()=> toast.error('please fill all input')} className='mt-[24px] mb-[32px] px-6 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]' text='جستجو'/>
         </div>
 
     
@@ -94,4 +91,5 @@ const Flights = () => {
   );
 };
 
-export default Flights;
+export default AvailableTickets;
+

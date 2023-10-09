@@ -49,7 +49,7 @@ const ModalGestures = ({
           // transform:" translate(-50%, 0%)",
           left:"49%",
           width:"100%",
-          direction:"ltr"
+          // direction:"ltr"
           // marginLeft:"1rem"
           // maxHeight:"",
           // overflow:"scroll"
