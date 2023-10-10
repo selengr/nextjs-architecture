@@ -14,7 +14,7 @@ export type IDepartureAndReturnDate = {
       };
       fullRangeDate : string
   }
-   & IDepartureDate & {passengers :  IPassenger}
+   & IDepartureDate &  IPassenger
   
 
 export type IDepartureDate = {
@@ -23,8 +23,10 @@ export type IDepartureDate = {
       year?: String
  };
 
- export interface IPassenger {
+ export type IPassenger = {
+  passengers? : [{
   ageClass: string;
   ageGrade: string;
-  count: number;
+  count: number
+ }]
 }

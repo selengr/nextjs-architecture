@@ -25,11 +25,11 @@ const initialState: IDepartureAndReturnDate  = {
        day : "",
        year : "",
        month :"",
-       passengers : {
+       passengers : [{
         ageClass: "",
         ageGrade: "",
-        count: 0
-       }
+        count: 1
+       }]
        
 }  
 
@@ -52,8 +52,8 @@ const flightSlice = createSlice({
         state.year = action.payload.year;
     },
     
-    addPassengers(state:any, action: PayloadAction<IPassenger[]>){
-        state = action.payload
+    addPassengers(state:any, action: PayloadAction<IPassenger>){
+        state.passengers = action.payload
     }
     
 

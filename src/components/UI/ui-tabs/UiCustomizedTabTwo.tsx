@@ -7,13 +7,13 @@ import ModalGestures from '@/components/common/modal/ModalGestures ';
 import SearchBar from '@/components/common/search-bar/SearchBar';
 import DestinationView from '@/components/Layout/DestinationView';
 import OriginVeiw from '@/components/Layout/OriginVeiw';
-import PassengersVeiw from '@/components/Layout/PassengersVeiw';
 import Image from 'next/image';
 import { useState } from 'react';
 import UiButton from '../ui-button';
 import { toast } from 'sonner';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { addPassengers, setDepartureDate, twoWayDate } from '@/redux/slices/flights';
+import PassengersVeiw from '@/components/layout/PassengersVeiw';
 
 
 
@@ -33,6 +33,8 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   const dispatch = useAppDispatch()
   const twoWay = useAppSelector((state) => state.flight);
   const departureDate = useAppSelector((state) => state.flight);
+
+  console.log('twoWay :>> ', twoWay);
 
   // const [departureDate, setDepartureDate] = useState({
   //   day: '',
@@ -96,7 +98,7 @@ const UiCustomizedTabTwo = ({ status }: any) => {
         month_number: "",
         year: ""
       },
-      fullRangeDate : ""
+      fullRangeDate : "",
     }
     ));
     setOpenTwoWay(false);
@@ -128,10 +130,10 @@ const UiCustomizedTabTwo = ({ status }: any) => {
 
 
   // ------------------
-const confirm = (passengers:any) => {
+  const confirm = (passengers:any) => {
   dispatch(addPassengers(passengers))
   setOpenPassengers(false)
-  toast.error('انتخاب شد')
+  toast.success('انتخاب شد')
 }
 
 
@@ -340,21 +342,23 @@ const confirm = (passengers:any) => {
               onClick={(e) => {
                 e.stopPropagation();
                 // setOpenDepartureDate
-                setTwoWay({
+                dispatch(twoWayDate(
+                  {
                   departure: {
-                    day: '',
-                    month_name: '',
-                    month_number: '',
-                    year: ''
+                    day: "",
+                    month_name: "",
+                    month_number: "",
+                    year: ""
                   },
-                  return: {
-                    day: '',
-                    month_name: '',
-                    month_number: '',
-                    year: ''
+                    return: {
+                    day: "",
+                    month_name: "",
+                    month_number: "",
+                    year: ""
                   },
-                  fullRangeDate :""
-                });
+                  fullRangeDate : "",
+                }
+                ));
               }}
               className="ml-2 -mr-6"
               src={'/static/images/flights/close_icon.svg'}
@@ -405,7 +409,7 @@ const confirm = (passengers:any) => {
             width={23} //automatically provided
             height={23} //automatically provide
           />
-          <span className="text-ms-thick-green font-ms-medium">1مسافر</span>
+          <span className="text-ms-thick-green font-ms-medium">{twoWay.passengers?.[0].count}مسافر</span>
         </div>
       </div>
 

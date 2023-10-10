@@ -45,6 +45,7 @@ const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> =
     const updatedPassengers = [...passengers];
     passenger.count += 1;
     setPassengers(updatedPassengers);
+   
   };
 
   const handleSubtractPassenger = (passenger: Passenger) => {
@@ -60,7 +61,7 @@ const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> =
       setPassengers(updatedPassengers);
     }
   };
-
+  console.log('passengers------ reza :>> ', passengers);
   // const confirmPassengers = () =>{
   //      ()
   // }
