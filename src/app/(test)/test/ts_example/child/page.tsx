@@ -1,4 +1,4 @@
-import { PersonStatusProps } from '@/@types/example';
+import { PersonStatusProps } from '@/types/example';
 
 const Child = (props: PersonStatusProps) => {
   return (

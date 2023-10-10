@@ -43,9 +43,9 @@ export default function RootLayout({
 
         <AuthProvider>
         <MobileBottomNavigation>
-             {/* <Providers> */}
+             <Providers>
               {children}
-              {/* </Providers> */}
+              </Providers>
         </MobileBottomNavigation >    
         </AuthProvider>
         <Toaster richColors/>

@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 // utils
 import axios from '../../services/axios/api';
 // @types
-import { IChatState } from '../../@types/chat';
+import { IChatState } from '../../types/chat';
 
 // ----------------------------------------------------------------------
 

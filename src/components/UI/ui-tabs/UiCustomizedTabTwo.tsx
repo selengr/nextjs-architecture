@@ -5,36 +5,20 @@ import DateRangeCalendar from '@/components/common/calanders/DateRangeCalendar';
 import CustomizedOptions from '@/components/common/customized-options/CustomizedOptions';
 import ModalGestures from '@/components/common/modal/ModalGestures ';
 import SearchBar from '@/components/common/search-bar/SearchBar';
-import DestinationView from '@/components/layout/DestinationView';
-import OriginVeiw from '@/components/layout/OriginVeiw';
-import PassengersVeiw from '@/components/layout/PassengersVeiw';
+import DestinationView from '@/components/Layout/DestinationView';
+import OriginVeiw from '@/components/Layout/OriginVeiw';
+import PassengersVeiw from '@/components/Layout/PassengersVeiw';
 import Image from 'next/image';
 import { useState } from 'react';
 import UiButton from '../ui-button';
 import { toast } from 'sonner';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
+import { addPassengers, setDepartureDate, twoWayDate } from '@/redux/slices/flights';
 
 
-let dateReturnPreminent = '';
-let dateDeparturePreminent = '';
-
-interface DepartureAndReturnDate {
-  departure: {
-    day: string;
-    month_name: string;
-    month_number: string;
-    year: string;
-  };
-  return: {
-    day: string;
-    month_name: string;
-    month_number: string;
-    year: string;
-  };
-  fullRangeDate : string
-}
 
 const UiCustomizedTabTwo = ({ status }: any) => {
-  console.log('statusssssssss :>> ', status);
+
   const [isOpenOrigin, setOpenOrigin] = useState(false);
   const [isOpenDestination, setOpenDestination] = useState(false);
   const [isOpenPassengers, setOpenPassengers] = useState(false);
@@ -46,27 +30,15 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   const [isOpenTwoWay, setOpenTwoWay] = useState<boolean>(false);
   const [isOpenDepartureDate, setOpenDepartureDate] = useState(false);
 
-  const [twoWay, setTwoWay] = useState<DepartureAndReturnDate>({
-    departure: {
-      day: '',
-      month_name: '',
-      month_number: '',
-      year: ''
-    },
-    return: {
-      day: '',
-      month_name: '',
-      month_number: '',
-      year: ''
-    },
-    fullRangeDate : ""
-  });
+  const dispatch = useAppDispatch()
+  const twoWay = useAppSelector((state) => state.flight);
+  const departureDate = useAppSelector((state) => state.flight);
 
-  const [departureDate, setDepartureDate] = useState({
-    day: '',
-    month: '',
-    year: ''
-  });
+  // const [departureDate, setDepartureDate] = useState({
+  //   day: '',
+  //   month: '',
+  //   year: ''
+  // });
 
   const ChangeOriginAndDestination = () => {
     // Swap the origin and destination
@@ -98,32 +70,35 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   const onClosePassengers = () => setOpenPassengers(false);
 
   const ChooseDepatureDate = () => setOpenDepartureDate(true);
+
   const onCloseDepatureDate = () => {
-    setDepartureDate({
-      day: '',
-      month: '',
-      year: ''
-    })
+    dispatch(setDepartureDate({
+        day: "",
+        month : "",
+        year: ""
+    }));
     setOpenDepartureDate(false);
   }
 
   const ChooseDepatureAndReturnDate = () => setOpenTwoWay(true);
   const onCloseTwoWay = () => {
-    setTwoWay({
+    dispatch(twoWayDate(
+      {
       departure: {
         day: "",
         month_name: "",
         month_number: "",
         year: ""
       },
-      return: {
+        return: {
         day: "",
         month_name: "",
         month_number: "",
         year: ""
       },
-      fullRangeDate :""
-    });
+      fullRangeDate : ""
+    }
+    ));
     setOpenTwoWay(false);
   }
 
@@ -151,7 +126,14 @@ const UiCustomizedTabTwo = ({ status }: any) => {
    console.log('[twoWay.fullRangeDate] :>> ', twoWay.fullRangeDate.split(","));
   };
 
-  const handleReturnDate = () => setOpenTwoWay(false);
+
+  // ------------------
+const confirm = (passengers:any) => {
+  dispatch(addPassengers(passengers))
+  setOpenPassengers(false)
+  toast.error('انتخاب شد')
+}
+
 
   return (
     <>
@@ -466,13 +448,16 @@ const UiCustomizedTabTwo = ({ status }: any) => {
             <CustomMultiDatePicker
               value={departureDate.year ? departureDate?.year : todayDate}
               onChange={(time) => {
-                //  console.log('time :>> ', time.day)
-                //  console.log('time ', time.month.name)
-                setDepartureDate({
+                dispatch(setDepartureDate({
                   day: time.day,
                   month: time.month.name,
                   year: time.toString()
-                });
+              }));
+                // setDepartureDate({
+                //   day: time.day,
+                //   month: time.month.name,
+                //   year: time.toString()
+                // });
               }}
               // onChange={(time: string) => (dateDeparturePreminent = time)}
               selectDateRange={false}
@@ -542,22 +527,40 @@ const UiCustomizedTabTwo = ({ status }: any) => {
             // const [valuew, setValue] = useState(["2023-10-09", "2023-10-15"]);
             // value={todayDate}
               onChange={(time) => {
-                // console.log("tttttttttttttttttttttttt",time.toString());
-                setTwoWay({
+                console.log("tttttttttttttttttttttttt",time.toString());
+                dispatch(twoWayDate(
+                  {
                   departure: {
                     day: String(time?.[0].day),
                     month_name: String(time?.[0].month.name),
                     month_number: String(time?.[0].month.number),
                     year: String(time?.[0].year)
                   },
-                  return: {
+                    return: {
                     day: String(time?.[1]?.day),
                     month_name: String(time?.[0].month.name),
                     month_number: String(time?.[0].month.number),
                     year: String(time?.[1]?.year)
                   },
-                  fullRangeDate : time.toString()
-                });
+                  fullRangeDate : ""
+                }
+                ));
+
+                // setTwoWay({
+                //   departure: {
+                //     day: String(time?.[0].day),
+                //     month_name: String(time?.[0].month.name),
+                //     month_number: String(time?.[0].month.number),
+                //     year: String(time?.[0].year)
+                //   },
+                //   return: {
+                //     day: String(time?.[1]?.day),
+                //     month_name: String(time?.[0].month.name),
+                //     month_number: String(time?.[0].month.number),
+                //     year: String(time?.[1]?.year)
+                //   },
+                //   fullRangeDate : time.toString()
+                // });
               }}
               //  setDepartureDate(time.toString())}
               // onChange={(time: string) => console.log(time)}
@@ -610,7 +613,7 @@ const UiCustomizedTabTwo = ({ status }: any) => {
             className="overflow-scroll"
             // initialSnap={7}
           >
-            <PassengersVeiw />
+            <PassengersVeiw confirm={confirm}/>
           </ModalGestures>
         </div>
       )}
@@ -618,4 +621,9 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   );
 };
 
+
+
+
 export default UiCustomizedTabTwo;
+
+

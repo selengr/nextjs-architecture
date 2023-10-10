@@ -1,9 +1,12 @@
-'user client';
+"use client"
 
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'sonner';
 import UiButton from '../UI/ui-button';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
+import { addPassengers } from '@/redux/slices/flights';
+import { count } from 'console';
 
 interface Passenger {
   ageClass: string;
@@ -11,7 +14,10 @@ interface Passenger {
   count: number;
 }
 
-const PassengersVeiw: React.FC = () => {
+const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> = ({
+  confirm,
+}) => {
+
   const [passengers, setPassengers] = useState<Passenger[]>([
     {
       ageClass: 'بزرگسالان',
@@ -30,21 +36,34 @@ const PassengersVeiw: React.FC = () => {
     }
   ]);
 
+  //REDUX
+  const dispatch = useAppDispatch()
+  const twoWay = useAppSelector((state) => state.flight);
+
   const handleAddPassenger = (passenger: Passenger) => {
+    console.log('passenger+++++++ :>> ', passenger);
     const updatedPassengers = [...passengers];
     passenger.count += 1;
-
     setPassengers(updatedPassengers);
   };
 
   const handleSubtractPassenger = (passenger: Passenger) => {
+    if(passenger.ageClass === 'بزرگسالان') {
+       if(passenger.count === 1) {
+        toast.error('حداقل 1 نفر')
+        return 
+       }
+    }
     if (passenger.count > 0) {
       const updatedPassengers = [...passengers];
       passenger.count -= 1;
-
       setPassengers(updatedPassengers);
     }
   };
+
+  // const confirmPassengers = () =>{
+  //      ()
+  // }
 
   return (
     <div>
@@ -92,18 +111,20 @@ const PassengersVeiw: React.FC = () => {
       </div>
 
       <ul className="flex flex-row my-8 text-[#969696] text-ms-xs">
-      {passengers.map((pass)=>{
-        if(pass.count > 0) {
+        {passengers.map((pass, index) => {
+          if (pass.count > 0) {
             return (
-                <li className='px-2'>{pass.ageClass}{"  "}{pass.count}</li>
-            )
-        }
-       })}
+              <li key={index} className='px-2'>{pass.ageClass}{"  "}{pass.count}</li>
+            );
+          }
+        })}
       </ul>
 
-
-           <UiButton onClick={()=> toast.error('please fill all input')} className='bg-ms-btn-green-23 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] text-ms-white rounded-2xl w-full' text='تایید'/>
-
+      <UiButton
+        onClick={()=>confirm(passengers)}
+        className='bg-ms-btn-green-23 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] text-ms-white rounded-2xl w-full'
+        text='تایید'
+      />
     </div>
   );
 };

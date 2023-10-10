@@ -2,7 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 // utils
 import axios from '../../services/axios/api';
 // @types
-import { ICalendarState, ICalendarEvent } from '../../@types/calendar';
+import { ICalendarState, ICalendarEvent } from '../../types/calendar';
 
 // ----------------------------------------------------------------------
 

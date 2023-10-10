@@ -4,7 +4,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 // utils
 import axios from '../../services/axios/api';
 // @types
-import { IKanbanState, IKanbanCard, IKanbanColumn } from '../../@types/kanban';
+import { IKanbanState, IKanbanCard, IKanbanColumn } from '../../types/kanban';
 
 // ----------------------------------------------------------------------
 

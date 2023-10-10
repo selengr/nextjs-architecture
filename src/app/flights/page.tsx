@@ -14,9 +14,11 @@ import { Toaster, toast } from 'sonner';
 
 import { Box } from '@mui/material';
 import Image from 'next/image';
+import { useAppSelector } from '@/redux/hook';
 
 const Flights = () => {
     
+  // const {} = useAppSelector((state) => state.flight);
 
   const handle_search_in_tickets =()=>{
 

@@ -3,8 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 // utils
 import axios from '../../services/axios/api';
 // @types
-import { IMailState } from '../../@types/mail';
-
+import { IMailState } from '../../types/mail';
 // ----------------------------------------------------------------------
 
 const initialState: IMailState = {
