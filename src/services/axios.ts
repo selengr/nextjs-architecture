@@ -6,8 +6,9 @@ import axios,{
 } from "axios";
 
 // config
-import { HOST_API_KEY } from '../config-global';
+import { AUTH_API, HOST_API_KEY } from '../config-global';
 import ValidationError from '@/lib/exceptions/validationError';
+import { toast } from "sonner";
 
 /**
 	 * Make request to IG API
@@ -15,7 +16,7 @@ import ValidationError from '@/lib/exceptions/validationError';
 	 * @param url 
 	 * @param agent 
 	 * @param options 
-	 */
+	*/
 
 interface ApiResponse<T> {
   data: T;
@@ -25,13 +26,13 @@ interface ApiResponse<T> {
 
 const AUTH_TOKEN = 'your_auth_token';
 
-const callApi = () => {
-
+const callApi = (baseURL?: string) => {
+  
  const axiosInstance =  axios.create({
-  //  baseURL: HOST_API_KEY,
+   baseURL:  baseURL || AUTH_API.domain,
    timeout: 12000,
    headers: {
-       'Accept': 'application/vnd.GitHub.v3+json',
+    'Accept': 'application/json',
       //  config.headers['Authorization'] = 'Bearer ' + getToken(); 
       //  Authorization: 'Bearer YOUR_TOKEN' // AUTH_TOKEN
     },
@@ -50,14 +51,7 @@ const callApi = () => {
 
   axiosInstance.interceptors.request.use(
   (config : InternalAxiosRequestConfig) => {
-
     // if ("token") {
-    //    // console.log('config================================ :>> ', config.);
-    // //  add authorization logic here
-    // config.headers['Authorization'] = 'Bearer ' ; // + getToken();
-    // config.withCredentials = true;
-    //   // config.headers.Authorization = `Bearer ${token}`;
-    // }
     return config;
   },
   (error : AxiosError | Error) => {
@@ -74,7 +68,7 @@ axiosInstance.interceptors.response.use(
   },
 
     (error:  AxiosError ) => {
-      const { message,name,response,request,status } = error;
+    const { message,name,response,request,status } = error;
     const res = error?.response
 
     // Handle different types of errors such as (network, server, etc.)
@@ -85,23 +79,29 @@ axiosInstance.interceptors.response.use(
         case 401: {
             // "Login required"
             // Delete Token & Go To Login Page if you required.
-            sessionStorage.removeItem("token")
+            // sessionStorage.removeItem("token")
+            toast.error("Unauthorized");
+            //redirect to login soon will happend  PATH_AUTH 
             break;
         }
         case 403: {
           // "Permission denied"
+          toast.error("Forbidden");
           break;
         }
         case 404: {
           // "Invalid request"
+          toast.error("Not found");
           break;
         }
         case 500: {
           // "Server error"
+          toast.error("Internal server error");
           break;
         }
         default: {
           // "Unknown error occurred"
+          toast.error("An unknown error occurred");
           break;
         }
       }
@@ -109,6 +109,7 @@ axiosInstance.interceptors.response.use(
     } else if (request) {
       // Handle network errors
       console.error('Network Error:', message);
+      toast.error("Network error");
     } else {
       // Handle other errors
       console.error('Error:', message);
@@ -123,3 +124,33 @@ axiosInstance.interceptors.response.use(
 
 
 export default callApi;
+  
+
+//=============================================
+//                                             
+//  ##   ##   ####    ###     ####    #####  
+//  ##   ##  ##      ## ##   ##       ##     
+//  ##   ##   ###   ##   ##  ##  ###  #####  
+//  ##   ##     ##  #######  ##   ##  ##     
+//   #####   ####   ##   ##   ####    #####  
+//                                             
+//=============================================
+
+// POST
+// const data = {
+//   name: 'John Doe',
+//   email: 'john.doe@example.com',
+// };
+
+// const response = await callApi().post('/users', data);
+
+
+// GET
+// const response = await callApi().get('/users');
+
+// PUT
+// const data = {
+//   name: 'Jane Doe',
+// };
+
+// const response = await callApi().put('/users/123', data);

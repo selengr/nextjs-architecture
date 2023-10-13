@@ -49,17 +49,17 @@ const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> =
   };
 
   const handleSubtractPassenger = (passenger: Passenger) => {
-    if(passenger.ageClass === 'بزرگسالان') {
-       if(passenger.count === 1) {
-        toast.error('حداقل 1 نفر')
-        return 
-       }
-    }
-    if (passenger.count > 0) {
-      const updatedPassengers = [...passengers];
-      passenger.count -= 1;
-      setPassengers(updatedPassengers);
-    }
+    // if(passenger.ageClass === 'بزرگسالان') {
+    //    if(passenger.count === 1) {
+    //     toast.error('حداقل 1 نفر')
+    //     return 
+    //    }
+    // }
+    // if (passenger.count > 0) {
+    //   const updatedPassengers = [...passengers];
+    //   passenger.count -= 1;
+    //   setPassengers(updatedPassengers);
+    // }
   };
   console.log('passengers------ reza :>> ', passengers);
   // const confirmPassengers = () =>{

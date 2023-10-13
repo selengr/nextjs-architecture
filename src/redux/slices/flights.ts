@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // utils
 // import axios from '../../services/axios/api';
 // @types
-import { IDepartureAndReturnDate,IDepartureDate, IPassenger } from '../../types/searchFlight';
+import { IDepartureAndReturnDate,IDepartureDate, IPassenger, Passenger } from '../../types/searchFlight';
 
 // ----------------------------------------------------------------------
 
@@ -25,11 +25,23 @@ const initialState: IDepartureAndReturnDate  = {
        day : "",
        year : "",
        month :"",
-       passengers : [{
-        ageClass: "",
-        ageGrade: "",
-        count: 1
-       }]
+        passengers : [
+            {
+              ageClass: 'بزرگسالان',
+              ageGrade: ' ۱۲ سال به بالا',
+              count: 1
+            },
+            {
+              ageClass: 'کودک ',
+              ageGrade: '۲ تا ۱۲ سال ',
+              count: 0
+            },
+            {
+              ageClass: 'نوزاد',
+              ageGrade: ' ۱۰ روز تا ۲ سال',
+              count: 0
+            }
+       ]
        
 }  
 
@@ -52,9 +64,30 @@ const flightSlice = createSlice({
         state.year = action.payload.year;
     },
     
-    addPassengers(state:any, action: PayloadAction<IPassenger>){
-        state.passengers = action.payload
-    }
+    // addPassengers(state:any, action: PayloadAction<Passenger>){
+
+    //     const passenger = action.payload;
+    //     const passengerIndex = state.passengers?.findIndex((p:any,index:number) => p.ageClass === passenger.ageClass);
+    
+    //     if (passengerIndex !== -1) {
+    //       state.passengers[passengerIndex].count += 1;
+    //     } else {
+    //       state.passengers.push(passenger);
+    //     }
+    //   //  state.passengers = action.payload
+    // },
+
+    // subtractPassengers: (state, action : PayloadAction<Passenger>) => {
+    //   const passenger = action.payload;
+    //   const passengerIndex = state.passengers?.findIndex((p:any,index:number) => p.ageClass === passenger.ageClass) as number;
+
+    //   if (passengerIndex !== -1) {
+    //     if(state.passengers?.[passengerIndex]?.count > 0){
+
+    //     }
+    //     state.passengers.[passengerIndex].count -= 1;
+    //   }
+    // }
     
 
   }
@@ -63,7 +96,7 @@ const flightSlice = createSlice({
 // Reducer
 export default flightSlice.reducer;
 
-export const { twoWayDate, setDepartureDate, addPassengers } = flightSlice.actions;
+export const { twoWayDate, setDepartureDate, addPassengers,subtractPassengers } = flightSlice.actions;
 
 
 // ----------------------------------------------------------------------

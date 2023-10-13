@@ -13,7 +13,8 @@ import UiButton from '../ui-button';
 import { toast } from 'sonner';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { addPassengers, setDepartureDate, twoWayDate } from '@/redux/slices/flights';
-import PassengersVeiw from '@/components/layout/PassengersVeiw';
+import PassengersVeiw from '@/components/Layout/PassengersVeiw';
+
 
 
 
@@ -34,7 +35,6 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   const twoWay = useAppSelector((state) => state.flight);
   const departureDate = useAppSelector((state) => state.flight);
 
-  console.log('twoWay :>> ', twoWay);
 
   // const [departureDate, setDepartureDate] = useState({
   //   day: '',

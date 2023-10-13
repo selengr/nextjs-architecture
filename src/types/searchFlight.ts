@@ -24,9 +24,28 @@ export type IDepartureDate = {
  };
 
  export type IPassenger = {
-  passengers? : [{
+  passengers? : [
+    {
+      ageClass: 'بزرگسالان',
+      ageGrade: ' ۱۲ سال به بالا',
+      count: number
+ },
+    {
+      ageClass: 'کودک ',
+      ageGrade: '۲ تا ۱۲ سال ',
+    count: number
+ },
+    {
+      ageClass: 'نوزاد',
+      ageGrade: ' ۱۰ روز تا ۲ سال',
+      count: number
+    },
+
+]
+}
+
+export type  Passenger = {
   ageClass: string;
   ageGrade: string;
-  count: number
- }]
+  count: number;
 }

@@ -9,7 +9,7 @@ const options = [
   {
     // BorderRadius:15,
     label: "خارجی",
-    value: "rent",
+    value: "خارجی",
     selectedBackgroundColor: "#F3FCF8",
     selectedBorder: "#000",
     selectedFontColor:"#000000",
@@ -22,7 +22,7 @@ const options = [
   {
     // borderRadius:15,
     label: "داخلی",
-    value: "purchase",
+    value: "داخلی",
     selectedBackgroundColor: "#F3FCF8",
     selectedFontColor:"#000000",
     backgroundColor:"#FFFFFF",
