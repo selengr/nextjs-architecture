@@ -15,7 +15,7 @@ import { Toaster, toast } from 'sonner';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import CardFlight from '@/components/Layout/CardFlight';
-import PriceCalendar from '@/components/layout/PriceCalendar';
+import PriceCalendar from '@/components/Layout/PriceCalendar';
 
 const AvailableTickets = () => {
     

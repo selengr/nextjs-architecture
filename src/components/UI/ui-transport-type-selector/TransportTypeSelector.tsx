@@ -22,21 +22,25 @@ const TransportTypeSelector = () => {
       icon: '/static/images/flights/flight_sticker.svg',
       activeIcon: '/static/images/flights/flight_sticker_choosed.svg',
       alt: 'flight',
-      route: "/flight",
+      route: "/flights",
+      // index: 0
     },
     {
       label: 'بلیط قطار',
       icon: '/static/images/train/train_sticker.svg',
       alt: 'train',
       activeIcon: '/static/images/train/train-choosed.svg',
-      route: '/train',
+      route: '#',
+      // route: '/train',
+      // index: 1
     },
     {
       label: 'بلیط اتوبوس',
       icon: '/static/images/bus/bus_sticker.svg',
       activeIcon: '/static/images/bus/bus-choosed.svg',
-      route: '/bus',
+      route: '',
       alt: 'bus',
+      // index: 2
     },
   ];
 

@@ -5,11 +5,11 @@ const nextConfig = {
   ] },
   reactStrictMode: true,
   serverActions: true,
-  distDir: 'build'
+  distDir: 'build',
   // basePath: '/',
-  // env: {
-  //     HOST_API_KEY: 'http://localhost:8080',
-  //   },
+  env: {
+    DOMAIN:"http://stage3api.qhami.com:8080",
+    },
 };
 
 module.exports = nextConfig;

@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { toast } from 'sonner';
 import UiButton from '../UI/ui-button';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { addPassengers } from '@/redux/slices/flights';
-import { count } from 'console';
+import { addPassengers, subtractPassengers } from '@/redux/slices/flights';
+
 
 interface Passenger {
   ageClass: string;
@@ -18,37 +18,41 @@ const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> =
   confirm,
 }) => {
 
-  const [passengers, setPassengers] = useState<Passenger[]>([
-    {
-      ageClass: 'بزرگسالان',
-      ageGrade: ' ۱۲ سال به بالا',
-      count: 1
-    },
-    {
-      ageClass: 'کودک ',
-      ageGrade: '۲ تا ۱۲ سال ',
-      count: 0
-    },
-    {
-      ageClass: 'نوزاد',
-      ageGrade: ' ۱۰ روز تا ۲ سال',
-      count: 0
-    }
-  ]);
+  // const [passengers, setPassengers] = useState<Passenger[]>([
+  //   {
+  //     ageClass: 'بزرگسالان',
+  //     ageGrade: ' ۱۲ سال به بالا',
+  //     count: 1
+  //   },
+  //   {
+  //     ageClass: 'کودک ',
+  //     ageGrade: '۲ تا ۱۲ سال ',
+  //     count: 0
+  //   },
+  //   {
+  //     ageClass: 'نوزاد',
+  //     ageGrade: ' ۱۰ روز تا ۲ سال',
+  //     count: 0
+  //   }
+  // ]);
 
   //REDUX
   const dispatch = useAppDispatch()
-  const twoWay = useAppSelector((state) => state.flight);
+  const passengers = useAppSelector((state) => state.flight.passengers);
+
 
   const handleAddPassenger = (passenger: Passenger) => {
-    console.log('passenger+++++++ :>> ', passenger);
-    const updatedPassengers = [...passengers];
-    passenger.count += 1;
-    setPassengers(updatedPassengers);
+    dispatch(addPassengers(
+      passenger
+    ))
+    // setPassengers(updatedPassengers);
    
   };
 
   const handleSubtractPassenger = (passenger: Passenger) => {
+    dispatch(subtractPassengers(
+      passenger
+    ))
     // if(passenger.ageClass === 'بزرگسالان') {
     //    if(passenger.count === 1) {
     //     toast.error('حداقل 1 نفر')
@@ -61,7 +65,7 @@ const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> =
     //   setPassengers(updatedPassengers);
     // }
   };
-  console.log('passengers------ reza :>> ', passengers);
+  // console.log('passengers------ reza :>> ', passengers);
   // const confirmPassengers = () =>{
   //      ()
   // }
@@ -69,7 +73,7 @@ const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> =
   return (
     <div>
       <div className="bg-ms-back-card-gray-12 rounded-[15px] flex flex-col items-center">
-        {passengers.map((passenger, index) => {
+        {passengers?.map((passenger, index) => {
           return (
             <div
               key={index}
@@ -112,10 +116,10 @@ const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> =
       </div>
 
       <ul className="flex flex-row my-8 text-[#969696] text-ms-xs">
-        {passengers.map((pass, index) => {
+        {passengers?.map((pass, index) => {
           if (pass.count > 0) {
             return (
-              <li key={index} className='px-2'>{pass.ageClass}{"  "}{pass.count}</li>
+              <li key={index} className='px-2 '>{pass.ageClass}{"  "}{pass.count}</li>
             );
           }
         })}

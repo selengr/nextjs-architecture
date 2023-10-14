@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // utils
 // import axios from '../../services/axios/api';
 // @types
-import { IDepartureAndReturnDate,IDepartureDate, IPassenger, Passenger } from '../../types/searchFlight';
+import { ICity, ICityTrack, IDepartureAndReturnDate,IDepartureDate, IPassenger, Passenger } from '../../types/searchFlight';
 
 // ----------------------------------------------------------------------
 
@@ -41,7 +41,12 @@ const initialState: IDepartureAndReturnDate  = {
               ageGrade: ' ۱۰ روز تا ۲ سال',
               count: 0
             }
-       ]
+       ],
+       city :{
+        origin :"",
+        destination :""
+       }
+      
        
 }  
 
@@ -64,39 +69,45 @@ const flightSlice = createSlice({
         state.year = action.payload.year;
     },
     
-    // addPassengers(state:any, action: PayloadAction<Passenger>){
 
-    //     const passenger = action.payload;
-    //     const passengerIndex = state.passengers?.findIndex((p:any,index:number) => p.ageClass === passenger.ageClass);
-    
-    //     if (passengerIndex !== -1) {
-    //       state.passengers[passengerIndex].count += 1;
-    //     } else {
-    //       state.passengers.push(passenger);
-    //     }
-    //   //  state.passengers = action.payload
-    // },
+    setCity(state:any, action: PayloadAction<ICityTrack>) {
+      // console.log('action.type :>> ', action);
+      switch (action.payload?.type) {
+        case 'ORIGIN':
+          state.city.origin = action.payload.origin;
+          break;
+          case 'DESTINATION':
+            state.city.destination = action.payload.destination;
+          break;
+      }
+      // return state 
+    },
+    addPassengers(state:IDepartureAndReturnDate, action : PayloadAction<Passenger>){
+      state.passengers?.map((item,index)=>{
+        if(item.ageClass === action.payload.ageClass){
+          item.count = action.payload.count +1;
+        }
 
-    // subtractPassengers: (state, action : PayloadAction<Passenger>) => {
-    //   const passenger = action.payload;
-    //   const passengerIndex = state.passengers?.findIndex((p:any,index:number) => p.ageClass === passenger.ageClass) as number;
+        // action.payload
+      })
+    },
+    subtractPassengers(state:IDepartureAndReturnDate, action : PayloadAction<Passenger>){
+      state.passengers?.map((item,index)=>{
+        if(item.ageClass === action.payload.ageClass){
+          item.count = action.payload.count -1;
+        }
 
-    //   if (passengerIndex !== -1) {
-    //     if(state.passengers?.[passengerIndex]?.count > 0){
-
-    //     }
-    //     state.passengers.[passengerIndex].count -= 1;
-    //   }
-    // }
-    
-
+        // action.payload
+      })
+    }
   }
 });
 
 // Reducer
 export default flightSlice.reducer;
 
-export const { twoWayDate, setDepartureDate, addPassengers,subtractPassengers } = flightSlice.actions;
+export const { twoWayDate, setDepartureDate,setCity, addPassengers,subtractPassengers 
+  } = flightSlice.actions;
 
 
 // ----------------------------------------------------------------------

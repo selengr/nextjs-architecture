@@ -4,6 +4,7 @@
      width: 100%;
      margin: 0 32px;
      height: 42px;
+     direction: ltr;
 } 
 
 .msSelector p{

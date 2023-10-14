@@ -12,7 +12,7 @@ import { useState } from 'react';
 import UiButton from '../ui-button';
 import { toast } from 'sonner';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { addPassengers, setDepartureDate, twoWayDate } from '@/redux/slices/flights';
+import { addPassengers, setCity, setDepartureDate, twoWayDate } from '@/redux/slices/flights';
 import PassengersVeiw from '@/components/Layout/PassengersVeiw';
 
 
@@ -43,12 +43,15 @@ const UiCustomizedTabTwo = ({ status }: any) => {
   // });
 
   const ChangeOriginAndDestination = () => {
+      dispatch(setCity({
+        type : "DESTINATION",
+        destination: departureDate.city?.origin as string
+      }));
+      dispatch(setCity({
+        type : "ORIGIN",
+        origin : departureDate.city?.destination as string
+      }));
     // Swap the origin and destination
-    const newOrigin = destination;
-    const newDestination = origin;
-
-    setOrigin(newOrigin);
-    setDestination(newDestination);
   };
 
   const ChangeOriginAndDestination2 = () => {
@@ -131,9 +134,18 @@ const UiCustomizedTabTwo = ({ status }: any) => {
 
   // ------------------
   const confirm = (passengers:any) => {
-  dispatch(addPassengers(passengers))
+  // dispatch(addPassengers(passengers))
   setOpenPassengers(false)
-  toast.success('انتخاب شد')
+  // toast.success('انتخاب شد')
+}
+
+  // ------------------
+  const Test = () => {
+    let counts : number = 0
+    twoWay.passengers?.map((item)=>{
+      counts += item.count;
+    })
+    return counts
 }
 
 
@@ -147,7 +159,7 @@ const UiCustomizedTabTwo = ({ status }: any) => {
           <Image
             className="ml-1"
             src={`/static/images/flights/${
-              origin ? 'location-icon-selected.svg' : 'location-icon.svg'
+              departureDate.city?.origin ? 'location-icon-selected.svg' : 'location-icon.svg'
             }`}
             alt={'flight'}
             width={23} //automatically provided
@@ -155,7 +167,7 @@ const UiCustomizedTabTwo = ({ status }: any) => {
           />
           <span
             className={`${
-              origin ? 'text-ms-green' : 'text-ms-thick-green'
+              departureDate.city?.origin ? 'text-ms-green' : 'text-ms-thick-green'
             }    font-ms-medium`}
           >
             مبدا
@@ -163,10 +175,10 @@ const UiCustomizedTabTwo = ({ status }: any) => {
 
           <span
             className={`${
-              origin ? 'text-ms-green' : 'text-[#969F9F]'
+              departureDate.city?.origin ? 'text-ms-green' : 'text-[#969F9F]'
             } text-ms-sm mx-2 font-ms-regular -mb-1`}
           >
-            {origin ? origin : '(شهر)'}
+            {departureDate.city?.origin ? departureDate.city?.origin : '(شهر)'}
           </span>
         </div>
 
@@ -191,7 +203,7 @@ const UiCustomizedTabTwo = ({ status }: any) => {
           <Image
             className="ml-1"
             src={`/static/images/flights/${
-              destination ? 'location-icon-selected.svg' : 'location-icon.svg'
+              departureDate.city?.destination ? 'location-icon-selected.svg' : 'location-icon.svg'
             }`}
             alt={'flight'}
             width={23} //automatically provided
@@ -200,17 +212,17 @@ const UiCustomizedTabTwo = ({ status }: any) => {
 
           <span
             className={`${
-              destination ? 'text-ms-green' : 'text-ms-thick-green'
+              departureDate.city?.destination ? 'text-ms-green' : 'text-ms-thick-green'
             }    font-ms-medium`}
           >
             مقصد
           </span>
           <span
             className={`${
-              destination ? 'text-ms-green' : 'text-[#969F9F]'
+              departureDate.city?.destination ? 'text-ms-green' : 'text-[#969F9F]'
             } text-ms-sm mx-2 font-ms-regular -mb-1`}
           >
-            {destination ? destination : '(شهر)'}
+            {departureDate.city?.destination ? departureDate.city?.destination : '(شهر)'}
           </span>
         </div>
       </div>
@@ -252,12 +264,11 @@ const UiCustomizedTabTwo = ({ status }: any) => {
               <Image
                 onClick={(e) => {
                   e.stopPropagation();
-                  // setOpenDepartureDate
-                  setDepartureDate({
-                    day: '',
-                    month: '',
-                    year: ''
-                  });
+                  dispatch(setDepartureDate({
+                    day: "",
+                    month : "",
+                    year: ""
+                }));
                 }}
                 className="ml-1"
                 src={'/static/images/flights/close_icon.svg'}
@@ -409,7 +420,9 @@ const UiCustomizedTabTwo = ({ status }: any) => {
             width={23} //automatically provided
             height={23} //automatically provide
           />
-          <span className="text-ms-thick-green font-ms-medium">{twoWay.passengers?.[0].count}مسافر</span>
+
+
+          <span className={`${Test() > 1 ?  'text-ms-green' :"text-ms-thick-green"}  font-ms-medium`}>{Test()}مسافر</span>
         </div>
       </div>
 
@@ -419,8 +432,8 @@ const UiCustomizedTabTwo = ({ status }: any) => {
             title="انتخاب مبدا"
             isOpen={isOpenOrigin}
             onClose={onCloseOrigin}
-          >
-            <DestinationView />
+            >
+             <OriginVeiw onClose={()=>setOpenOrigin(false)}/>
           </ModalGestures>
         </div>
       )}
@@ -433,7 +446,7 @@ const UiCustomizedTabTwo = ({ status }: any) => {
             className="overflow-scroll"
             // initialSnap={7}
           >
-            <OriginVeiw />
+            <DestinationView onClose={onCloseDestination}/>
           </ModalGestures>
         </div>
       )}

@@ -14,7 +14,7 @@ export type IDepartureAndReturnDate = {
       };
       fullRangeDate : string
   }
-   & IDepartureDate &  IPassenger
+   & IDepartureDate &  IPassenger & ICity
   
 
 export type IDepartureDate = {
@@ -40,7 +40,6 @@ export type IDepartureDate = {
       ageGrade: ' ۱۰ روز تا ۲ سال',
       count: number
     },
-
 ]
 }
 
@@ -48,4 +47,16 @@ export type  Passenger = {
   ageClass: string;
   ageGrade: string;
   count: number;
+}
+export type  ICity = {
+  city? :{
+    origin? :string,
+    destination? :string
+   }
+}
+
+
+export type ICityTrack = {
+  origin: string,
+  destination : string
 }

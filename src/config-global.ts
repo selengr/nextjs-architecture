@@ -21,9 +21,9 @@ export const COGNITO_API = {
   clientId: process.env.AWS_COGNITO_CLIENT_ID
 };
 
-export const AUTH0_API = {
-  clientId: process.env.AUTH0_CLIENT_ID,
-  domain: process.env.AUTH0_DOMAIN
+export const AUTH_API = {
+  clientId: process.env.AUTH_CLIENT_ID,
+  domain: process.env.DOMAIN
 };
 
 export const MAP_API = process.env.MAPBOX_API;
