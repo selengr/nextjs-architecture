@@ -26,7 +26,7 @@ interface ApiResponse<T> {
 
 const AUTH_TOKEN = 'your_auth_token';
 
-const callApi = (baseURL?: string) => {
+const callApi = (baseURL?: string,data?: unknown) => {
   
  const axiosInstance =  axios.create({
    baseURL:  baseURL || AUTH_API.domain,
@@ -36,11 +36,11 @@ const callApi = (baseURL?: string) => {
       //  config.headers['Authorization'] = 'Bearer ' + getToken(); 
       //  Authorization: 'Bearer YOUR_TOKEN' // AUTH_TOKEN
     },
-    transformRequest: [
-      (data) => {
-        return JSON.stringify(data);
-      },
-    ],
+    // transformRequest: [
+    //   (data) => {
+    //     return JSON.stringify(data
+    //   },
+    // ],
     transformResponse: [
       (data) => {
         return JSON.parse(data);

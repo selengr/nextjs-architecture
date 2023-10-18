@@ -94,7 +94,8 @@ import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 
 export default function UICustomizedTabs({
-  children
+  children,
+  value
 }: {
   children: React.ReactNode;
 }) {
@@ -107,23 +108,6 @@ export default function UICustomizedTabs({
     },
     }}  className="w-[100%] flex justify-center items-center" aria-label="Basic tabs" defaultValue={0}>
       <TabList sx={{bgcolor:"transparent",borderBottom:"1px solid #EDEBEB" }} className="w-[100%] flex justify-center items-center font-ms-iranSansMobile font-ms-medium">
-      
-      <Tab 
-         sx={{
-          bgcolor:"transparent",
-          "&:hover": {
-            // backgroundColor: "primary.main",
-          },
-          "&.Mui-selected": {
-            borderBottom: "2px solid red",
-            backgroundColor: "transparent",
-          },
-          '&[aria-selected="true"]': {
-            "--Tab-indicatorColor": "#02A95C !important"
-          },
-        }}
-             className="w-[40%]">دو طرفه
-             </Tab>
       
         <Tab
         sx={{
@@ -148,6 +132,23 @@ export default function UICustomizedTabs({
            
         className="w-[40%]">یک طرفه
         </Tab>
+
+        <Tab 
+         sx={{
+          bgcolor:"transparent",
+          "&:hover": {
+            // backgroundColor: "primary.main",
+          },
+          "&.Mui-selected": {
+            borderBottom: "2px solid red",
+            backgroundColor: "transparent",
+          },
+          '&[aria-selected="true"]': {
+            "--Tab-indicatorColor": "#02A95C !important"
+          },
+        }}
+             className="w-[40%]">دو طرفه
+             </Tab>
       
       </TabList>
 

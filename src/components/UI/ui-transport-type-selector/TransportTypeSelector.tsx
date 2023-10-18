@@ -30,15 +30,14 @@ const TransportTypeSelector = () => {
       icon: '/static/images/train/train_sticker.svg',
       alt: 'train',
       activeIcon: '/static/images/train/train-choosed.svg',
-      route: '#',
-      // route: '/train',
+      route: '/train'
       // index: 1
     },
     {
       label: 'بلیط اتوبوس',
       icon: '/static/images/bus/bus_sticker.svg',
       activeIcon: '/static/images/bus/bus-choosed.svg',
-      route: '',
+      route: '/bus',
       alt: 'bus',
       // index: 2
     },

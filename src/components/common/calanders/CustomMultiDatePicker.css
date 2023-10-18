@@ -22,6 +22,9 @@
 .msCalendar:first-child  {
     background: #FFFFFF;
  }
+.msCalendar.english-font * {
+   font-family: DanaMobile !important;
+ }
 .msCalendar .rmdp-wrapper  {
    box-shadow: none;
  }

@@ -318,6 +318,7 @@ const config: Config = {
 
           fontFamily: {
             'ms-iranSansMobile': ['IRANSansMobile', "sans-serif"],
+            'ms-dana': ['DanaMobile', "ui-sans-serif"],
         },
 
           fontWeight: {

@@ -1,32 +1,32 @@
 "use client"
 
-import { Banner } from '@/components/UI/ui-banner';
-import UiButton from '@/components/UI/ui-button';
-import UiSwitchSelector from '@/components/UI/ui-switch-selector/UiSwitchSelector';
-import UiCustomizedTabs from '@/components/UI/ui-tabs/UICustomizedTabs';
-import UiCustomizedTabOne from '@/components/UI/ui-tabs/UiCustomizedTabOne';
-import UiCustomizedTabTwo from '@/components/UI/ui-tabs/UiCustomizedTabTwo';
-import TransportTypeSelector from '@/components/UI/ui-transport-type-selector/TransportTypeSelector';
-import CustomizedOptions from '@/components/common/customized-options/CustomizedOptions';
-import ModalGestures from '@/components/common/modal/ModalGestures ';
-import TabPanel from '@mui/joy/TabPanel/TabPanel';
-import { Toaster, toast } from 'sonner';
-
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
+import { PATH_FLIGHT } from '@/routes/paths';
+import { usePathname, useRouter } from 'next/navigation'
 import { Box } from '@mui/material';
-import Image from 'next/image';
-import { useAppSelector } from '@/redux/hook';
+import { useState } from 'react';
+
+import TransportTypeSelector from '@/components/UI/ui-transport-type-selector/TransportTypeSelector';
+import UiSwitchSelector from '@/components/UI/ui-switch-selector/UiSwitchSelector';
+import UiCustomizedTabTwo from '@/components/UI/ui-tabs/UiCustomizedTabTwo';
+import UiCustomizedTabs from '@/components/UI/ui-tabs/UICustomizedTabs';
+import { Banner } from '@/components/UI/ui-banner';
+import TabPanel from '@mui/joy/TabPanel/TabPanel';
+import UiButton from '@/components/UI/ui-button';
+
 
 const Flights = () => {
-    
-  // const {} = useAppSelector((state) => state.flight);
 
-  const handle_search_in_tickets =()=>{
+  const [calenderErorr,setCalenderErorr] = useState<boolean>(false)
+  const flight = useAppSelector((state) => state.flight);
+  const router = useRouter()  
+  
 
-  //  if("ss"="ss"){
-
-  //  }else {
-  //   toast.error('please fill all input')
-  //  }
+  const handle_search_in_tickets = ()=>{
+    const encodedData = encodeURIComponent(JSON.stringify(flight));
+     if (flight.city?.destination && flight.city?.origin && (flight.fullRangeDate?.split(",").length == 2 || flight.year?.length != 0) ) {
+       return router.push(`${PATH_FLIGHT.availableTickets}?query=${encodedData}`)
+    }else setCalenderErorr(true)
   }
 
   return (
@@ -52,7 +52,7 @@ const Flights = () => {
       <div className="w-full flex justify-center align-middle items-center mt-[32px] mb-[24px]">
         <UiCustomizedTabs>
           <TabPanel
-            value={1}
+            value={0}
             sx={{
               width: '100%',
               display: 'flex',
@@ -61,10 +61,10 @@ const Flights = () => {
               flexDirection:"column"
             }}
           >
-           <UiCustomizedTabTwo status="oneWay" />
+           <UiCustomizedTabTwo setErorr={()=>setCalenderErorr(false)} calenderErorr={calenderErorr} status="oneWay" />
           </TabPanel>
 
-          <TabPanel value={0}
+          <TabPanel value={1}
             sx={{
                 width: '100%',
                 display: 'flex',
@@ -73,7 +73,7 @@ const Flights = () => {
                 flexDirection:"column"
               }}
           >
-             <UiCustomizedTabTwo status="twoWay"/>
+             <UiCustomizedTabTwo setErorr={()=>setCalenderErorr(false)} calenderErorr={calenderErorr} status="twoWay"/>
           </TabPanel>
          
         </UiCustomizedTabs>

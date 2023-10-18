@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { TBannerPic } from '.';
 
-export default function Banner({ bannerPic, alt, width, height,className }: TBannerPic) {
+export default function Banner({ bannerPic, alt, width, height,className, children }: TBannerPic) {
   return (
-    <div className=''>
+    <div className='relative flex flex-col'>
       <Image
         src={bannerPic}
         alt={alt}
@@ -13,6 +13,7 @@ export default function Banner({ bannerPic, alt, width, height,className }: TBan
         // placeholder="blur" // Optional blur-up while loading
         className={className}
       />
+       {children}
     </div>
   );
 }

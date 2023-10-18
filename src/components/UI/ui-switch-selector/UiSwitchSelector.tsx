@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 
 import React from "react";
 import SwitchSelector from 'react-switch-selector';
@@ -17,7 +17,6 @@ const options = [
     backgroundColor:"#F3FCF8",
     fontColor:"#1B3D13",
     border: "5px solid #000"
-    
   },
   {
     // borderRadius:15,
@@ -30,20 +29,18 @@ const options = [
     selectedBorder: "#000",
     // border : "#06AB5F",
     border:"11px solid #000"
-  }
+  },
 ];
 
 
 
-const onChange = (newValue:any) => {
-  console.log(newValue);
-};
+// const onChange = (newValue:any) => {
+//   console.log(newValue);
+// };
 
-const initialSelectedIndex = options.findIndex(({ value }) => value === "bar");
+const initialSelectedIndex = options.findIndex(({ value }) => value === "داخلی");
 
 export default function UiSwitchSelector() {
-
-
 
   return (
 
@@ -51,7 +48,7 @@ export default function UiSwitchSelector() {
     <div className={styles.msSelector}>
       <p className="h-full rounded-2xl">
         <SwitchSelector
-          onChange={onChange}
+          // onChange={onChange}
           // wrapperBorderRadius={"#000"}
           optionBorderRadius={20}
           options={options}

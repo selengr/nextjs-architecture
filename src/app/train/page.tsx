@@ -1,11 +1,33 @@
-import ResponsiveDateRangePickers from "@/components/common/calanders/DateRangeCalendar";
+import { Box } from '@mui/material';
 
-const page = () => {
+import TransportTypeSelector from '@/components/UI/ui-transport-type-selector/TransportTypeSelector';
+import { Banner } from '@/components/UI/ui-banner';
+
+
+const Train = () => {
+
+
+
   return (
-    <div className="w-full h-full">
-        <ResponsiveDateRangePickers />
+    <div className="h-full w-full overflow-hidden">
+      <Banner
+        bannerPic="/static/images/train/train-header-banner.svg"
+        alt="header"
+        width={0}
+        height={500}
+        className="w-full"
+      />
+
+      <div className="relative flex justify-center align-middle items-center">
+        <TransportTypeSelector />
+      </div>
+
+      <Box sx={{ height: '74px' }}></Box>
+
+     
+
     </div>
   );
-}
+};
 
-export default page;
+export default Train;

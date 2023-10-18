@@ -163,7 +163,7 @@ import Link from 'next/link'
 
 export default function MobileBottomNavigation(
   {
-  children
+  children,
 }: {
   children: React.ReactNode;
 }
@@ -174,7 +174,6 @@ export default function MobileBottomNavigation(
   const handlePage = (e :any,i:number) => {
     setIndex(i)
     console.log("teeeeeeeeeeeeeeeeest-e",e);
-    console.log("teeeeeeeeeeeeeeeeest-i",i);
   }
 
   const menuItems = [
@@ -182,19 +181,19 @@ export default function MobileBottomNavigation(
       label: 'Home',
       icon: '/static/images/profile/home1.svg',
       activeIcon: '/static/images/profile/home2.svg',
-      route: '/flights',
+      route: '/',
     },
     {
       label: 'My Trips',
       icon: '/static/images/profile/my-trip1.svg',
       activeIcon: '/static/images/profile/my-trip2.svg',
-      route: '#',
+      route: '/my-transaction',
     },
     {
       label: 'Profile',
       icon: '/static/images/profile/profile-menu1.svg',
       activeIcon: '/static/images/profile/profile-menu2.svg',
-      route: '#',
+      route: '/profile',
     },
   ];
 

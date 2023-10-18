@@ -5,6 +5,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import axios from '../../services/axios/api';
 // @types
 import { ICity, ICityTrack, IDepartureAndReturnDate,IDepartureDate, IPassenger, Passenger } from '../../types/searchFlight';
+import { toast } from 'sonner';
 
 // ----------------------------------------------------------------------
 
@@ -25,16 +26,18 @@ const initialState: IDepartureAndReturnDate  = {
        day : "",
        year : "",
        month :"",
+       totalPassenger : 1, 
         passengers : [
             {
               ageClass: 'بزرگسالان',
               ageGrade: ' ۱۲ سال به بالا',
-              count: 1
+              count: 1,
             },
             {
               ageClass: 'کودک ',
               ageGrade: '۲ تا ۱۲ سال ',
               count: 0
+
             },
             {
               ageClass: 'نوزاد',
@@ -44,7 +47,9 @@ const initialState: IDepartureAndReturnDate  = {
        ],
        city :{
         origin :"",
-        destination :""
+        originAirportEnglishName :"",
+        destination :"",
+        destinationAirportEnglishName :""
        }
       
        
@@ -59,7 +64,12 @@ const flightSlice = createSlice({
       // ["2023/10/09", "2023/10/15"]);
       state.departure = action.payload.departure;
       state.return = action.payload.return;
-      state.fullRangeDate = `${action.payload.departure.year}-${action.payload.departure.month_number}-${action.payload.departure.day},${action.payload.return.year}-${action.payload.return.month_number}-${action.payload.return.day}`
+      state.fullRangeDate = `${action.payload.departure.year}-${action.payload.departure.month_number}-${action.payload.departure.day},${action.payload.return.year}-${action.payload.return.month_number}-${action.payload.return.day}`;
+      state.year = "";
+      state.day = "";
+      state.month = ""
+      state.fullYear = ""
+      state.month_name = ""
       // return [...state, state]
     },
 
@@ -67,6 +77,17 @@ const flightSlice = createSlice({
         state.day = action.payload.day;
         state.month = action.payload.month;
         state.year = action.payload.year;
+        state.fullYear = action.payload.fullYear;
+        state.month_number = action.payload.month_number;
+        state.fullRangeDate = "";
+        state.departure.day = "";
+        state.departure.month_name = "";
+        state.departure.month_number = "";
+        state.departure.year = "";
+        state.return.day = "";
+        state.return.month_name = "";
+        state.return.month_number = "";
+        state.return.year = ""
     },
     
 
@@ -75,30 +96,51 @@ const flightSlice = createSlice({
       switch (action.payload?.type) {
         case 'ORIGIN':
           state.city.origin = action.payload.origin;
+          state.city.originAirportEnglishName = action.payload.originAirportEnglishName;
           break;
           case 'DESTINATION':
             state.city.destination = action.payload.destination;
+            state.city.destinationAirportEnglishName = action.payload.destinationAirportEnglishName;
           break;
       }
       // return state 
     },
     addPassengers(state:IDepartureAndReturnDate, action : PayloadAction<Passenger>){
-      state.passengers?.map((item,index)=>{
-        if(item.ageClass === action.payload.ageClass){
-          item.count = action.payload.count +1;
-        }
 
-        // action.payload
-      })
+      let counts : number = 0
+
+        state.passengers?.map((item,index)=>{
+          if(item.ageClass === action.payload.ageClass){
+            item.count = action.payload.count +1;
+          }
+          counts += item.count;
+          // return counts
+        })
+        state.totalPassenger = counts
+        
     },
     subtractPassengers(state:IDepartureAndReturnDate, action : PayloadAction<Passenger>){
+      let counts : number = 0
+    
+      // if(state.totalPassenger !== undefined && state.totalPassenger > 0){
       state.passengers?.map((item,index)=>{
-        if(item.ageClass === action.payload.ageClass){
-          item.count = action.payload.count -1;
-        }
-
-        // action.payload
+              if(item.ageClass === action.payload.ageClass){
+                if(item.ageClass === 'بزرگسالان') {
+                  if(item.count > 1){
+                    item.count = action.payload.count -1;
+                  } else if(item.count === 1){
+                    // item.count = 1;
+                    toast.error('حداقل 1 نفر')
+                  }
+             }else if(item.count > 0) {
+                item.count = action.payload.count -1;
+             }
+            }
+            counts += item.count;       
       })
+      state.totalPassenger = counts
+      // }
+      // else return
     }
   }
 });

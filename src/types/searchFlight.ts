@@ -12,15 +12,18 @@ export type IDepartureAndReturnDate = {
         month_number: string;
         year: string;
       };
-      fullRangeDate : string
+      fullRangeDate : string,
+      totalPassenger? : number 
   }
    & IDepartureDate &  IPassenger & ICity
   
 
 export type IDepartureDate = {
-      day?: String,
-      month?: String,
-      year?: String
+      day?: string,
+      month?: string,
+      year?: string
+      fullYear?: string
+      month_number?: string
  };
 
  export type IPassenger = {
@@ -28,7 +31,7 @@ export type IDepartureDate = {
     {
       ageClass: 'بزرگسالان',
       ageGrade: ' ۱۲ سال به بالا',
-      count: number
+      count: number,
  },
     {
       ageClass: 'کودک ',
@@ -40,7 +43,7 @@ export type IDepartureDate = {
       ageGrade: ' ۱۰ روز تا ۲ سال',
       count: number
     },
-]
+],
 }
 
 export type  Passenger = {
@@ -51,12 +54,26 @@ export type  Passenger = {
 export type  ICity = {
   city? :{
     origin? :string,
+    originAirportEnglishName: string,
     destination? :string
+    destinationAirportEnglishName : string,
    }
 }
 
 
 export type ICityTrack = {
   origin: string,
-  destination : string
+  originAirportEnglishName: string,
+  destination : string,
+  destinationAirportEnglishName: string,
+}
+
+export interface ISearchFlightsData {
+  originIataCode: string | undefined;
+  destinationIataCode: string | undefined;
+  departureDate: string;
+  returningDate?: string | null;
+  fetchSupplierWebserviceFlights: boolean;
+  fetchFlighsWithBookingPolicy: boolean;
+  language: string;
 }

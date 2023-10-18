@@ -99,3 +99,60 @@ body {
   font-style: normal;
   src: local('IRANSansMobile'), url('/static/fonts/MobileFonts/IRANSansMobile(FaNum)_UltraLight.ttf') format('truetype');
 }
+
+
+
+
+/* ------------------------------------------------------new */
+@font-face {
+  font-family: 'DanaMobile';
+  font-weight: 'black';
+  font-style: normal;
+  src: local('DanaMobile'), url('/static/fonts/Dand/dana-black.ttf') format('truetype');
+} 
+
+@font-face {
+  font-family: 'DanaMobile';
+  font-weight: 'bold';
+  font-style: normal;
+  src: local('DanaMobile'), url('/static/fonts/Dand/dana-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DanaMobile';
+  font-weight: 'medium';
+  font-style: normal;
+  src: local('DanaMobile'), url('/static/fonts//Dand/dana-medium.ttf') format('truetype');
+}
+
+
+
+@font-face {
+  font-family: 'DanaMobile';
+  font-weight: 'light';
+  font-style: normal;
+  src: local('DanaMobile'), url('/static/fonts//Dand/dana-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DanaMobile';
+  font-weight: 'Ultrabold';
+  font-style: normal;
+  src: local('DanaMobile'), url('/static/fonts//Dand/dana-ultrabold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DanaMobile';
+  font-weight: 'Extrabold';
+  font-style: normal;
+  src: local('DanaMobile'), url('/static/fonts//Dand/dana-extrabold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DanaMobile';
+  font-weight: 'Demibold';
+  font-style: normal;
+  src: local('DanaMobile'), url('/static/fonts//Dand/dana-demibold.ttf') format('truetype');
+}
+
+

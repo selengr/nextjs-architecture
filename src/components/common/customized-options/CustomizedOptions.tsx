@@ -57,12 +57,14 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({type,onClose}) => {
     if (type === "DESTINATION") {
       dispatch(setCity({
         type,
-        destination: city.caption 
+        destination: city.caption,
+        destinationAirportEnglishName : city.extMap.airportEnglishName
       }));
     } else if(type === "ORIGIN") {
       dispatch(setCity({
         type,
         origin : city.caption,
+        originAirportEnglishName : city.extMap.airportEnglishName,
       }));
     }   
     onClose()
@@ -77,6 +79,7 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({type,onClose}) => {
         className="w-full z-10 text-yellow font-ms-iranSansMobile rounded-2xl"
         id="search-bar"
         // label="جستجو"
+        type='search'
         placeholder="جستجو"
         value={searchCity}
         onChange={handleSearch}
@@ -120,7 +123,7 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({type,onClose}) => {
               active:transition-transform active:duration-150 active:ease-in-out active:transform-scale-110
             "
           >
-            {suggestion.caption}
+            {suggestion.caption} ({suggestion.extMap.cityName.trim()})
           </li>
         ))}
       </ul>

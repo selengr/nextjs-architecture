@@ -8,6 +8,7 @@ function path(root: string, sublink: string) {
 const ROOTS_AUTH = "http://apifpr.mresalat1.com:8080";
 const ROOTS_DASHBOARD = '/dashboard';
 
+
 // ----------------------------------------------------------------------
 const AuthParams = [
   "client_id=ssoClient-2",
@@ -27,6 +28,16 @@ export const BOOKING = {
   bus: "bus",
   train: "train",
   flights : "flights" 
+};
+
+export const PATH_FLIGHT = {
+  availableTickets : path(BOOKING.flights, "/available-flight-tickets")
+};
+export const PATH_TRAIN = {
+
+};
+export const PATH_BUS = {
+  
 };
 
 export const PATH_PAGE = {
