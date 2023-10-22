@@ -25,7 +25,7 @@ const Flights = () => {
   const handle_search_in_tickets = ()=>{
     const encodedData = encodeURIComponent(JSON.stringify(flight));
      if (flight.city?.destination && flight.city?.origin && (flight.fullRangeDate?.split(",").length == 2 || flight.year?.length != 0) ) {
-       return router.push(`${PATH_FLIGHT.availableTickets}?query=${encodedData}`)
+       return router.push(`${PATH_FLIGHT.availableTickets}?q=${encodedData}`)
     }else setCalenderErorr(true)
   }
 

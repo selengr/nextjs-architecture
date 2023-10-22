@@ -73,21 +73,46 @@ const flightSlice = createSlice({
       // return [...state, state]
     },
 
-    setDepartureDate(state:any, action: PayloadAction<IDepartureDate>){
-        state.day = action.payload.day;
-        state.month = action.payload.month;
-        state.year = action.payload.year;
-        state.fullYear = action.payload.fullYear;
-        state.month_number = action.payload.month_number;
-        state.fullRangeDate = "";
-        state.departure.day = "";
-        state.departure.month_name = "";
-        state.departure.month_number = "";
-        state.departure.year = "";
-        state.return.day = "";
-        state.return.month_name = "";
-        state.return.month_number = "";
-        state.return.year = ""
+    // setDepartureDate(state:any, action: PayloadAction<IDepartureDate>){
+    //     state.day = action.payload.day;
+    //     state.month = action.payload.month;
+    //     state.year = action.payload.year;
+    //     state.fullYear = action.payload.fullYear;
+    //     state.month_number = action.payload.month_number;
+    //     state.fullRangeDate = "";
+    //     state.departure.day = "";
+    //     state.departure.month_name = "";
+    //     state.departure.month_number = "";
+    //     state.departure.year = "";
+    //     state.return.day = "";
+    //     state.return.month_name = "";
+    //     state.return.month_number = "";
+    //     state.return.year = ""
+    // },
+    setDepartureDate(state: any, action: PayloadAction<IDepartureDate>)  {
+      return {
+        ...state,
+        day: action.payload.day,
+        month: action.payload.month,
+        year: action.payload.year,
+        fullYear: action.payload.fullYear,
+        month_number: action.payload.month_number,
+        fullRangeDate: "",
+        departure: {
+          // ...state.departure,
+          day: "",
+          month_name: "",
+          month_number: "",
+          year: "",
+        },
+        return: {
+          // ...state.departure,
+          day: "",
+          month_name: "",
+          month_number: "",
+          year: "",
+        }
+      }
     },
     
 

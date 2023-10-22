@@ -546,7 +546,7 @@ const validateCityTextDestination = () => {
             <CustomMultiDatePicker
               value={departureDate.year ? departureDate?.year : todayDate}
               onChange={(time) => {
-                console.log('time :>> ', time);
+                console.log('time :>> ', time.toString());
                 dispatch(
                   setDepartureDate({
                     day: time.day,

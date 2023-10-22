@@ -25,11 +25,11 @@ export default function RootLayout({
       <body className='ms-center max-w-[576px] w-full bg-ms-back-card-gray-12 flex flex-col relative overflow-scroll'>  
         <AuthVerify>
         <AuthProvider>
-        <MobileBottomNavigation>
+        {/* <MobileBottomNavigation> */}
              <Providers>
               {children}
               </Providers>
-        </MobileBottomNavigation >    
+        {/* </MobileBottomNavigation >     */}
         </AuthProvider>
         <Toaster richColors/>
         </AuthVerify>
