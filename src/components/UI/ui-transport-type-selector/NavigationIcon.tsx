@@ -2,7 +2,6 @@
 
 // const NavigationIcon = () => {
 
-
 //     const [index, setIndex] = React.useState<number|null>(null);
 //   const router = useRouter()
 
@@ -10,7 +9,6 @@
 //     setIndex(i)
 //     router.push(`${route}`)
 //   }
-
 
 //     return (
 //         <div>

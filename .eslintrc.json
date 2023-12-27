@@ -13,7 +13,10 @@
       "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"]
     }
   ],
+  
   "rules": {
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+      // "no-console": 1,
+      // "no-debugger": 1
   }
 }

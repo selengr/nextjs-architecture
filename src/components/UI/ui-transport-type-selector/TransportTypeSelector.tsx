@@ -1,20 +1,27 @@
-"use client"
+'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React, { useCallback } from 'react';
+import { Banner } from '../ui-banner';
+import React, { Suspense, useCallback } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { PATH_BOOKING, PATH_FLIGHT } from '@/routes/paths';
+import { Skeleton } from '@mui/material';
 
-const TransportTypeSelector = () => {
-  const [index, setIndex] = React.useState(0);
-  const router = useRouter()
+const TransportTypeSelector = ({ type }: { type?: string }) => {
+  const [index, setIndex] = React.useState<
+    'flights' | 'train' | 'bus' | 'hotel' | 'tour' | null
+  >(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const handlePage = (e :any,i:number,route:string) => {
-    setIndex(i)
-    router.push(`${route}`)
-    console.log("teeeeeeeeeeeeeeeeest-e",e);
-    console.log("teeeeeeeeeeeeeeeeest-i",i);
-  }
+  const handlePage = (
+    e: any,
+    i: 'flights' | 'train' | 'bus' | 'hotel' | 'tour',
+    route: string
+  ) => {
+    setIndex(i);
+    router.push(`${route}`);
+  };
 
   const transportTypes = [
     {
@@ -22,41 +29,61 @@ const TransportTypeSelector = () => {
       icon: '/static/images/flights/flight_sticker.svg',
       activeIcon: '/static/images/flights/flight_sticker_choosed.svg',
       alt: 'flight',
-      route: "/flights",
-      // index: 0
+      route: `${PATH_BOOKING.flights}${PATH_FLIGHT.DOMESTIC}`,
+      index: '/flights/domestic'
     },
     {
       label: 'بلیط قطار',
       icon: '/static/images/train/train_sticker.svg',
       alt: 'train',
       activeIcon: '/static/images/train/train-choosed.svg',
-      route: '/train'
-      // index: 1
+      route: PATH_BOOKING.train,
+      index: '/train'
     },
     {
       label: 'بلیط اتوبوس',
       icon: '/static/images/bus/bus_sticker.svg',
       activeIcon: '/static/images/bus/bus-choosed.svg',
-      route: '/bus',
+      route: PATH_BOOKING.bus,
       alt: 'bus',
-      // index: 2
+      index: '/bus'
     },
+    {
+      label: 'هتل',
+      icon: '/static/images/hotel/hotel_sticker.svg',
+      activeIcon: '/static/images/hotel/hotel_sticker.svg',
+      route: PATH_BOOKING.hotel,
+      alt: 'hotel',
+      index: '/hotel'
+    },
+    {
+      label: 'تور',
+      icon: '/static/images/tour/tour_sticker.svg',
+      activeIcon: '/static/images/tour/tour_sticker.svg',
+      route: PATH_BOOKING.tour,
+      alt: 'tour',
+      index: '/tour'
+    }
   ];
 
   const renderTransportTypeSelector = useCallback(
-    (type :any, key:number) => (
+    (type: any, key: number) => (
       <div
         key={key}
-        className={` w-1/3 flex flex-col justify-center items-center`}
-        onClick={(e) => handlePage(e, key,type.route)}
+        className={` w-1/3 flex flex-col justify-center items-center cursor-pointer`}
+        onClick={(e) => handlePage(e, type.index, type.route)}
       >
         <Image
-          src={index === key ? type.activeIcon : type.icon}
+          src={type.index == pathname ? type.activeIcon : type.icon}
           alt={type.alt}
           width={25} //automatically provided
           height={25} //automatically provided
         />
-        <span className={`${index === key ? "text-ms-yellow" : ""} pt-2 text-ms-thick-green font-ms-regular text-ms-sm`}>
+        <span
+          className={`${
+            type.index === pathname ? 'text-ms-yellow' : ''
+          } pt-2 text-ms-thick-green font-ms-regular text-ms-sm `}
+        >
           {type.label}
         </span>
       </div>
@@ -65,11 +92,29 @@ const TransportTypeSelector = () => {
   );
 
   return (
-    <div
-      className="h-[4.5rem] -top-9 left-5 right-5 absolute z-20 w-11/12 rounded-2xl bg-ms-back-card-gray-22 flex"
-    >
-      {transportTypes.map(renderTransportTypeSelector)}
-    </div>
+    <>
+      {type && (
+        <Suspense
+          fallback={
+            <Skeleton variant="rectangular" height="500" className="w-full" />
+          }
+        >
+          <Banner
+            bannerPic={`/static/images/${type}/${type}-header-banner.svg`}
+            alt="header"
+            width={500}
+            height={500}
+            className="w-full min-h-fit"
+          />
+        </Suspense>
+      )}
+
+      <div className="relative flex justify-center align-middle items-center w-full">
+        <div className="h-[4.5rem] -top-9 left-5 right-5 absolute z-20 w-11/12 rounded-2xl bg-ms-back-card-gray-22 flex">
+          {transportTypes.map(renderTransportTypeSelector)}
+        </div>
+      </div>
+    </>
   );
 };
 

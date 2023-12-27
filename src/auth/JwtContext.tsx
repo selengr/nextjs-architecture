@@ -17,7 +17,7 @@ import {
   AuthUserType,
   JWTContextType
 } from './types';
-import { jwtVerify  } from 'jose';
+import { jwtVerify } from 'jose';
 import axios from 'axios';
 
 // ----------------------------------------------------------------------
@@ -109,13 +109,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       const accessToken = storageAvailable
         ? localStorage.getItem('access_token') + ''
-        : '' ;
-  //  console.log("--------------------------------------------1",isValidToken(accessToken));
+        : '';
+      //  console.log("--------------------------------------------1",isValidToken(accessToken));
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
 
         // const response = await callApi.get('/api/account/my-account');
- 
+
         // const { user } = response.data;
 
         // dispatch({
@@ -126,7 +126,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         //   }
         // });
       } else {
-
         // If the token isn't valid for any reason, we want to clear it from localstorage and redirect to login page
 
         dispatch({
@@ -138,7 +137,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         });
       }
     } catch (error) {
-      console.error(error);
       dispatch({
         type: Types.INITIAL,
         payload: {
@@ -154,32 +152,33 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [initialize]);
 
   // LOGIN
-  const login = useCallback(async (code : string  , redirectUrl: string) => {
-
+  const login = useCallback(async (code: string, redirectUrl: string) => {
     const urlencoded = new URLSearchParams({
-      client_id: "ssoClient-2",
-      client_secret: "ssoClientSecret-2",
+      client_id: 'ssoClient-2',
+      client_secret: 'ssoClientSecret-2',
       redirect_uri: redirectUrl,
-      grant_type:  "authorization_code",
+      grant_type: 'authorization_code',
       // code_verifier : "Bq187ESUqFq7lEoxJJw0wZndiojms9mPjdzOJbOfBet",
-      code,
+      code
     });
-  
-    var requestOptions : any = {
+
+    var requestOptions: any = {
       method: 'POST',
-      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: urlencoded,
       redirect: 'follow'
     };
 
-
-    const response = await axios.post('http://apifpr.mresalat1.com/sso/oauth2/token',requestOptions);
+    const response = await axios.post(
+      'http://apifpr.mresalat1.com/sso/oauth2/token',
+      requestOptions
+    );
     const { access_token, user } = response.data as {
       access_token: string | undefined;
       user?: string;
     };
 
-    setSession(access_token)
+    setSession(access_token);
 
     // dispatch({
     //   type: Types.LOGIN,
@@ -255,30 +254,28 @@ export function AuthProvider({ children }: AuthProviderProps) {
   );
 }
 
-
-
-
-
 // new featuer to andle auth varification
 interface UserJwtPayload {
-  jti: string
-  iat: number
+  jti: string;
+  iat: number;
 }
 
 export const getJwtSecretKey = () => {
-  const secret = process.env.JWT_SECRET_KEY
-  if( !secret || secret?.length === 0 ){
-    throw new Error('The environment variable JWT_SECRET KEY is not set.')
+  const secret = process.env.JWT_SECRET_KEY;
+  if (!secret || secret?.length === 0) {
+    throw new Error('The environment variable JWT_SECRET KEY is not set.');
   }
-  return secret
-}
+  return secret;
+};
 
-
-export  const verifyAuth = async (token: string | Uint8Array) => {
+export const verifyAuth = async (token: string | Uint8Array) => {
   try {
-    const verified = await jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()))
-    return verified.payload as UserJwtPayload
+    const verified = await jwtVerify(
+      token,
+      new TextEncoder().encode(getJwtSecretKey())
+    );
+    return verified.payload as UserJwtPayload;
   } catch (error) {
-    throw new Error('your token has expired')
+    throw new Error('your token has expired');
   }
-}
+};

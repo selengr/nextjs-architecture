@@ -6,7 +6,8 @@ import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 // import chatReducer from './slices/chat';
 // import productReducer from './slices/product';
 // import calendarReducer from './slices/calendar';
-import flightSlice from './slices/flights';
+import flightSlice from './slices/flight/flights';
+import booking from './slices/flight/bookingProcess';
 
 // ----------------------------------------------------------------------
 
@@ -43,7 +44,8 @@ export const productPersistConfig = {
 
 const rootReducer = combineReducers({
   //add your slices  here and blew you can see two example
-     flight: flightSlice,
+  flight: flightSlice,
+  booking: booking
   // chat: chatReducer,
   // calendar: calendarReducer,
   // kanban: kanbanReducer,

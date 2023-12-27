@@ -1,6 +1,24 @@
 
-/* 
-.msModalGestures  {
-    overflow: scroll;
-    height: 100%;
-}  */
+.msMG_continer {
+    left: auto !important;
+    margin-left: -8px;
+    /* inset: 0px 3px 0px 49% !important; */
+    /* transform: translate(-2.5px, 0px) !important; */
+     /* (-2.5px, 0px) !important; */
+    pointer-events: painted !important;
+} 
+.msModalGestures {
+     inset: 0px 5px 0px 49% !important;
+}
+
+.msModalGestures .react-modal-sheet-drag-indicator {
+    background-color: red !important;
+    width: 20px !important; 
+} 
+
+.msModalGestures .react-modal-sheet-container {
+    font-size: 35px !important;
+    background-color: red !important;
+    width: 20px !important; 
+} 
+

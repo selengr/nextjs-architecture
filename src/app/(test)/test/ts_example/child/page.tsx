@@ -1,6 +1,7 @@
-import { PersonStatusProps } from '@/types/example';
+// import { PersonStatusProps } from "@/@types/example";
 
-const Child = (props: PersonStatusProps) => {
+
+const Child = (props: any) => {
   return (
     <div>
       <span>

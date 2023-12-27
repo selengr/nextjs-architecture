@@ -1,8 +1,9 @@
 // routes
 // utils
 import { PATH_AUTH } from '@/routes/paths';
-import axios from '../utils/axios';
-
+// import axios from '../utils/axios';
+import callApi from '@/services/axios';
+import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
@@ -55,7 +56,7 @@ export const isValidToken = (accessToken: string) => {
 
 // ----------------------------------------------------------------------
 
-export const tokenExpired =  (exp: number) => {
+export const tokenExpired = (exp: number) => {
   // eslint-disable-next-line prefer-const
   let expiredTimer;
 
@@ -69,9 +70,9 @@ export const tokenExpired =  (exp: number) => {
 
   expiredTimer = setTimeout(() => {
     // callback_tokenExpired()
-      alert('Token expired');
-      localStorage.removeItem('access_token');
-       window.location.href = PATH_AUTH.login;
+    alert('Token expired');
+    localStorage.removeItem('access_token');
+    window.location.href = PATH_AUTH.login;
   }, timeLeft);
 };
 
@@ -80,15 +81,16 @@ export const tokenExpired =  (exp: number) => {
 export const setSession = (accessToken: string | any) => {
   if (accessToken) {
     localStorage.setItem('access_token', accessToken);
-    
-    axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-    
+// callApi().defaults.headers.common.Authorization = 
+     callApi().defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
     // This function below will handle when token is expired
     const { exp } = jwtDecode(accessToken); // ~3 days by minimals server
-    tokenExpired(exp)
-   
+    tokenExpired(exp);
   } else {
     localStorage.removeItem('access_token');
-    delete axios.defaults.headers.common.Authorization;
+    delete callApi().defaults.headers.common.Authorization;
   }
 };
+

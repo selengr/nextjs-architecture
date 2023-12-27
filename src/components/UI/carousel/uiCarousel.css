@@ -1,37 +1,69 @@
-
-
-.uiCarousel .slick-slider  {
-    direction: rtl;
-    height: 100%;
-
-  }
-
-
+.uiCarousel .slick-slider {
+  height: 100%;
+  direction: rtl;
+}
 
 .uiCarousel .slick-track {
-    display: flex !important;
-    flex-direction: row !important;
-    max-width: 576px !important;
-    width: max-content;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  height: 100%;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+  display: flex !important;
+  max-width: 576px !important;
+  flex-direction: row !important;
+}
 .uiCarousel .slick-slide {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-    height: 100%;
-  }
+}
 
 .uiCarousel .slick-active.slick-center {
-  /* box-shadow: rgba(0, 0, 0, 0.25) !important; */
-  border-radius : 0px, 15px, 15px, 0px !important;
+  border-radius: 0px, 15px, 15px, 0px !important;
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25) !important;
-
-  }
-.uiCarousel .slick-active.slick-center *{
+}
+.uiCarousel .slick-active.slick-center * {
   color: red;
-  }
+}
 
+
+
+
+
+
+/* ==================================== SwiperSlides */
+
+.swiper {
+  /* width: 100%;
+  height: 240px; */
+  padding: 8px !important;
+}
+
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.mySwiper .swiper-slide {
+  max-width: 180px !important;
+  /* max-height: 200px !important; */
+  font-size: 18px;
+  background: #fff;
+  position: relative;
+  text-align: center;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+  display: flex !important;
+  box-shadow: 0px 0px 11px -2px rgba(0, 0, 0, 0.25);
+}
+
+.swiper-slide > img {
+  padding: 8px 0;
+}
+
+.tour-list .swiper-slide-active :first-child {
+  background-color: #B40000 !important;
+  color: #fff !important;
+}

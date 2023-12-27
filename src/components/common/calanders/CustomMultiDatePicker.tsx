@@ -1,25 +1,19 @@
-"use client"
+'use client';
 
+import React, { useState } from 'react';
+import { Calendar } from 'react-multi-date-picker';
+import persian from 'react-date-object/calendars/persian';
+import gregorian from 'react-date-object/calendars/gregorian';
+import persian_fa from 'react-date-object/locales/persian_fa';
+// import persian_en from 'react-date-object/locales/persian_en';
+import gregorian_en from 'react-date-object/locales/gregorian_en';
 
-
-import React, { useState } from "react";
-import { Calendar } from "react-multi-date-picker";
-import persian from "react-date-object/calendars/persian";
-import gregorian from "react-date-object/calendars/gregorian";
-import persian_fa from "react-date-object/locales/persian_fa";
-import persian_en from "react-date-object/locales/persian_en";
-import gregorian_en from "react-date-object/locales/gregorian_en";
-
-import  "./CustomMultiDatePicker.css"; 
-import UiButton from "@/components/UI/ui-button";
-import { toast } from "sonner";
-// import "./PersianDatePicker.css";
-import { styled } from '@mui/material/styles';
+import './CustomMultiDatePicker.css';
 
 export interface PersianDatePickerProps {
-  value?: Date | Date[];
-  onChange?: () => void;
-  locale: "persian" | "gregorian";
+  value?: Date | Date[] | unknown |any;
+  onChange?: any;
+  locale: 'persian' | 'gregorian';
   selectDateRange?: boolean;
   dateFormat?: string;
   theme?: string;
@@ -28,13 +22,13 @@ export interface PersianDatePickerProps {
 const PersianDatePicker: React.FC<PersianDatePickerProps> = ({
   value,
   onChange,
-  locale = "persian",
+  locale = 'persian',
   selectDateRange = false,
-  dateFormat = "MM/DD/YYYY",
-  theme = "light",
+  dateFormat = 'MM/DD/YYYY',
+  theme = 'light'
 }) => {
-  const calendar = locale === "persian" ? gregorian : gregorian;
-  const localeObj = locale === "persian" ? persian_fa : gregorian_en;
+  const calendar = locale === 'persian' ? persian : gregorian;
+  const localeObj = locale === 'gregorian' ? gregorian_en : persian_fa;
   // const [valuew, setValue] = useState(["2023/10/09", "2023/10/15"]);
 
   const [isDateRangeOpen, setIsDateRangeOpen] = useState(false);
@@ -45,18 +39,21 @@ const PersianDatePicker: React.FC<PersianDatePickerProps> = ({
   };
 
   return (
-    <div className={`msCalendar PersianDatePicker ${locale === "gregorian" ? "english-font":""} ${theme}`}>
-
-{!selectDateRange && (
-      <Calendar
-        calendar={calendar}
-        locale={localeObj}
-        value={value}
-        onChange={onChange}
-        minDate={new Date()}
-        format={dateFormat}
-      />
-)}
+    <div
+      className={`msCalendar PersianDatePicker ${
+        locale === 'gregorian' ? 'english-font' : ''
+      } ${theme}`}
+    >
+      {!selectDateRange && (
+        <Calendar
+          calendar={calendar}
+          locale={localeObj}
+          value={value}
+          onChange={onChange}
+          minDate={new Date()}
+          format={dateFormat}
+        />
+      )}
       {/* {selectDateRange && (
         <div className="PersianDatePicker__dateRangeSelect">
           <button
@@ -68,9 +65,9 @@ const PersianDatePicker: React.FC<PersianDatePickerProps> = ({
         </div>
       )}
        */}
-      
+
       {selectDateRange && (
-        <div className={`${locale === "gregorian" ? "english-font":""}`}>
+        <div className={`${locale === 'gregorian' ? 'english-font' : ''}`}>
           <Calendar
             calendar={calendar}
             locale={localeObj}
@@ -85,9 +82,6 @@ const PersianDatePicker: React.FC<PersianDatePickerProps> = ({
           />
         </div>
       )}
-
-  
-
     </div>
   );
 };

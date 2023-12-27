@@ -1,20 +1,19 @@
 'use client';
 
+import { useRef } from 'react';
 import Sheet, { SheetRef } from 'react-modal-sheet';
-import { useState, useRef } from 'react';
-import styles from "./ModalGestures.module.css"
+import styles from './ModalGestures.module.css';
 import CustomSheetHeader from './CustomSheetHeader';
-import { title } from 'process';
-import { autoBatchEnhancer } from '@reduxjs/toolkit';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   // title?: string;
   className?: string;
-  title?:string;
-  initialSnap?:number
+  title?: string | React.ReactNode;
+  initialSnap?: number;
+  customStyle?: any
 }
 
 const ModalGestures = ({
@@ -22,7 +21,9 @@ const ModalGestures = ({
   title,
   onClose,
   children,
-  className,initialSnap
+  className,
+  initialSnap,
+  customStyle
 }: ModalProps) => {
   const ref = useRef<SheetRef>();
   const snapTo = (i: number) => ref.current?.snapTo(i);
@@ -31,40 +32,45 @@ const ModalGestures = ({
   return (
     <>
       <div className={styles.msModalGestures}>
-
         <Sheet
+        
           // detent="content-height"
-        initialSnap={initialSnap}
-        ref={ref}
-        // onSnap={snapIndex  => alert(snapIndex)  }
-        // onOpenEnd={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest11")}
-        // onOpenStart={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest22")}
-        // onCloseStart={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest44")}
-        // onCloseEnd={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest55")}
-        snapPoints={[800,700,600,500,400,300,200,0]} isOpen={isOpen} onClose={onClose}
-         className={`${className}`} 
-         style={{
-          display:"flex",alignItems:"center",
-          justifyContent:"center",
-          // transform:" translate(-50%, 0%)",
-          left:"49%",
-          width:"100%",
-          // direction:"ltr"
-          // marginLeft:"1rem"
-          // maxHeight:"",
-          // overflow:"scroll"
-        //  width:"99%"
-        //  right: "50%"
-        }}>
-         <Sheet.Container className="max-w-[576px] p-6  " style={{left:"auto !important"}}>
-            <Sheet.Header className='-mt-6'></Sheet.Header>
+          initialSnap={initialSnap}
+          ref={ref}
+          // onSnap={snapIndex  => alert(snapIndex)  }
+          // onOpenEnd={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest11")}
+          // onOpenStart={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest22")}
+          // onCloseStart={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest44")}
+          // onCloseEnd={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest55")}
+          // snapPoints={[0,200,400,600,800,2000,2500,3000]}
+          // snapPoints={[1200, 1000, 800, 700, 600, 500, 400, 300, 200, 0]}
+          // snapPoints={[600, 400, 100, 0]}
+          isOpen={isOpen}
+          onClose={onClose}
+          className={`${className}`}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            // transform:" translate(-50%, 0%)",
+            left: '49%',
+            width: '100%',
+            // direction:"ltr"
+            // marginLeft:"1rem"
+            // maxHeight:"",
+            // overflow:"scroll"
+            //  width:"99%"
+            //  right: "50%"
+          }}
+        >
+          <Sheet.Container
+            className={`${styles.msMG_continer} max-w-[576px] p-6`}
+            style={customStyle}
+          >
+            <Sheet.Header className="-mt-6 text-[#059A56]"></Sheet.Header>
             <Sheet.Content>
-              <CustomSheetHeader title={title} onClose={onClose}/>
+              <CustomSheetHeader title={title} onClose={onClose} />
               {children}
-            {/* <button onClick={() => snapTo(0)}>Snap to index 0</button>
-            <button onClick={() => snapTo(1)}>Snap to index 1</button>
-            <button onClick={() => snapTo(2)}>Snap to index 2</button>
-            <button onClick={() => snapTo(3)}>Snap to index 3</button> */}
             </Sheet.Content>
           </Sheet.Container>
           <Sheet.Backdrop />

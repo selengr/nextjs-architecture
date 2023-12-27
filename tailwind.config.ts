@@ -27,32 +27,29 @@
 //   plugins: []
 // };
 
-
-
-
 /** @type {import('tailwindcss').Config} */
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   // prefix:'pw-',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     backgroundSize: {
       auto: 'auto',
       cover: 'cover',
-      contain: 'contain',
+      contain: 'contain'
     },
 
-    screens : {
-      xs : "375px",
-      sm : "600px",
-      md : "900px",
-      lg : "1200px",
-      xl : "1536px",
+    screens: {
+      xs: '375px',
+      sm: '600px',
+      md: '900px',
+      lg: '1200px',
+      xl: '1536px'
     },
     // screens: {
     //   sm: '640px',
@@ -62,24 +59,24 @@ const config: Config = {
     //   '2xl': '1536px',
     // },
     colors: {
-      'tahiti': {
+      tahiti: {
         light: '#67e8f9',
         DEFAULT: '#06b6d4',
-        dark: '#0e7490',
+        dark: '#0e7490'
       },
-      'blue': '#1fb6ff',
-      'purple': '#7e5bef',
-      'pinktest': {
+      blue: '#1fb6ff',
+      purple: '#7e5bef',
+      pinktest: {
         light: '#FFBFBF',
         DEFAULT: '#ff49db',
         dark: '#79155B'
       },
-      'orange': '#ff7849',
-      'green': '#13ce66',
-      'yellow': '#ffc82c',
+      orange: '#ff7849',
+      green: '#13ce66',
+      yellow: '#ffc82c',
       'gray-dark': '#273444',
-      'gray': '#8492a6',
-      'gray-light': '#d3dce6',
+      gray: '#8492a6',
+      'gray-light': '#d3dce6'
     },
     spacing: {
       // DEFAULT: '6rem',
@@ -117,14 +114,14 @@ const config: Config = {
       64: '16rem',
       72: '18rem',
       80: '20rem',
-      96: '24rem',
+      96: '24rem'
     },
     borderWidth: {
       DEFAULT: '10px',
       0: '0px',
       2: '2px',
       4: '4px',
-      8: '8px',
+      8: '8px'
     },
     boxShadow: {
       DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
@@ -134,7 +131,7 @@ const config: Config = {
       xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
       '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
       inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
-      none: 'none',
+      none: 'none'
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -149,7 +146,7 @@ const config: Config = {
       '6xl': ['3.75rem', { lineHeight: '1' }],
       '7xl': ['4.5rem', { lineHeight: '1' }],
       '8xl': ['6rem', { lineHeight: '1' }],
-      '9xl': ['8rem', { lineHeight: '1' }],
+      '9xl': ['8rem', { lineHeight: '1' }]
     },
     //  fontFamily: {
     //   IRANSansWeb: 'IRANSans'
@@ -163,14 +160,14 @@ const config: Config = {
       dvh: '100dvh',
       min: 'min-content',
       max: 'max-content',
-      fit: 'fit-content',
+      fit: 'fit-content'
     },
     minWidth: {
       0: '0px',
       full: '100%',
       min: 'min-content',
       max: 'max-content',
-      fit: 'fit-content',
+      fit: 'fit-content'
     },
     width: {
       '1/2': '50%',
@@ -206,7 +203,7 @@ const config: Config = {
       dvw: '100dvw',
       min: 'min-content',
       max: 'max-content',
-      fit: 'fit-content',
+      fit: 'fit-content'
     },
     borderRadius: {
       DEFAULT: '9999px',
@@ -216,7 +213,7 @@ const config: Config = {
       lg: '0.5rem',
       xl: '0.75rem',
       '2xl': '1rem',
-      '3xl': '1.5rem',
+      '3xl': '1.5rem'
       // full: '9999px',
     },
     fontWeight: {
@@ -229,14 +226,14 @@ const config: Config = {
       semibold: '600',
       bold: '700',
       extrabold: '800',
-      black: '900',
+      black: '900'
     },
     animation: {
       none: 'none',
       spin: 'spin 1s linear infinite',
       ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
       pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      bounce: 'bounce 1s infinite',
+      bounce: 'bounce 1s infinite'
     },
     blur: {
       0: '0',
@@ -247,7 +244,7 @@ const config: Config = {
       lg: '16px',
       xl: '24px',
       '2xl': '40px',
-      '3xl': '64px',
+      '3xl': '64px'
     },
     opacity: {
       0: '0',
@@ -270,79 +267,93 @@ const config: Config = {
       85: '0.85',
       90: '0.9',
       95: '0.95',
-      100: '1',
+      100: '1'
     },
 
-        extend: {
-          backgroundColor : {
-            // کد رنگ های 
-            // سبز هدر بالای صفحات  DEF4EA  9BDFBF  69F2B2  27F494  1EF490  0CDA7B
-            'ms-headers-green-15': '#DEF4EA',
-            'ms-headers-green-25': '#69F2B2',
-            'ms-headers-green-35': '#27F494',
-            'ms-headers-green-44': '#1EF490',
-            'ms-headers-green-55': '#0CDA7B',
-            // کد رنگ  پس زمینه و کارت  FFFFFF  F8F8F8
-            'ms-back-card-gray-12': '#F8F8F8',
-            'ms-back-card-gray-22': '#FFFFFF',
+    extend: {
+      backgroundColor: {
+        // کد رنگ های
+        // سبز هدر بالای صفحات  DEF4EA  9BDFBF  69F2B2  27F494  1EF490  0CDA7B
+        'ms-headers-green-15': '#DEF4EA',
+        'ms-headers-green-25': '#69F2B2',
+        'ms-headers-green-35': '#27F494',
+        'ms-headers-green-44': '#1EF490',
+        'ms-headers-green-55': '#0CDA7B',
+        // کد رنگ  پس زمینه و کارت  FFFFFF  F8F8F8
+        'ms-back-card-gray-12': '#F8F8F8',
+        'ms-back-card-gray-22': '#FFFFFF',
 
-            // کد رنگ های سبز دکمه ها F3FCF8 00D170 06AB5F
-            'ms-btn-green-13': '#F3FCF8',
-            'ms-btn-green-23': '#00D170',
-            'ms-btn-green-33': '#06AB5F',
-            // کد رنگ زرشکی
-            'ms-crimson-11': '#B40000',
-            // کد رنگ های زرد داخل صفحات
-            'ms-yellow-14': '#FFF0C5',
-            'ms-yellow-24': '#E0C653',
-            'ms-yellow-33': '#F8C206',
-            'ms-yellow-44': '#F5BB00',
+        // کد رنگ های سبز دکمه ها F3FCF8 00D170 06AB5F
+        'ms-btn-green-13': '#F3FCF8',
+        'ms-btn-green-23': '#00D170',
+        'ms-btn-green-33': '#06AB5F',
+        // کد رنگ زرشکی
+        'ms-crimson-11': '#B40000',
+        // کد رنگ های زرد داخل صفحات
+        'ms-yellow-14': '#FFF0C5',
+        'ms-yellow-24': '#E0C653',
+        'ms-yellow-33': '#F8C206',
+        'ms-yellow-44': '#F5BB00',
+        'ms-light-green': '#F1FFF9',
 
-            // شماره متن ها 11, 13, 14, 25
-            "ms-text-xs-14" : "0.688rem",  //11px
-            "ms-text-sm-24" : "0.75rem",   //12px
-            "ms-text-lg-34" : "0.813rem",  //13px
-            "ms-text-xl-44" : "0.875rem",  //14px
+        // رنگ صفحات پرداخت
+        'ms-violet': '#064C70',
+        'ms-pay': '#F2F5F8'
+      },
 
-          },
+      // کد رنگ های فونت
+      colors: {
+        'ms-white': '#FFFFFF',
+        'ms-yellow': '#F5BB00',
+        'ms-crimson': '#B40000',
+        'ms-green': '#03693A',
+        'ms-gray': '#878787',
+        'ms-thick-gray': '#605858',
+        'ms-light-gray': '#9CA4A4',
+        'ms-light-green': '#06AB5F',
+        'ms-thick-green': '#1B3D13',
+        'ms-light-black': '#22232A',
+        'ms-disable': '#D3D4D3',
+        'ms-orange': '#FF8A00'
+      },
 
-          // کد رنگ های فونت
-          colors : {
-              "ms-white"       : "#FFFFFF",
-              "ms-yellow"      : "#F5BB00",
-              "ms-crimson"     : "#B40000",
-              "ms-green"       : "#03693A",
-              "ms-gray"        : "#878787",
-              "ms-thick-green" : "#1B3D13",
-          },
+      fontFamily: {
+        'ms-iranSansMobile': ['IRANSansMobile', 'sans-serif'],
+        'ms-IRANSansXPro': ['IRANSansWebXPro'],
+        'ms-dana': ['DanaMobile', 'ui-sans-serif']
+      },
 
-          fontFamily: {
-            'ms-iranSansMobile': ['IRANSansMobile', "sans-serif"],
-            'ms-dana': ['DanaMobile', "ui-sans-serif"],
-        },
+      fontWeight: {
+        'ms-UltraLight': '200',
+        'ms-light': '300',
+        'ms-regular': '400',
+        'ms-medium': '500',
+        'ms-bold': '700',
+        'ms-black': '900'
+      },
 
-          fontWeight: {
-            "ms-UltraLight": "200",
-            "ms-light":      "300",
-            "ms-regular":    "400",
-            "ms-medium":     "500",
-            "ms-bold":       "700",
-            "ms-black":      "900",
-          },
+      fontSize: {
+        'ms-xs': '.69rem', // 11 px
+        'ms-sm': '.813rem', // 13 px
+        'ms-lg': '.875rem', // 14 px
+        'ms-xl': '1.563rem', // 25 px
 
-         fontSize: {
-            'ms-xs':   '.69rem',    // 11 px
-            'ms-sm':   '.813rem',   // 13 px
-            'ms-lg':   '.875rem',   // 14 px
-            'ms-xl':   '.1.563rem', // 25 px
-          },
+        // شماره متن ها 11, 13, 14, 25
+        'ms-text-xs-14': '0.688rem', //11px
+        'ms-text-sm-24': '0.75rem', //12px
+        'ms-text-lg-34': '0.813rem', //13px
+        'ms-text-xl-44': '0.875rem' //14px
+      },
 
-          borderColor : {
-            'ms-gray' : "#D2D2D2",
-            'ms-border-green-33' : "#06AB5F"
-          }
-    },
+      borderColor: {
+        'ms-gray': '#D2D2D2',
+        'ms-border-green-33': '#06AB5F',
+        'ms-gray-23': '#DADCDC',
+        'ms-yellow-13': '#F5BB00',
+        'ms-disable': '#D3D4D3'
+      }
+    }
   },
-  plugins: [],
-}
-export default config
+  plugins: [require('daisyui')]
+};
+export default config;

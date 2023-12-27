@@ -36,14 +36,14 @@ Heading4.args = {
   text: 'هدینگ 4'
 };
 
-export const Heading: Story = {
+export const Heading: any = {
   render: () => (
     <div style={{ direction: 'rtl', textAlign: 'center' }}>
-      <UiTypography xs={{ p: 2 }} variant="h1" text="هدینگ 1" />
-      <UiTypography xs={{ p: 2 }} variant="h2" text="هدینگ 2" />
-      <UiTypography xs={{ p: 2 }} variant="h3" text="هدینگ 3" />
-      <UiTypography xs={{ p: 2 }} variant="h4" text="هدینگ 4" />
-      <UiTypography xs={{ p: 2 }} variant="h5" text="هدینگ 5" />
+      <UiTypography variant="h1" text="هدینگ 1" />
+      <UiTypography variant="h2" text="هدینگ 2" />
+      <UiTypography variant="h3" text="هدینگ 3" />
+      <UiTypography variant="h4" text="هدینگ 4" />
+      <UiTypography variant="h5" text="هدینگ 5" />
     </div>
   )
 };

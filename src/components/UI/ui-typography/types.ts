@@ -30,7 +30,7 @@ export type ITypographyProps = {
     | string;
   children?: Node;
   size?: 'small' | 'medium' | 'large' | string;
-  sx: any;
-  className: any;
-  text: string;
+  sx?: any;
+  className?: any;
+  text?: string;
 };

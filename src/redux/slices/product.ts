@@ -2,13 +2,14 @@ import sum from 'lodash/sum';
 import uniq from 'lodash/uniq';
 import uniqBy from 'lodash/uniqBy';
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
+import callApi from '@/services/axios';
 // utils
-import axios from '../../services/axios/api';
-import { IProductState, ICheckoutCartItem } from '../../types/product';
+
+// import { IProductState, ICheckoutCartItem } from '../../types/product';
 
 // ----------------------------------------------------------------------
 
-const initialState: IProductState = {
+const initialState: any = {
   isLoading: false,
   error: null,
   products: [],
@@ -54,7 +55,7 @@ const slice = createSlice({
 
     // CHECKOUT
     getCart(state, action) {
-      const cart: ICheckoutCartItem[] = action.payload;
+      const cart: any[] = action.payload;
 
       const totalItems = sum(cart.map((product) => product.quantity));
       const subtotal = sum(
@@ -76,7 +77,7 @@ const slice = createSlice({
       if (isEmptyCart) {
         state.checkout.cart = [...state.checkout.cart, newProduct];
       } else {
-        state.checkout.cart = state.checkout.cart.map((product) => {
+        state.checkout.cart = state.checkout.cart.map((product:any) => {
           const isExisted = product.id === newProduct.id;
 
           if (isExisted) {
@@ -92,13 +93,13 @@ const slice = createSlice({
       }
       state.checkout.cart = uniqBy([...state.checkout.cart, newProduct], 'id');
       state.checkout.totalItems = sum(
-        state.checkout.cart.map((product) => product.quantity)
+        state.checkout.cart.map((product:any) => product.quantity)
       );
     },
 
     deleteCart(state, action) {
       const updateCart = state.checkout.cart.filter(
-        (product) => product.id !== action.payload
+        (product:any) => product.id !== action.payload
       );
 
       state.checkout.cart = updateCart;
@@ -131,7 +132,7 @@ const slice = createSlice({
     increaseQuantity(state, action) {
       const productId = action.payload;
 
-      const updateCart = state.checkout.cart.map((product) => {
+      const updateCart = state.checkout.cart.map((product:any) => {
         if (product.id === productId) {
           return {
             ...product,
@@ -146,7 +147,7 @@ const slice = createSlice({
 
     decreaseQuantity(state, action) {
       const productId = action.payload;
-      const updateCart = state.checkout.cart.map((product) => {
+      const updateCart = state.checkout.cart.map((product:any) => {
         if (product.id === productId) {
           return {
             ...product,
@@ -203,7 +204,7 @@ export function getProducts() {
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get('/api/product');
+      const response = await callApi().get('/api/product');
       dispatch(slice.actions.getProductsSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -217,7 +218,7 @@ export function getProduct(name: string) {
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get('/api/products/product', {
+      const response = await callApi().get('/api/products/product', {
         params: { name }
       });
       dispatch(slice.actions.getProductSuccess(response.data.product));

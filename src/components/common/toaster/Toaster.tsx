@@ -1,15 +1,19 @@
-"use client"
+'use client';
 
-import React from "react";
-import { Toaster } from "sonner";
+import React from 'react';
+import { Toaster } from 'sonner';
 
 interface ToastProps {
-  message: string;
-  type?: "success" | "warning" | "error" | "info";
+  message: string | "success" | "warning" | "error" | "info";
+  type?: 'success' | 'warning' | 'error' | 'info';
   duration?: number;
 }
 
-const CustomToast: React.FC<ToastProps> = ({ message, type = "info", duration = 3000 }) => {
+const CustomToast: React.FC<ToastProps> = ({
+  message = 'info',
+  type = 'info',
+  duration = 3000
+}) => {
   const [showToast, setShowToast] = React.useState(false);
 
   React.useEffect(() => {
@@ -26,10 +30,10 @@ const CustomToast: React.FC<ToastProps> = ({ message, type = "info", duration = 
 
   return (
     <Toaster
-      message={message}
-      type={type}
-      visible={showToast}
-      onClose={() => setShowToast(false)}
+      // message={message}
+      // type={type}
+      // visible={showToast}
+      // onClose={() => setShowToast(false)}
     />
   );
 };

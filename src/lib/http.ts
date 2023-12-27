@@ -1,12 +1,13 @@
-import axios from "axios";
-import { BookProps, BookDetailProps, BookRatingsProps } from "const";
+import axios from 'axios';
+// import { BookProps, BookDetailProps, BookRatingsProps } from 'const';
 
 export async function fetchBooks(data: {
   page?: number;
   size?: number;
   type?: string;
   // sort?: string;
-}): Promise<{ content: BookProps[]; total: number; error?: any }> {
+// }): Promise<{ content: BookProps[]; total: number; error?: any }> {
+}): Promise<{ content: any[]; total: number; error?: any }> {
   try {
     const queryArray = Object.keys(data).reduce((prev: string[], item) => {
       const value = data[item as keyof typeof data];
@@ -43,7 +44,8 @@ export async function fetchBookTypes(): Promise<{
 }
 
 export async function fetchBookDetailsById(id: string): Promise<{
-  content: BookDetailProps;
+  // content: BookDetailProps;
+  content: any;
   error?: any;
 }> {
   try {
@@ -51,15 +53,18 @@ export async function fetchBookDetailsById(id: string): Promise<{
     if (response.status !== 200) {
       throw new Error(`${response.status} - ${response.data}`);
     }
-    return { content: response.data as BookDetailProps };
+    // return { content: response.data as BookDetailProps };
+    return { content: response.data as any };
   } catch (error) {
     console.error(error);
-    return { error, content: {} as BookDetailProps };
+    // return { error, content: {} as BookDetailProps };
+    return { error, content: {} as any };
   }
 }
 
 export async function fetchBookRatingsById(id: string): Promise<{
-  content: { content: BookRatingsProps[]; total: number };
+  // content: { content: BookRatingsProps[]; total: number };
+  content: { content: any[]; total: number };
   error?: any;
 }> {
   try {
@@ -76,9 +81,11 @@ export async function fetchBookRatingsById(id: string): Promise<{
 
 export async function updateBookDetails(
   id: string,
-  params: Partial<BookDetailProps>
+  // params: Partial<BookDetailProps>
+  params: Partial<any>
 ): Promise<{
-  content?: { data: BookDetailProps; message: string };
+  content?: { data: any; message: string };
+  // content?: { data: BookDetailProps; message: string };
   error?: any;
 }> {
   try {
@@ -99,7 +106,8 @@ export async function addRatingByBookID(
     score: number;
   }
 ): Promise<{
-  content?: { data: Omit<BookRatingsProps, "user">; message: string };
+  // content?: { data: Omit<BookRatingsProps, 'user'>; message: string };
+  content?: { data: Omit<any, 'user'>; message: string };
   error?: any;
 }> {
   try {

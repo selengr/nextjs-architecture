@@ -1,35 +1,43 @@
-"use client"
+'use client';
 
-import { useEffect } from "react"
-import { useRouter,useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+import { ReadonlyURLSearchParams, useRouter, useSearchParams } from 'next/navigation';
 
 import { GetToken } from '@/auth/getToken';
 import { LOCALHOST } from '@/config-global';
+import { PATH_AUTH } from '@/routes/paths';
 
-const AuthVerify = ({
-    children
-  }: {
-    children: React.ReactNode;
-  }) => {
-    const router = useRouter()
-    const searchParams = useSearchParams()
+const AuthVerify = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
+  const searchParams : string | string[][] | Record<string, string> | URLSearchParams | undefined | any = useSearchParams();
+  const params = new URLSearchParams(searchParams);
 
-    
-  useEffect(()=>{
-//   const Verify = () =>{
+  const Verify = () => {
+    if (process.env.NODE_ENV !== 'production') {
+      //==================
+    }
     (async () => {
-      const code = searchParams?.get('code') + ''
-      const accessToken =  localStorage.getItem('access_token') + ''
+      const code = searchParams?.get('code') + '';
+      const accessToken = localStorage.getItem('access_token') + '';
 
-      if (code.length > 10 && accessToken.length < 5 ) {
-             await GetToken(code, LOCALHOST)
-             return router.push("/")
-         }
-      })()
-  }
-  ,[])
+      if (code.length > 10 && accessToken.length < 10) {
+        await GetToken(code, LOCALHOST);
+        // return router.push('/');      
+      } else if(accessToken.length < 10){
+        return router.push(PATH_AUTH.login);
+        // redirect(PATH_AUTH.login);
+      }
+      if (params.has("code")&&accessToken.length > 10) {
+        params.delete("code")
+      }
+    })();
+  };
 
-    return <>{children}</>
-}
+  useEffect(() => {
+    Verify();
+  }, []);
+
+  return <>{children}</>;
+};
 
 export default AuthVerify;

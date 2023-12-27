@@ -1,12 +1,14 @@
-"use client"
+'use client';
 
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'sonner';
 import UiButton from '../UI/ui-button';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { addPassengers, subtractPassengers } from '@/redux/slices/flights';
-
+import {
+  addPassengers,
+  subtractPassengers
+} from '@/redux/slices/flight/flights';
 
 interface Passenger {
   ageClass: string;
@@ -14,61 +16,18 @@ interface Passenger {
   count: number;
 }
 
-const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> = ({
-  confirm,
-}) => {
-
-  // const [passengers, setPassengers] = useState<Passenger[]>([
-  //   {
-  //     ageClass: 'بزرگسالان',
-  //     ageGrade: ' ۱۲ سال به بالا',
-  //     count: 1
-  //   },
-  //   {
-  //     ageClass: 'کودک ',
-  //     ageGrade: '۲ تا ۱۲ سال ',
-  //     count: 0
-  //   },
-  //   {
-  //     ageClass: 'نوزاد',
-  //     ageGrade: ' ۱۰ روز تا ۲ سال',
-  //     count: 0
-  //   }
-  // ]);
-
+const PassengersVeiw: React.FC<{ confirm: () => void }> = ({ confirm }) => {
   //REDUX
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const passengers = useAppSelector((state) => state.flight.passengers);
 
-
   const handleAddPassenger = (passenger: Passenger) => {
-    dispatch(addPassengers(
-      passenger
-    ))
-    // setPassengers(updatedPassengers);
-   
+    dispatch(addPassengers(passenger));
   };
 
   const handleSubtractPassenger = (passenger: Passenger) => {
-    dispatch(subtractPassengers(
-      passenger
-    ))
-    // if(passenger.ageClass === 'بزرگسالان') {
-    //    if(passenger.count === 1) {
-    //     toast.error('حداقل 1 نفر')
-    //     return 
-    //    }
-    // }
-    // if (passenger.count > 0) {
-    //   const updatedPassengers = [...passengers];
-    //   passenger.count -= 1;
-    //   setPassengers(updatedPassengers);
-    // }
+    dispatch(subtractPassengers(passenger));
   };
-  // console.log('passengers------ reza :>> ', passengers);
-  // const confirmPassengers = () =>{
-  //      ()
-  // }
 
   return (
     <div>
@@ -119,16 +78,20 @@ const PassengersVeiw: React.FC<{ confirm: (passengers: Passenger[]) => void }> =
         {passengers?.map((pass, index) => {
           if (pass.count > 0) {
             return (
-              <li key={index} className='px-2 '>{pass.ageClass}{"  "}{pass.count}</li>
+              <li key={index} className="px-2 ">
+                {pass.ageClass}
+                {'  '}
+                {pass.count}
+              </li>
             );
           }
         })}
       </ul>
 
       <UiButton
-        onClick={()=>confirm(passengers)}
-        className='bg-ms-btn-green-23 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] text-ms-white rounded-2xl w-full'
-        text='تایید'
+        onClick={() => confirm()}
+        className="bg-ms-btn-green-23 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] text-ms-white rounded-2xl w-full"
+        text="تایید"
       />
     </div>
   );

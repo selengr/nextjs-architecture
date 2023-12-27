@@ -1,12 +1,14 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 // utils
-import axios from '../../services/axios/api';
+
 // @types
-import { ICalendarState, ICalendarEvent } from '../../types/calendar';
+// import { ICalendarState, ICalendarEvent } from '../../types/calendar';
+import callApi from '@/services/axios';
 
 // ----------------------------------------------------------------------
 
-const initialState: ICalendarState = {
+// const initialState: ICalendarState = {
+const initialState: any = {
   isLoading: false,
   error: null,
   events: []
@@ -43,7 +45,7 @@ const slice = createSlice({
     // UPDATE EVENT
     updateEventSuccess(state, action) {
       state.isLoading = false;
-      state.events = state.events.map((event) => {
+      state.events = state.events.map((event:any) => {
         if (event.id === action.payload.id) {
           return action.payload;
         }
@@ -54,7 +56,7 @@ const slice = createSlice({
     // DELETE EVENT
     deleteEventSuccess(state, action) {
       const eventId = action.payload;
-      state.events = state.events.filter((event) => event.id !== eventId);
+      state.events = state.events.filter((event:any) => event.id !== eventId);
     }
   }
 });
@@ -68,7 +70,7 @@ export function getEvents() {
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get('/api/calendar/events');
+      const response = await callApi().get('/api/calendar/events');
       dispatch(slice.actions.getEventsSuccess(response.data.events));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -78,11 +80,12 @@ export function getEvents() {
 
 // ----------------------------------------------------------------------
 
-export function createEvent(newEvent: ICalendarEvent) {
+// export function createEvent(newEvent: ICalendarEvent) {
+export function createEvent(newEvent: any) {
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.post('/api/calendar/events/new', newEvent);
+      const response = await callApi().post('/api/calendar/events/new', newEvent);
       dispatch(slice.actions.createEventSuccess(response.data.event));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -103,7 +106,7 @@ export function updateEvent(
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.post('/api/calendar/events/update', {
+      const response = await callApi().post('/api/calendar/events/update', {
         eventId,
         event
       });
@@ -120,7 +123,7 @@ export function deleteEvent(eventId: string) {
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      await axios.post('/api/calendar/events/delete', { eventId });
+      await callApi().post('/api/calendar/events/delete', { eventId });
       dispatch(slice.actions.deleteEventSuccess(eventId));
     } catch (error) {
       dispatch(slice.actions.hasError(error));

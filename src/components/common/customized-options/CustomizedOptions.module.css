@@ -1,39 +1,37 @@
-
-.msCustomizedOptions  {
-    display: flex;
-    width: 100%;
-    direction: rtl;
-    position: relative;
-    flex-direction: column;
-    height: fit-content;
+.msCustomizedOptions {
+  display: flex;
+  width: 100%;
+  direction: rtl;
+  position: relative;
+  flex-direction: column;
+  height: fit-content;
 }
 .msCustomizedOptions :first-child :first-child {
-    border-radius: 15px;
-    background-color: white;
+  border-radius: 15px;
+  background-color: white;
 }
 
-.Mui-focused{
-    /* background-color: red; */
-    border: none !important;
-    background-color: #03693A;
-
+.Mui-focused {
+  /* background-color: red; */
+  border: none !important;
+  background-color: #03693a;
 }
 
 .msCustomizedOptions :first-child :first-child :first-child {
-    position: absolute;
-    left: 16px;
+  position: absolute;
+  left: 16px;
 }
 
 .msCustomizedOptions input {
-    display: flex;
-    width: 100%;
-    direction: rtl;
-    padding-right: 24px;
-    font-family: IRANSansMobile;
-    /* color: #03693A; */
+  display: flex;
+  width: 100%;
+  direction: rtl;
+  padding-right: 24px;
+  font-family: IRANSansMobile;
+  /* color: #03693A; */
 }
 .msCustomizedOptions input::placeholder {
-     color: #03693A;
-     opacity: 1;
-     font-family: IRANSansMobile;
+  color: #03693a;
+  opacity: 1;
+  font-family: IRANSansMobile;
 }

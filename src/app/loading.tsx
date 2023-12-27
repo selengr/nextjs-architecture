@@ -1,38 +1,21 @@
-import { Box, Paper, Skeleton, Stack } from '@mui/material';
+
+import Image from 'next/image';
 
 const loading = () => {
   return (
-    <Box
-      sx={{ marginTop: 10 }}
-      gap={2}
-      display="grid"
-      gridTemplateColumns="repeat(4, 1fr)"
-    >
-      {[...Array(12)].map((_, index) => (
-        <Paper variant="outlined" key={index} sx={{ p: 1 }}>
-          <Stack spacing={2}>
-            <Skeleton
-              variant="rectangular"
-              sx={{ paddingTop: '75%', borderRadius: 1.5 }}
-            />
+    <div id="gradient" className="flex w-full h-screen justify-center items-center bg-ms-light-green flex-col">
+      <Image
+        className="w-[50%]"
+        src={'/static/illustrations/favicon/favicon-chrome.svg'}
+        alt={'flight'}
+        width={0}
+        height={0}
+      />
 
-            {index === 0 && (
-              <Skeleton
-                variant="rectangular"
-                sx={{ paddingTop: '25%', borderRadius: 1.5 }}
-              />
-            )}
-
-            {index !== 2 && (
-              <Skeleton
-                variant="rectangular"
-                sx={{ paddingTop: '25%', borderRadius: 1.5 }}
-              />
-            )}
-          </Stack>
-        </Paper>
-      ))}
-    </Box>
+      <h2 className="text-ms-green text-ms-xl font-ms-bold py-16 w-full text-center">
+        در حال دریافت اطلاعات...
+      </h2>
+    </div>
   );
 };
 

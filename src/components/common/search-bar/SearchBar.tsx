@@ -1,13 +1,13 @@
-"use client"
+'use client';
 
-import { Container, InputAdornment, TextField } from "@mui/material";
-import { useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
+import { Container, InputAdornment, TextField } from '@mui/material';
+import { useState } from 'react';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const handleChange = (event:any) => {
+  const handleChange = (event: any) => {
     setSearchTerm(event.target.value);
   };
 
@@ -26,7 +26,7 @@ export default function SearchBar() {
             <InputAdornment position="end" className="tee">
               <SearchIcon />
             </InputAdornment>
-          ),
+          )
         }}
       />
     </Container>

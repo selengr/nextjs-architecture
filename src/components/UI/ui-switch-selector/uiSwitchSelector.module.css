@@ -1,20 +1,16 @@
-
-
 .msSelector {
-     width: 100%;
-     margin: 0 32px;
-     height: 42px;
-     direction: ltr;
-} 
+  width: 100%;
+  margin: 0 32px;
+  height: 42px;
+  direction: ltr;
+}
 
-.msSelector p{
-     height: 42px;
-     
-} 
+.msSelector p {
+  height: 42px;
+}
 
-.msSelector p :first-child::before{
-     border: 1px solid #06AB5F;
-     /* height: 40px; */
-     padding: 1px ;
-    
+.msSelector p :first-child::before {
+  border: 1px solid #06ab5f;
+  /* height: 40px; */
+  padding: 1px;
 }

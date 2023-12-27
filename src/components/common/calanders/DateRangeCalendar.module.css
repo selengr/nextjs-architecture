@@ -1,10 +1,6 @@
-
-
-
-
 .msCalendar .react-datepicker__day--keyboard-selected {
-    background-color: red;
+  background-color: red;
 }
 .msCalendar .react-datepicker__day:hover {
-    background-color: red;
+  background-color: red;
 }

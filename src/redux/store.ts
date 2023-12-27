@@ -20,7 +20,7 @@ const store = configureStore({
       serializableCheck: false,
       immutableCheck: false
     }),
-    devTools: process.env.NODE_ENV !== "production",
+  devTools: process.env.NODE_ENV !== 'production'
 });
 
 const persistor = persistStore(store);

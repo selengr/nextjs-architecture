@@ -1,0 +1,5 @@
+
+.optStyle input:focus{
+   border : none !important;
+   outline : none !important
+}

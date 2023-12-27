@@ -1,18 +1,17 @@
 'use client';
 
-import axios from '@/services/axios';
 import useSWR from 'swr';
 import { ICustomSWRConfig, ISwrApi } from './type';
+import callApi from '@/services/axios';
 
 const useCustomSWR = (api: ISwrApi, config?: ICustomSWRConfig) => {
   const fetchData = async () => {
     if (api.method === 'get' || api.method === 'undefined') {
-      const response = await axios.get(api.url);
+      const response = await callApi().get(api.url);
       return response.data;
     } else {
-      const response = await axios({
+      const response = await callApi().post(api.url,{
         method: api.method,
-        url: api.url,
         data: api.body
       });
 

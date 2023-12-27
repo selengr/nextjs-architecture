@@ -96,22 +96,19 @@ export type Auth0ContextType = {
   loginWithTwitter?: () => void;
 };
 
-
-
-
 // ----------------------------------------------------------------------
 
 export type URLSearchParamsType = {
-  client_id : "ssoClient-2";
-  client_secret: "ssoClientSecret-2";
-  grant_type:  "authorization_code";
-  redirect_uri?:string;
-  code?:string;
-}
+  client_id: 'ssoClient-2';
+  client_secret: 'ssoClientSecret-2';
+  grant_type: 'authorization_code';
+  redirect_uri?: string;
+  code?: string;
+};
 
 export type TRequestOptions = {
- method: 'POST',
- headers: {"Content-Type": "application/x-www-form-urlencoded"},
- body: URLSearchParamsType | any,
- redirect?: string | any
+  method: 'POST';
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' };
+  body: URLSearchParamsType | any;
+  redirect?: string | any;
 };

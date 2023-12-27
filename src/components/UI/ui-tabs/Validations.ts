@@ -1,10 +1,7 @@
 // import { IDepartureAndReturnDate } from "@/types/searchFlight";
 
-
-
 //   const UseValidations = ({calenderErorr,twoWay,departureDate}:{calenderErorr : boolean,twoWay :IDepartureAndReturnDate,departureDate:IDepartureAndReturnDate}) => {
 //    // ------------------color
-                      
 
 //     return [
 //         validateCityTextDestination,
@@ -17,5 +14,5 @@
 //         validateCityImageDestination
 //     ]
 //   }
-  
+
 //   export default UseValidations;

@@ -6,210 +6,207 @@
         background-color: red !important;
  }
        */
-       .rmdp-day-picker >div
-        {
-         padding: 1rem 1.2rem;
-       }
-       .rmdp-day-picker >div,
-       .rmdp-calendar,
-       .rmdp-wrapper,
-       .rmdp-shadow,
-       .rmdp-wrapper .rmdp-shadow,
-       .rmdp-top-class  
-        {
-           width: 100% !important;
-       }
-.msCalendar:first-child  {
-    background: #FFFFFF;
- }
+.rmdp-day-picker > div {
+  padding: 1rem 1.2rem;
+}
+.rmdp-day-picker > div,
+.rmdp-calendar,
+.rmdp-wrapper,
+.rmdp-shadow,
+.rmdp-wrapper .rmdp-shadow,
+.rmdp-top-class {
+  width: 100% !important;
+}
+.msCalendar:first-child {
+  background: #ffffff;
+}
+
 .msCalendar.english-font * {
-   font-family: DanaMobile !important;
- }
-.msCalendar .rmdp-wrapper  {
-   box-shadow: none;
- }
+  font-family: 'IRANSansWebXPro' !important;
+}
+.msCalendar .rmdp-wrapper {
+  box-shadow: none;
+}
+.rmdp-day.rmdp-selected span:not(.highlight) {
+  border-radius: 15px !important;
+}
 .msCalendar :first-child :first-child {
-    /* background: #FFFFFF; */
-    /* border: none; */
- }
+  /* background: #FFFFFF; */
+  /* border: none; */
+}
 /* .msCalendar :first-child :first-child {
     background: #F8F8F8;
  } */
 .react-datepicker__week {
-   /* min-height: 40px; */
+  /* min-height: 40px; */
 }
-.msCalendar .rmdp-header{
- margin-bottom: 16px;
+.msCalendar .rmdp-header {
+  margin-bottom: 16px;
 }
-.msCalendar .rmdp-header-values span{
-   color: #1B3D13 !important;
-   border: none !important;
-   background: #FFFFFF !important;
-   font-size: 13px !important;
-   font-weight: 400 !important;
+.msCalendar .rmdp-header-values span {
+  color: #1b3d13 !important;
+  border: none !important;
+  background: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
 }
-.msCalendar .rmdp-header-values  {
-    border: none !important;
-    background: #FFFFFF !important;
- }
+.msCalendar .rmdp-header-values {
+  border: none !important;
+  background: #ffffff !important;
+}
 .msCalendar .react-datepicker,
-.msCalendar.react-datepicker__month-container  {
-    width: 100% !important;
- }
- .react-datepicker__month-container{
-   width: 100% !important;
- }
- .rmdp-calendar :nth-child(2) {
-   background-color: #F8F8F8;
-   border-radius: 15px !important;
-   /* margin-top: 2rem; */
- }
+.msCalendar.react-datepicker__month-container {
+  width: 100% !important;
+}
+.react-datepicker__month-container {
+  width: 100% !important;
+}
+.rmdp-calendar :nth-child(2) {
+  background-color: #f8f8f8;
+  border-radius: 15px !important;
+  /* margin-top: 2rem; */
+}
 
- /* .msCalendar .react-datepicker__month {
+/* .msCalendar .react-datepicker__month {
    background-color: #F8F8F8;
    border-radius: 0 0 15px 15px !important;
    margin: 0;
  } */
 .msCalendar .rmdp-week div {
-    /* background: #F8F8F8; */
-    color: #969696 !important;
-    /* font-family: IRANSansMobile !important; */
-    font-size: 13px !important;
-    font-weight: 400 !important;
-    /* width: calc(93% / 7); */
-    /* width: 12%; */
-    /* width: 9%; */
-    /* height: 60px; */
-   /* height: 15%; */
-   /* margin: 1% 2%; */
+  /* background: #F8F8F8; */
+  color: #969696 !important;
+  /* font-family: IRANSansMobile !important; */
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  /* width: calc(93% / 7); */
+  /* width: 12%; */
+  /* width: 9%; */
+  /* height: 60px; */
+  /* height: 15%; */
+  /* margin: 1% 2%; */
+}
+.msCalendar .react-datepicker__day {
+  /* font-family: IRANSansMobile !important; */
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  /* width: 1.7rem; */
+  line-height: 2rem;
+  /* width: calc(93% / 7); */
+  width: 9%;
+  /* height: 60px; */
+  /* height: 15%; */
+  margin: 1% 2%;
+}
 
- }
-     .msCalendar .react-datepicker__day {
-         /* font-family: IRANSansMobile !important; */
-         font-size: 13px !important;
-         font-weight: 400 !important;
-         /* width: 1.7rem; */
-         line-height: 2rem;
-         /* width: calc(93% / 7); */
-          width: 9%;
-          /* height: 60px; */
-         /* height: 15%; */
-         margin: 1% 2%;
-     } 
+.msCalendar .react-datepicker__day--in-range {
+  background: #fff0c5;
+  border-radius: 50%;
+}
+.msCalendar .react-datepicker__day--in-selecting-range:focus {
+  background: #fff0c5;
+  border-radius: 50%;
+}
+.msCalendar .react-datepicker__day--keyboard-selected:hover,
+.react-datepicker__month-text--keyboard-selected:hover,
+.react-datepicker__quarter-text--keyboard-selected:hover,
+.react-datepicker__year-text--keyboard-selected:hover,
+.rmdp-range-hover :first-child {
+  background: #fff0c5 !important;
+  border-radius: 50% !important;
+}
+.rmdp-range-hover {
+  background-color: transparent !important;
+}
 
- .msCalendar .react-datepicker__day--in-range {
-    background: #FFF0C5;
-    border-radius: 50%;
- }
- .msCalendar .react-datepicker__day--in-selecting-range:focus {
-    background: #FFF0C5;
-    border-radius: 50%;
- }
- .msCalendar .react-datepicker__day--keyboard-selected:hover, .react-datepicker__month-text--keyboard-selected:hover, .react-datepicker__quarter-text--keyboard-selected:hover, .react-datepicker__year-text--keyboard-selected:hover,
- .rmdp-range-hover :first-child{
-   background: #FFF0C5 !important;
-   border-radius: 50% !important;
- }
- .rmdp-range-hover {
-   background-color: transparent !important;
- }
- 
- .msCalendar .react-datepicker__day--selected:hover,
- .msCalendar .react-datepicker__day--in-range:hover
-  {
-   background: #FFF0C5 !important;
-   border-radius: 50%;
-   border: none;
- }
+.msCalendar .react-datepicker__day--selected:hover,
+.msCalendar .react-datepicker__day--in-range:hover {
+  background: #fff0c5 !important;
+  border-radius: 50%;
+  border: none;
+}
 /* ============================== */
 
 .rmdp-range {
- background-color: transparent !important;
- border-color: none !important;
- box-shadow :none !important;
- color: #1B3D13;
+  background-color: transparent !important;
+  border-color: none !important;
+  box-shadow: none !important;
+  color: #1b3d13;
 }
 .rmdp-range :first-child {
- color: #1B3D13 !important;
- /* opacity: 1 !important; */
- box-shadow: none !important;
- background-color: #FFF0C5 !important;
+  color: #1b3d13 !important;
+  /* opacity: 1 !important; */
+  box-shadow: none !important;
+  background-color: #fff0c5 !important;
 }
 .msCalendar .rmdp-today :first-child {
-   background-color: #FFF0C5 !important;
-   box-shadow: none !important;
-  color: #FFFFFF !important;
+  background-color: #fff0c5 !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
 }
 
- .msCalendar [tabindex="-1"] :first-child {
-    /* background: red; */
-    color: #1B3D13 !important;
- }
- .rmdp-range.start.end {
-   /* background: #F5BB00 !important; */
- }
- .msCalendar .start[tabindex="0"] :first-child, 
- .msCalendar .end[tabindex="0"] :first-child,
- .rmdp-day.rmdp-selected span:not(.highlight),
- .rmdp-range-hover.end 
- .rmdp-range-hover.start 
- {
-    background: #F5BB00 !important;
-    color: #FFFFFF;
-    border-radius: 50%;
-    box-shadow: none!important;
- }
- .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
-   background-color: #FFF0C5 !important;
-   color: #1B3D13 !important;
- }
- /* .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
-   background-color: #FFF0C5 !important;
-   color: #1B3D13 !important;
- } */
- /* .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+.msCalendar [tabindex='-1'] :first-child {
+  /* background: red; */
+  color: #1b3d13 !important;
+}
+.rmdp-range.start.end {
+  /* background: #F5BB00 !important; */
+}
+.msCalendar .start[tabindex='0'] :first-child,
+.msCalendar .end[tabindex='0'] :first-child,
+.rmdp-day.rmdp-selected span:not(.highlight),
+.rmdp-range-hover.end .rmdp-range-hover.start {
+  background: #f5bb00 !important;
+  color: #ffffff;
+  border-radius: 50%;
+  box-shadow: none !important;
+}
+.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+  background-color: #fff0c5 !important;
+  color: #1b3d13 !important;
+}
+/* .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
    background-color: #FFF0C5 !important;
    color: #1B3D13 !important;
  } */
- .msCalendar .react-datepicker__day--range-end,
+/* .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+   background-color: #FFF0C5 !important;
+   color: #1B3D13 !important;
+ } */
+.msCalendar .react-datepicker__day--range-end,
  .msCalendar .react-datepicker__day--selected
- /* .react-datepicker__day--in-range, */
- {
-    background: #F5BB00;
-    color: #FFF0C5 !important;
-    border-radius: 50%;
-    border: none;
- }
- 
- .react-datepicker__navigation   {
-   color: red !important;
- }
+ /* .react-datepicker__day--in-range, */ {
+  background: #f5bb00;
+  color: #fff0c5 !important;
+  border-radius: 50%;
+  border: none;
+}
 
+.react-datepicker__navigation {
+  color: red !important;
+}
 
-.react-datepicker__navigation-icon::before 
-{
-  border-color: #06AB5F !important;
+.react-datepicker__navigation-icon::before {
+  border-color: #06ab5f !important;
   border-style: solid;
   border-width: 1.5px 1.5px 0 0 !important;
 }
-.react-datepicker__current-month
-{
-  color: #1B3D13 !important;
+.react-datepicker__current-month {
+  color: #1b3d13 !important;
   font-size: 13px !important;
   font-weight: 400 !important;
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
 }
 .msCalendar .react-datepicker__navigation--previous {
-   display: flex; 
-   justify-content: flex-start;
-   top: 3%; 
-   padding-left: 2%; 
+  display: flex;
+  justify-content: flex-start;
+  top: 3%;
+  padding-left: 2%;
 }
 .react-datepicker__navigation--next {
-   display: flex;
-   justify-content: flex-end !important;
-   top: 3% !important;
-   padding-right: 2% !important; 
+  display: flex;
+  justify-content: flex-end !important;
+  top: 3% !important;
+  padding-right: 2% !important;
 }
 /* .msCalendar [aria-label="Next Month" ] {
    display: flex;
@@ -218,9 +215,8 @@
    left: 4%;
 } */
 
-
-    /* .react-datepicker__day--selected, */
-    .msCalendar .react-datepicker__day--in-selecting-range
+/* .react-datepicker__day--selected, */
+.msCalendar .react-datepicker__day--in-selecting-range
      /* .react-datepicker__day--in-range,
       .react-datepicker__month-text--selected */
      /* .react-datepicker__month-text--in-selecting-range,
@@ -230,12 +226,11 @@
      .react-datepicker__quarter-text--in-range, 
      .react-datepicker__year-text--selected, 
      .react-datepicker__year-text--in-selecting-range, 
-     .react-datepicker__year-text--in-range  */
-     {
-      background: #FFF0C5 !important;
-      border-radius: 50% !important;
-      border: none;
- }
+     .react-datepicker__year-text--in-range  */ {
+  background: #fff0c5 !important;
+  border-radius: 50% !important;
+  border: none;
+}
 /* 
  .msCalendar .react-datepicker__day  .react-datepicker__day--range-start  {
     background-color: rgb(7, 6, 5) !important;
@@ -244,3 +239,35 @@
  {
     background-color:rgb(0, 0, 0) !important;
  } */
+
+/* ==================================================================== */
+
+.calendar_view .picker-container .picker-column .picker-item {
+  color: #b3261e !important;
+  opacity: 0.5 !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  /* font-family: IRANSansWebXPro !important; */
+}
+.calendar_view
+  .picker-container
+  .picker-column
+  .picker-item.picker-item-selected {
+  color: #b3261e !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  opacity: 1 !important;
+}
+
+.calendar_view .picker-container.gregorian * {
+  font-family: IRANSansWebXPro !important;
+}
+/* .calendar_view .picker-container .picker-column .picker-item.picker-item-selected {
+    font-family: IRANSansWebXPro !important;
+ } */
+
+/* .calendar_view  {
+   height: 200px !important;
+ } */
+
+/* ==================================================================== */

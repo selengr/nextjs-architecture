@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
-// import { styled } from '@emotion/styled';
-import { TextField, InputAdornment, IconButton } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import styles from './CustomizedOptions.module.css';
-import { IAirport, ICityData, IdataList } from './types';
+"use client"
+
 import callApi from '@/services/axios';
 import { dispatch } from '@/redux/store';
+import ReactLoading from 'react-loading';
+import React, { useEffect, useState } from 'react';
+import SearchIcon from '@mui/icons-material/Search';
+import styles from './CustomizedOptions.module.css';
+import { setCity } from '@/redux/slices/flight/flights';
+import { IAirport, ICityData, IdataList } from './types';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { setCity } from '@/redux/slices/flights';
-import { ICity } from '@/types/searchFlight';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
 
 interface SearchBarProps {
-   onClose: () => void  | undefined
-   type: "DESTINATION"|"ORIGIN"
+  onClose: () => void | undefined;
+  type: 'DESTINATION' | 'ORIGIN';
 }
 
 const cityData: ICityData = {
@@ -24,9 +25,9 @@ const cityData: ICityData = {
   rows: 150
 };
 
-
-const CustomizedOptions: React.FC<SearchBarProps> = ({type,onClose}) => {
+const CustomizedOptions: React.FC<SearchBarProps> = ({ type, onClose }) => {
   const [airports, setAirports] = useState<IAirport>();
+  const [loading, setLoading] = useState<boolean>(true);
   const [searchCity, setSearchCity] = useState<string>('');
 
   const dispatch = useAppDispatch();
@@ -42,6 +43,7 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({type,onClose}) => {
       `/msafar/iata/custom-combo?customComboFilterModel=${encodedData}`
     );
     setAirports(response);
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -54,23 +56,28 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({type,onClose}) => {
   };
 
   const handlePath = (city: IdataList) => {
-    if (type === "DESTINATION") {
-      dispatch(setCity({
-        type,
-        destination: city.caption,
-        destinationAirportEnglishName : city.extMap.airportEnglishName
-      }));
-    } else if(type === "ORIGIN") {
-      dispatch(setCity({
-        type,
-        origin : city.caption,
-        originAirportEnglishName : city.extMap.airportEnglishName,
-      }));
-    }   
-    onClose()
+    if (type === 'DESTINATION') {
+      dispatch(
+        setCity({
+          type,
+          destination: city.caption,
+          destinationIata: city.value,
+          destinationAirportEnglishName: city.extMap.airportEnglishName
+        })
+      );
+    } else if (type === 'ORIGIN') {
+      dispatch(
+        setCity({
+          type,
+          origin: city.caption,
+          originIata: city.value,
+          originAirportEnglishName: city.extMap.airportEnglishName
+        })
+      );
+    }
+    onClose();
   };
 
-  console.log('city :>> ', city)
 
   return (
     <div className={styles.msCustomizedOptions}>
@@ -79,7 +86,7 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({type,onClose}) => {
         className="w-full z-10 text-yellow font-ms-iranSansMobile rounded-2xl"
         id="search-bar"
         // label="جستجو"
-        type='search'
+        type="search"
         placeholder="جستجو"
         value={searchCity}
         onChange={handleSearch}
@@ -112,12 +119,15 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({type,onClose}) => {
           height: 'fitContent'
         }}
       >
+        {loading && 
+                <ReactLoading className='bg-ms-back-card-gray-12 p-2 pt-4' type={"spinningBubbles"} color={"#03693A"} height={50} width={50} />
+        }
         {/* {suggestions.length>0&&
            <span className='text-ms-crimson pt-6 pb-4 pr-6 font-ms-medium text-ms-sm  border-b-solid  border-b-[#EDEDED] border-b-[1px]'>جستجو قبل</span>
        }  */}
-        {airports?.dataList.map((suggestion, index) => (
+        {airports?.dataList?.map((suggestion, index) => (
           <li
-            onClick={()=>handlePath(suggestion)}
+            onClick={() => handlePath(suggestion)}
             key={index}
             className="active:bg-[#ACAEAB] flex border-b-solid text-ms-gray-light text-ms-sm font-ms-medium border-b-[#EDEDED] border-b-[1px] px-[16px] pt-[16px] pb-[8px]
               active:transition-transform active:duration-150 active:ease-in-out active:transform-scale-110

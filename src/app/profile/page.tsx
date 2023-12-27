@@ -1,11 +1,11 @@
+
 import { Banner } from '@/components/UI/ui-banner';
-import TransportTypeSelector from '@/components/UI/ui-transport-type-selector/TransportTypeSelector';
-import { Box, Paper, Stack, Typography } from '@mui/material';
-import Image from 'next/image';
+import { PATH_BOOKING, PATH_PROFILE } from '../../routes/paths';
+import ProfileItem from '@/components/Layout/profile/ProfileItem';
+import MobileBottomNavigation from '@/components/common/menu/MobileBottomNavigation';
 
 
-
-export default function Home() {
+export default async function Home() {
   return (
     <div className="h-screen w-full overflow-hidden">
       <Banner
@@ -16,8 +16,20 @@ export default function Home() {
         className="w-full h-full"
       />
 
-      <div className="relative flex justify-center align-middle items-center">
-        <TransportTypeSelector />
+
+
+
+      <ProfileItem iconName='passenger-list' text='لیست مسافران' Href={PATH_BOOKING.profile+PATH_PROFILE.PASSENGERS}/>
+      <ProfileItem iconName='like-icon' text='علاقه مندی ها' Href={"#"} />
+      <ProfileItem iconName='refunds' text='استرداد ها' Href={"#"} />
+
+
+ 
+
+
+      <div className="relative flex align-middle items-center">
+        {/* <TransportTypeSelector /> */}
+        <MobileBottomNavigation />
       </div>
     </div>
   );

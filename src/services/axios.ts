@@ -1,22 +1,22 @@
-import axios,{
+import axios, {
   AxiosError,
   AxiosResponse,
   AxiosInstance,
-  InternalAxiosRequestConfig,
-} from "axios";
+  InternalAxiosRequestConfig
+} from 'axios';
 
 // config
 import { AUTH_API, HOST_API_KEY } from '../config-global';
 import ValidationError from '@/lib/exceptions/validationError';
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
 /**
-	 * Make request to IG API
-	 * @param baseURL 
-	 * @param url 
-	 * @param agent 
-	 * @param options 
-	*/
+ * Make request to IG API
+ * @param baseURL
+ * @param url
+ * @param agent
+ * @param options
+ */
 
 interface ApiResponse<T> {
   data: T;
@@ -26,15 +26,15 @@ interface ApiResponse<T> {
 
 const AUTH_TOKEN = 'your_auth_token';
 
-const callApi = (baseURL?: string,data?: unknown) => {
-  
- const axiosInstance =  axios.create({
-   baseURL:  baseURL || AUTH_API.domain,
-   timeout: 12000,
-   headers: {
-    'Accept': 'application/json',
-      //  config.headers['Authorization'] = 'Bearer ' + getToken(); 
+const callApi = (baseURL?: string, data?: unknown) => {
+  const axiosInstance = axios.create({
+    baseURL: baseURL || AUTH_API.domain,
+    timeout: 12000,
+    headers: {
+      Accept: 'application/json',
+      //  config.headers['Authorization'] = 'Bearer ' + getToken();
       //  Authorization: 'Bearer YOUR_TOKEN' // AUTH_TOKEN
+      
     },
     // transformRequest: [
     //   (data) => {
@@ -44,96 +44,90 @@ const callApi = (baseURL?: string,data?: unknown) => {
     transformResponse: [
       (data) => {
         return JSON.parse(data);
-      },
-    ],
+      }
+    ]
   });
 
-
   axiosInstance.interceptors.request.use(
-  (config : InternalAxiosRequestConfig) => {
-    // if ("token") {
-    return config;
-  },
-  (error : AxiosError | Error) => {
-    return Promise.reject(error);
-  }
-);
+    (config: InternalAxiosRequestConfig) => {
+      // if ("token") {
+      return config;
+    },
+    (error: AxiosError | Error) => {
+      return Promise.reject(error);
+    }
+  );
 
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      //  handle successful responses here
+      return response.data;
+    },
 
+    (error: AxiosError) => {
+      const { message, name, response, request, status } = error;
+      const res = error?.response;
 
-axiosInstance.interceptors.response.use(
-  (response) => {
-    //  handle successful responses here
-    return response.data;
-  },
+      // Handle different types of errors such as (network, server, etc.)
+      if (response) {
+        console.error('Server Error:', response.status, response.data);
 
-    (error:  AxiosError ) => {
-    const { message,name,response,request,status } = error;
-    const res = error?.response
-
-    // Handle different types of errors such as (network, server, etc.)
-    if (response) {
-      console.error('Server Error:', response.status, response.data);
-
-      switch (status) {
-        case 401: {
+        switch (status) {
+          case 401: {
             // "Login required"
             // Delete Token & Go To Login Page if you required.
             // sessionStorage.removeItem("token")
-            toast.error("Unauthorized");
-            //redirect to login soon will happend  PATH_AUTH 
+            toast.error('Unauthorized');
+            //redirect to login soon will happend  PATH_AUTH
             break;
+          }
+          case 403: {
+            // "Permission denied"
+            toast.error('Forbidden');
+            break;
+          }
+          case 404: {
+            // "Invalid request"
+            toast.error('Not found');
+            break;
+          }
+          case 500: {
+            // "Server error"
+            toast.error('Internal server error');
+            break;
+          }
+          default: {
+            // "Unknown error occurred"
+            toast.error('An unknown error occurred');
+            break;
+          }
         }
-        case 403: {
-          // "Permission denied"
-          toast.error("Forbidden");
-          break;
-        }
-        case 404: {
-          // "Invalid request"
-          toast.error("Not found");
-          break;
-        }
-        case 500: {
-          // "Server error"
-          toast.error("Internal server error");
-          break;
-        }
-        default: {
-          // "Unknown error occurred"
-          toast.error("An unknown error occurred");
-          break;
-        }
+      } else if (request) {
+        // Handle network errors
+        console.error('Network Error:', message);
+        toast.error('Network error');
+      } else {
+        // Handle other errors
+        console.error('Error:', message);
       }
 
-    } else if (request) {
-      // Handle network errors
-      console.error('Network Error:', message);
-      toast.error("Network error");
-    } else {
-      // Handle other errors
-      console.error('Error:', message);
+      return Promise.reject(error);
     }
-
-    return Promise.reject(error);
-  }
-);
+  );
 
   return axiosInstance;
-}
-
+};
 
 export default callApi;
-  
 
 //=============================================
-//                                             
-//  ##   ##   ####    ###     ####    #####  
-//  ##   ##  ##      ## ##   ##       ##     
-//  ##   ##   ###   ##   ##  ##  ###  #####  
-//  ##   ##     ##  #######  ##   ##  ##     
-//   #####   ####   ##   ##   ####    #####  
-//                                             
+//
+//  ##   ##   ####    ###     ####    #####
+//  ##   ##  ##      ## ##   ##       ##
+//  ##   ##   ###   ##   ##  ##  ###  #####
+//  ##   ##     ##  #######  ##   ##  ##
+//   #####   ####   ##   ##   ####    #####
+//
 //=============================================
 
 // POST
@@ -143,7 +137,6 @@ export default callApi;
 // };
 
 // const response = await callApi().post('/users', data);
-
 
 // GET
 // const response = await callApi().get('/users');
