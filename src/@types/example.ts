@@ -5,6 +5,7 @@ export type Props = {
   weight?: number;
 };
 
+//   two types
 //    they are not logicaly link with male and female
 //    how we can check wheater its male or female
 
