@@ -1,0 +1,4 @@
+.customized-mapbox .mapboxgl-map {
+  width: 100% !important;
+  border-radius: 15px;
+}

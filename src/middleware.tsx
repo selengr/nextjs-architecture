@@ -22,11 +22,11 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 
   // if (req.nextUrl.search.includes('code') && !has_token) {
   //   const response = NextResponse.next();
-    // let code : string = req.nextUrl?.searchParams?.get('code') ?? ""
-    // const token = await GetToken(code, LOCALHOST)
-    // req.nextUrl.searchParams.delete('code')
-    // response.cookies.set("access_token", token)
-    // NextResponse.redirect(new URL(LOCALHOST))
+  // let code : string = req.nextUrl?.searchParams?.get('code') ?? ""
+  // const token = await GetToken(code, LOCALHOST)
+  // req.nextUrl.searchParams.delete('code')
+  // response.cookies.set("access_token", token)
+  // NextResponse.redirect(new URL(LOCALHOST))
   //   return response;
   // }
 

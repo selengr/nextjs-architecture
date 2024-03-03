@@ -6,6 +6,6 @@ export type IUIAccordionProps = {
   tabIndex?: number;
   name: string;
   checked: boolean;
-  error :  boolean;
-  handle_payWith: (e: React.MouseEvent<HTMLButtonElement>|any) => void;
+  error: boolean;
+  handle_payWith: (e: React.MouseEvent<HTMLButtonElement> | any) => void;
 };

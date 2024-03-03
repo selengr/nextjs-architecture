@@ -62,7 +62,10 @@ const DayAndPrice = ({ departing, returning, cheapest }: ICommeuting) => {
   if (verify_cheapest_date === verify_date) {
     return (
       <div
-      style={{boxShadow: "2px 0px 3px 0px rgba(0, 0, 0, 0.25)",borderRadius: "0px 15px 15px 0px"}}
+        style={{
+          boxShadow: '2px 0px 3px 0px rgba(0, 0, 0, 0.25)',
+          borderRadius: '0px 15px 15px 0px'
+        }}
         className="text-ms-crimson border-r-ms-gray border-r-[1px] min-w-[192px] 
                       flex flex-col justify-center h-full"
       >

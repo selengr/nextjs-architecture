@@ -1,0 +1,6 @@
+.formLabels :nth-child(2) {
+  font-weight: bold !important;
+}
+.formLabels :first-child {
+  color: #f5bb00;
+}

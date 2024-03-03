@@ -19,8 +19,8 @@ export default function RootLayout({
     <Container className="w-full bg-ms-back-card-gray-12 px-0">
       <Box className="w-full bg-ms-back-card-gray-12 flex flex-col relative">
         {children}
-      </Box>     
-    </Container>  
+      </Box>
+    </Container>
     // <html lang="en" className="w-full ms-center bg-ms-white ">
 
     //   <body className="max-w-[576px] w-full bg-ms-back-card-gray-12 flex flex-col relative">

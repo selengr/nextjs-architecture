@@ -1,6 +1,1 @@
-
-export interface IPreviewReund {
-  
-}
-
-
+export interface IPreviewReund {}

@@ -133,7 +133,7 @@ const PreviewBooking = ({
       <div
         // onClick={handle_booking}
         //     key={index}
-        className="py-4 px-6 bg-ms-back-card-gray-12 rounded-[15px] w-full flex flex-col my-6"
+        className="py-4 px-6 bg-ms-back-card-gray-12 rounded-2xl w-full flex flex-col my-6"
       >
         <div className="flex flex-row p-2">
           <div className="flex flex-col w-2/12">
@@ -272,7 +272,7 @@ const PreviewBooking = ({
         {flightClass.availableSeat} صندلی باقی مانده
       </span>
 
-      <div className="flex flex-col w-full bg-ms-back-card-gray-12 text-center rounded-[15px] my-4 mb-8">
+      <div className="flex flex-col w-full bg-ms-back-card-gray-12 text-center rounded-2xl my-4 mb-8">
         {adult != 0 && (
           <div className="flex flex-row">
             <span className="w-1/3 py-4 text-ms-thick-gray text-ms-xs font-ms-regular">
@@ -367,7 +367,7 @@ const PreviewBooking = ({
 
       <UiButton
         onClick={handle_Booking}
-        className="mb-[32px] mt-6 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]"
+        className="mb-[32px] mt-6 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-2xl"
         text="رزرو"
       />
     </div>

@@ -2,15 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Box, Stack, Typography } from '@mui/material';
 
-
 interface IProps {
-  Href:string
+  Href: string;
   text: string;
   iconName: string;
 }
 
-const ProfileItem = ({ iconName,text,Href }: IProps) => {
-
+const ProfileItem = ({ iconName, text, Href }: IProps) => {
   return (
     <Box className="flex flex-row bg-ms-white rounded-2xl h-16 m-6 cursor-pointer">
       <Link href={Href} className="flex justify-start items-center w-full">

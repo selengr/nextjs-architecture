@@ -29,8 +29,13 @@ export function UIAccordion({
     <>
       <div
         className={`collapse bg-ms-white my-6 rounded-2xl border-2 
-        ${checked ? 'border-ms-border-green-33' : error ? "border-ms-crimson"
-         : 'border-ms-gray'}`}
+        ${
+          checked
+            ? 'border-ms-border-green-33'
+            : error
+            ? 'border-ms-crimson'
+            : 'border-ms-gray'
+        }`}
       >
         <input
           type="radio"
@@ -43,7 +48,7 @@ export function UIAccordion({
             checked
               ? 'border-b-2 border-b-ms-light-green text-ms-light-green'
               : ''
-          }${error ? "text-ms-crimson" : ""}
+          }${error ? 'text-ms-crimson' : ''}
           `}
         >
           {label}

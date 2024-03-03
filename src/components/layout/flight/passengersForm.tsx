@@ -136,7 +136,6 @@ const PassengersForm = ({
   id: number;
   edit: Passenger;
 }) => {
-
   const {
     register,
     handleSubmit,
@@ -218,7 +217,7 @@ const PassengersForm = ({
         <UiButton
           // onClick={() => console.log("object")}
           type="submit"
-          className="m-6 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
+          className="m-6 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-2xl bg-ms-btn-green-23"
           text="تایید"
         />
       </form>

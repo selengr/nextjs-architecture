@@ -10,7 +10,7 @@ const useCustomSWR = (api: ISwrApi, config?: ICustomSWRConfig) => {
       const response = await callApi().get(api.url);
       return response.data;
     } else {
-      const response = await callApi().post(api.url,{
+      const response = await callApi().post(api.url, {
         method: api.method,
         data: api.body
       });

@@ -173,6 +173,7 @@ const Mhesam = () => {
       }
     }
     IssueRequest();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -243,19 +244,21 @@ const Mhesam = () => {
 
         <>
           <div className="mt-6">
-           {Pay == Pay_method.CREDIT ? (
+            {Pay == Pay_method.CREDIT ? (
               <UiButton
                 onClick={() => setVerifycode(true)}
-                className="mb-0 mt-10 hover:bg-[#198B9A] text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-[#009AAE] rounded-[15px]"
+                className="mb-0 mt-10 hover:bg-[#198B9A] text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-[#009AAE] rounded-2xl"
                 text="تایید و پرداخت"
               />
-            ):<></>}
-            </div>
+            ) : (
+              <></>
+            )}
+          </div>
           <div className="mt-6">
             {Pay == Pay_method.CASH && (
               <UiButton
                 onClick={handleChargeCredit}
-                className="mb-0 mt-10 hover:bg-ms-btn-green-23 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]"
+                className="mb-0 mt-10 hover:bg-ms-btn-green-23 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-2xl"
                 text="درگاه پرداخت"
               />
             )}

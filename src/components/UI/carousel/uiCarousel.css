@@ -27,11 +27,6 @@
   color: red;
 }
 
-
-
-
-
-
 /* ==================================== SwiperSlides */
 
 .swiper {
@@ -64,6 +59,6 @@
 }
 
 .tour-list .swiper-slide-active :first-child {
-  background-color: #B40000 !important;
+  background-color: #b40000 !important;
   color: #fff !important;
 }

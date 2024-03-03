@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import Image from 'next/image';
 
 interface IModalHeaderProps {
@@ -9,9 +10,15 @@ const CustomSheetHeader = ({ title, onClose }: IModalHeaderProps) => {
   return (
     <>
       <div className="w-full flex flex-row justify-between py-4 items-center">
-        <span className="text-ms-lg text-ms-thick-green font-ms-medium">
+        <Typography
+          gutterBottom
+          fontWeight={'bold'}
+          variant="body1"
+          component="div"
+          className="text-ms-lg text-ms-thick-green font-ms-medium"
+        >
           {title}
-        </span>
+        </Typography>
         {onClose && (
           <Image
             onClick={onClose}

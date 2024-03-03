@@ -1,10 +1,5 @@
+const Page = () => {
+  return <div>wishlist</div>;
+};
 
-const page = () => {
-    return (
-        <div>
-            wishlist
-        </div>
-    );
-}
-
-export default page;
+export default Page;

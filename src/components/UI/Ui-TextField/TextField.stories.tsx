@@ -28,7 +28,7 @@ Default.args = {
 
 // const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-const handleMouseDownPassword = (event:any) => {
+const handleMouseDownPassword = (event: any) => {
   event.preventDefault();
 };
 

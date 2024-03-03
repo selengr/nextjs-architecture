@@ -123,13 +123,13 @@ const CardFlight: React.FC<IPropsCardFlight> = ({
               ) {
                 // if(flight.origin.code === city.split("-")[0]){
                 // if (flight.origin.code === 'IST') {
-                if (flight.origin.code === 'AWZ') { 
+                if (flight.origin.code === 'AWZ') {
                   return (
                     <>
                       <div
                         onClick={() => handle_booking(flight, flightClass)}
                         key={key}
-                        className="py-4 px-6 bg-ms-white h-[210px] rounded-[15px] w-full flex flex-col my-6"
+                        className="py-4 px-6 bg-ms-white h-[210px] rounded-2xl w-full flex flex-col my-6"
                       >
                         <CardFlightDetail
                           flight={flight}
@@ -147,7 +147,7 @@ const CardFlight: React.FC<IPropsCardFlight> = ({
                       <div
                         onClick={() => handle_booking(flight, flightClass)}
                         key={key}
-                        className="py-4 px-6 bg-ms-white h-[210px] rounded-[15px] w-full flex flex-col my-6"
+                        className="py-4 px-6 bg-ms-white h-[210px] rounded-2xl w-full flex flex-col my-6"
                       >
                         <CardFlightDetail
                           flight={flight}
@@ -194,8 +194,13 @@ const CardFlight: React.FC<IPropsCardFlight> = ({
 export default CardFlight;
 
 // ---------------------------------------------------- منو انتخاب روز قبل و بعد
-export const OtherDay = ({combinedFlights,handle_otherDay}:{combinedFlights : Flight[],handle_otherDay : any} 
-) => {
+export const OtherDay = ({
+  combinedFlights,
+  handle_otherDay
+}: {
+  combinedFlights: Flight[];
+  handle_otherDay: any;
+}) => {
   if (combinedFlights.length != 0) {
     return (
       <div className="flex justify-center align-middle items-center max-w-[576px] w-full z-50 fixed bottom-6 ">

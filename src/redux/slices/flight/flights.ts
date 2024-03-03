@@ -58,7 +58,7 @@ const flightSlice = createSlice({
       };
     },
 
-    setCity(state: any, action: PayloadAction<ICityTrack|any>) {
+    setCity(state: any, action: PayloadAction<ICityTrack | any>) {
       switch (action.payload?.type) {
         case 'ORIGIN':
           state.city.origin = action.payload.origin;

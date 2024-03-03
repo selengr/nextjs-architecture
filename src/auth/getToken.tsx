@@ -24,7 +24,10 @@ export const GetToken = async (code: string, redirectUrl: string) => {
   try {
     // const response = await callApi().post("http://apifpr.mresalat1.com/sso/oauth2/token",requestOptions)
     // https://stage1api.qhami.com/sso/oauth2/token
-    let response = await fetch(AUTH_API.domain+'/sso/oauth2/token',requestOptions);
+    let response = await fetch(
+      AUTH_API.domain + '/sso/oauth2/token',
+      requestOptions
+    );
     const data = await response.json();
     setSession(data.access_token);
   } catch (error) {

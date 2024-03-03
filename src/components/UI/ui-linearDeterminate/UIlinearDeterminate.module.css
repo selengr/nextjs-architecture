@@ -1,0 +1,10 @@
+/* .UILinearDeterminate .progressBarContainer {
+    rotate: 180deg !important
+  } */
+
+.UILinearDeterminate :first-child :first-child {
+  background-color: #f5bb00 !important;
+}
+.UILinearDeterminate :first-child {
+  background-color: #fff !important;
+}

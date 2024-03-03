@@ -5,7 +5,6 @@ import { toast } from 'sonner';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-
 import OriginVeiw from '@/components/Layout/OriginVeiw';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import PassengersVeiw from '@/components/Layout/PassengersVeiw';
@@ -14,19 +13,10 @@ import ModalGestures from '@/components/common/modal/ModalGestures ';
 import { CompareFarsiAndEnglishNumbers } from '@/utils/helpers/digitNormalizer';
 import CustomMultiDatePicker from '@/components/common/calanders/CustomMultiDatePicker';
 
-import {
-  setCity,
-  setDate
-} from '@/redux/slices/flight/flights';
+import { setCity, setDate } from '@/redux/slices/flight/flights';
 import UiButton from '@/components/UI/ui-button';
 
-
-
-const ChoosingFlightInformation = ({
-  status
-} : {
-  status: string;
-}) => {
+const ChoosingFlightInformation = ({ status }: { status: string }) => {
   const [isOpenOrigin, setOpenOrigin] = useState(false);
   const [isOpenDestination, setOpenDestination] = useState(false);
   const [isOpenPassengers, setOpenPassengers] = useState(false);
@@ -109,6 +99,7 @@ const ChoosingFlightInformation = ({
         return;
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // =========================================================یک طرفه تاریخ رفت
@@ -158,11 +149,11 @@ const ChoosingFlightInformation = ({
     // toast.success('انتخاب شد')
   };
 
-  const date_type = (date:string) => {
-    let year = date.split("/")[0]
-    if (date && parseInt(year) > 1450) return "font-ms-IRANSansXPro"
-    return "IRANSansWeb"
-  }
+  const date_type = (date: string) => {
+    let year = date.split('/')[0];
+    if (date && parseInt(year) > 1450) return 'font-ms-IRANSansXPro';
+    return 'IRANSansWeb';
+  };
   const dateTextColorOne = () => {
     if (calenderErorr && !flight.departing) return 'text-ms-crimson';
     if (flight.departing) return 'text-ms-green';
@@ -209,9 +200,8 @@ const ChoosingFlightInformation = ({
     if (departureDate.city?.destination) return 'text-ms-green';
     else return 'text-ms-thick-green';
   };
-  
-  
-    // ========================================================
+
+  // ========================================================
 
   const handle_search_in_tickets = () => {
     // const encodedData = encodeURIComponent(JSON.stringify(flight));
@@ -343,7 +333,7 @@ const ChoosingFlightInformation = ({
             calenderErorr && !flight.departing
               ? 'border-[1px] border-solid border-[#B3261E]'
               : ''
-          } rounded-[15px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]`}
+          } rounded-2xl mt-[24px] shadow-[0px 0px 1px 0px #11111126]`}
         >
           <div className="flex flex-row mx-5 justify-between w-full">
             <div className="flex justify-start">
@@ -356,7 +346,13 @@ const ChoosingFlightInformation = ({
               />
               <span className={`${dateTextColorOne()} font-ms-medium`}>
                 {flight.departing ? (
-                  <span className={`${date_type(flight.departing.toString())} flex flex-row`}>{flight.departing}</span>
+                  <span
+                    className={`${date_type(
+                      flight.departing.toString()
+                    )} flex flex-row`}
+                  >
+                    {flight.departing}
+                  </span>
                 ) : (
                   'تاریخ رفت'
                 )}
@@ -403,7 +399,7 @@ const ChoosingFlightInformation = ({
             calenderErorr && !flight.returning && !flight.departing
               ? 'border-[1px] border-solid border-[#B3261E]'
               : ''
-          } rounded-[15px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]`}
+          } rounded-2xl mt-[24px] shadow-[0px 0px 1px 0px #11111126]`}
         >
           <div className="flex flex-row mx-5 justify-between w-full">
             <div className="flex justify-start">
@@ -436,7 +432,8 @@ const ChoosingFlightInformation = ({
                 />
                 <span
                   className={`${dateTextColorTwo()} ${
-                    flight.returning && flight.returning.toString()?.split('/')[0] > '1450'
+                    flight.returning &&
+                    flight.returning.toString()?.split('/')[0] > '1450'
                       ? 'font-ms-IRANSansXPro'
                       : ''
                   } font-ms-medium`}
@@ -481,7 +478,7 @@ const ChoosingFlightInformation = ({
         //             // -----------------------------------------------------------------
         //         // <div
         //         //   onClick={ChooseReturnDate}
-        //         //   className="h-[50px] relative flex align-middle items-center bg-ms-white w-full font-ms-iranSansMobile rounded-[15px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
+        //         //   className="h-[50px] relative flex align-middle items-center bg-ms-white w-full font-ms-iranSansMobile rounded-2xl mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
         //         // >
         //         //   <div className="flex flex-row  mx-5 ">
         //         //     <Image
@@ -507,7 +504,7 @@ const ChoosingFlightInformation = ({
 
       <div
         onClick={ChoosePassengers}
-        className="h-[50px] relative flex align-middle items-center bg-ms-white w-full font-ms-iranSansMobile rounded-[15px] mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
+        className="h-[50px] relative flex align-middle items-center bg-ms-white w-full font-ms-iranSansMobile rounded-2xl mt-[24px] shadow-[0px 0px 1px 0px #11111126]"
       >
         <div className="flex flex-row mx-5">
           <Image
@@ -538,11 +535,10 @@ const ChoosingFlightInformation = ({
         {/* <Toaster richColors/> */}
         <UiButton
           onClick={handle_search_in_tickets}
-          className="mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]"
+          className="mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-2xl"
           text="جستجو"
         />
       </div>
-
 
       {isOpenOrigin && (
         <div>

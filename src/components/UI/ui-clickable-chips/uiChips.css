@@ -1,0 +1,18 @@
+
+.uiChips.css-niqf4j-MuiStack-root>:not(style):not(style){
+    background-color: #fff ;
+    border: 1px solid #E2E2E2;
+    padding: 1rem !important;
+    border-radius: 25px;
+}
+.uiChips-selected {
+    background-color: #000 !important;
+    color: #fff !important;
+    /* padding: 10px !important; */
+}
+.uiChips.css-niqf4j-MuiStack-root > :not(style):not(style){
+}
+
+.uiChips :first-child {
+    margin-left: 2px;
+}

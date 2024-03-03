@@ -31,10 +31,9 @@ const callApi = (baseURL?: string, data?: unknown) => {
     baseURL: baseURL || AUTH_API.domain,
     timeout: 12000,
     headers: {
-      Accept: 'application/json',
+      Accept: 'application/json'
       //  config.headers['Authorization'] = 'Bearer ' + getToken();
       //  Authorization: 'Bearer YOUR_TOKEN' // AUTH_TOKEN
-      
     },
     // transformRequest: [
     //   (data) => {

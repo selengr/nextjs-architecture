@@ -1,3 +1,4 @@
 // export * from './types';
 
-// export { default as Banner } from './Banner';
+export { default as TransportTypeSelector } from './TransportTypeSelector';
+// export { default as TransportTypeDynamic } from './TransportTypeDynamic';

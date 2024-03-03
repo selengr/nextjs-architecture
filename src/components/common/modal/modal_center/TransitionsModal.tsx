@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
@@ -10,14 +9,20 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-   maxWidth: "512px"
+  maxWidth: '512px'
 };
 
-
-export default function TransitionsModal({open,handleClose,className,children}:{open:boolean,handleClose:any,className:string,children:React.ReactNode}) {
-
-
-
+export default function TransitionsModal({
+  open,
+  handleClose,
+  className,
+  children
+}: {
+  open: boolean;
+  handleClose: any;
+  className: string;
+  children: React.ReactNode;
+}) {
   return (
     <div>
       <Modal
@@ -30,18 +35,16 @@ export default function TransitionsModal({open,handleClose,className,children}:{
         slots={{ backdrop: Backdrop }}
         slotProps={{
           backdrop: {
-            timeout: 500,
-          },
+            timeout: 500
+          }
         }}
       >
         <Fade in={open}>
           <Box sx={style} className={className}>
-                    {children}
+            {children}
           </Box>
         </Fade>
       </Modal>
     </div>
   );
 }
-
-

@@ -7,7 +7,13 @@ import { usePathname, useRouter } from 'next/navigation';
 import { PATH_BOOKING, PATH_FLIGHT } from '@/routes/paths';
 import { Skeleton } from '@mui/material';
 
-const TransportTypeSelector = ({ type }: { type?: string }) => {
+const TransportTypeSelector = ({
+  type,
+  mood
+}: {
+  type?: string;
+  mood?: string;
+}) => {
   const [index, setIndex] = React.useState<
     'flights' | 'train' | 'bus' | 'hotel' | 'tour' | null
   >(null);
@@ -74,20 +80,23 @@ const TransportTypeSelector = ({ type }: { type?: string }) => {
         onClick={(e) => handlePage(e, type.index, type.route)}
       >
         <Image
-          src={type.index == pathname ? type.activeIcon : type.icon}
+          src={
+            type.index.includes(mood ?? pathname) ? type.activeIcon : type.icon
+          }
           alt={type.alt}
           width={25} //automatically provided
           height={25} //automatically provided
         />
         <span
           className={`${
-            type.index === pathname ? 'text-ms-yellow' : ''
+            type.index.includes(mood ?? pathname) ? 'text-ms-yellow' : ''
           } pt-2 text-ms-thick-green font-ms-regular text-ms-sm `}
         >
           {type.label}
         </span>
       </div>
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [transportTypes]
   );
 

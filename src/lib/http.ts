@@ -6,7 +6,7 @@ export async function fetchBooks(data: {
   size?: number;
   type?: string;
   // sort?: string;
-// }): Promise<{ content: BookProps[]; total: number; error?: any }> {
+  // }): Promise<{ content: BookProps[]; total: number; error?: any }> {
 }): Promise<{ content: any[]; total: number; error?: any }> {
   try {
     const queryArray = Object.keys(data).reduce((prev: string[], item) => {

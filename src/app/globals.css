@@ -18,7 +18,13 @@
 
 button,
 span,
-label,h1,h2,h3,h4,h5,h6,
+label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 div {
   font-family: 'IRANSansMobile' !important;
 }
@@ -38,7 +44,6 @@ body {
   .ms-center {
     @apply flex justify-center align-middle;
   }
-  
 }
 @layer utilities {
   .ltr {
@@ -47,8 +52,9 @@ body {
 }
 .ms-max-w {
   max-width: 576px !important;
-  /* background-color: red !important;
-  color: red !important; */
+}
+.MuiTypography-root {
+  font-family: 'IRANSansMobile';
 }
 /* ------------------------------------------------------old */
 /* @font-face {
@@ -220,30 +226,75 @@ html {
   height: 5px;
 }
 
-
- /* ------------------------------------- loadin */
- #gradient
-{
-    /* "linear-gradient(169deg, #FFF 0.49%, #E2FFF3 99.47%) */
-    background: linear-gradient(169deg, #E2FFF3, #ffffff, #E2FFF3);
-    background-size: 200% 200%;
-    -webkit-animation: Animation 2s ease infinite;
-    -moz-animation: Animation 2s ease infinite;
-    animation: Animation 2s ease infinite;
+/* ------------------------------------- loadin */
+#gradient {
+  /* "linear-gradient(169deg, #FFF 0.49%, #E2FFF3 99.47%) */
+  background: linear-gradient(169deg, #e2fff3, #ffffff, #e2fff3);
+  background-size: 200% 200%;
+  -webkit-animation: Animation 2s ease infinite;
+  -moz-animation: Animation 2s ease infinite;
+  animation: Animation 2s ease infinite;
 }
 
 @-webkit-keyframes Animation {
-    0%{background-position:10% 0%}
-    50%{background-position:90% 100%}
-    100%{background-position:10% 0%}
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 90% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
 }
 @-moz-keyframes Animation {
-    0%{background-position:10% 0%}
-    50%{background-position:90% 100%}
-    100%{background-position:10% 0%}
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 90% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
 }
-@keyframes Animation { 
-    0%{background-position:10% 0%}
-    50%{background-position:90% 100%}
-    100%{background-position:10% 0%}
+@keyframes Animation {
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 90% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
+}
+
+.css-y324hi-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+  color: #f5bb00 !important;
+}
+.accommodation-type-card:hover,
+.residence-type-card {
+  background-color: #f8f8f8;
+  transition: background-color 150ms linear;
+  -webkit-transition: background-color 150ms linear;
+  -moz-transition: background-color 150ms linear;
+  -ms-transition: background-color 150ms linear;
+  -o-transition: background-color 150ms linear;
+}
+.residence-type-card {
+  border: 3px solid #0cda7b !important;
+  padding: -2px;
+}
+.residence-type-bg {
+  background-color: #f8f8f8;
+}
+.accommodation-type-pic:hover,
+.residence-type-pic {
+  filter: brightness(120%);
+  transition: filter 150ms linear;
+  -webkit-transition: filter 150ms linear;
+  -moz-transition: filter 150ms linear;
+  -ms-transition: filter 150ms linear;
+  -o-transition: filter 150ms linear;
 }

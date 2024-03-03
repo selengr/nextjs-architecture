@@ -179,8 +179,11 @@ export enum operationType {
 }
 export interface Passenger {
   payable_Fare: number;
-  id: number|string;
-  passengerType: PassengerType.adult | PassengerType.child | PassengerType.infant;
+  id: number | string;
+  passengerType:
+    | PassengerType.adult
+    | PassengerType.child
+    | PassengerType.infant;
   title: string;
   firstName: string;
   lastName: string;

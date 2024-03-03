@@ -1,9 +1,11 @@
-
 import Image from 'next/image';
 
 const loading = () => {
   return (
-    <div id="gradient" className="flex w-full h-screen justify-center items-center bg-ms-light-green flex-col">
+    <div
+      id="gradient"
+      className="flex w-full h-screen justify-center items-center bg-ms-light-green flex-col"
+    >
       <Image
         className="w-[50%]"
         src={'/static/illustrations/favicon/favicon-chrome.svg'}

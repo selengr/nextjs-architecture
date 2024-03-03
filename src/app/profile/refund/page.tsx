@@ -1,10 +1,5 @@
+const Page = () => {
+  return <div>Refund</div>;
+};
 
-const page = () => {
-    return (
-        <div>
-            Refund
-        </div>
-    );
-}
-
-export default page;
+export default Page;

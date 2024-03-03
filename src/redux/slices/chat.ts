@@ -9,7 +9,7 @@ import callApi from '@/services/axios';
 // ----------------------------------------------------------------------
 
 const initialState: any = {
-// const initialState: IChatState = {
+  // const initialState: IChatState = {
   isLoading: false,
   error: null,
   contacts: { byId: {}, allIds: [] },

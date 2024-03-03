@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -27,7 +26,7 @@ export default function Page404() {
 
         <Link
           href="/"
-          className="mb-[32px] flex justify-center items-center mt-6 w-[80%] font-ms-iranSansMobile hover:bg-ms-btn-green-33 text-ms-xl h-[50px]  border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]"
+          className="mb-[32px] flex justify-center items-center mt-6 w-[80%] font-ms-iranSansMobile hover:bg-ms-btn-green-33 text-ms-xl h-[50px]  border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-2xl"
         >
           برگشت به صفحه اصلی
         </Link>

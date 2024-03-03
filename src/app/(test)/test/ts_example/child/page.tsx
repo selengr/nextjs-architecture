@@ -1,6 +1,5 @@
 // import { PersonStatusProps } from "@/@types/example";
 
-
 const Child = (props: any) => {
   return (
     <div>

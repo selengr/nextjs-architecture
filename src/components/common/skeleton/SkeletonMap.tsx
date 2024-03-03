@@ -3,7 +3,11 @@ import { Stack, Skeleton, StackProps } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-export default function SkeletonMap({height,className, ...other }: StackProps) {
+export default function SkeletonMap({
+  height,
+  className,
+  ...other
+}: StackProps) {
   return (
     <Stack {...other}>
       {[...Array(5)].map((_, index) => (
@@ -11,7 +15,7 @@ export default function SkeletonMap({height,className, ...other }: StackProps) {
           className={className}
           key={index}
           variant="rectangular"
-          sx={{ width: 1,height, borderRadius: 2 }}
+          sx={{ width: 1, height, borderRadius: 2 }}
         />
       ))}
     </Stack>

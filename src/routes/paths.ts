@@ -30,16 +30,43 @@ export const PATH_BOOKING = {
   hotel: '/hotel',
   train: '/train',
   flights: '/flights',
-  profile: '/profile',
+  profile: '/profile'
+};
+
+export const PATH_ACCAMMODATION = {
+  pic: '/pic',
+  hotel: '/hotel',
+  rooms: '/rooms',
+  search: '/search',
+  single: '/single',
+  multiple: '/multi',
+  address: '/address',
+  reserve: '/reserve',
+  confirm: '/confirm',
+  coastal: '/coastal',
+  addRoom: '/add-room',
+  register: '/register',
+  fullview: '/fullview',
+  apartment: '/apartment',
+  ecotourism: '/ecotourism',
+  msafarRules: '/msafar-rules',
+  discounting: '/discounting',
+  myResidences: '/my-residences',
+  accommodation: '/accommodation',
+  uploadDocuments: '/upload-documents',
+  describePosition: '/describe-position',
+  cancellationRules: '/cancellation-rules',
+  collectivePricing: '/collective-pricing',
+  rulesAndPrinciples: '/rules-and-principles'
 };
 
 export const PATH_FLIGHT = {
   INTERNATIONAL: '/international',
-  DOMESTIC: '/domestic',
+  DOMESTIC: '/domestic'
 };
 
 export const PATH_PROFILE = {
-  PASSENGERS : "/passengers",
+  PASSENGERS: '/passengers'
 };
 export const PATH_TRAIN = {};
 export const PATH_BUS = {};

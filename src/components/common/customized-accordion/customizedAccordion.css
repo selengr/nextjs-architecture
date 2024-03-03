@@ -1,0 +1,7 @@
+.customizedAccordion .css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+  margin: 0;
+}
+.customizedAccordion .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+  box-shadow: none !important;
+  border-bottom: 2px dashed #d2d2d2 !important;
+}

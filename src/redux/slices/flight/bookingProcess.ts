@@ -54,7 +54,7 @@ const initialState: FlightBookingData = {
   infantPassengers: [],
   mobileNumber: '',
   email: '',
-  totalPayable: 0,
+  totalPayable: 0
   // yourLocalInventoryPnr: ''
 };
 
@@ -85,7 +85,10 @@ const booking = createSlice({
     },
 
     // ADULT PASSENGER
-    addPassenger(state: FlightBookingData, action: PayloadAction<Passenger|any>) {
+    addPassenger(
+      state: FlightBookingData,
+      action: PayloadAction<Passenger | any>
+    ) {
       const { id } = action.payload;
       //  ==========================================================initiate
       if (action.payload.type === operationType.INITIATE_PASSENGER) {

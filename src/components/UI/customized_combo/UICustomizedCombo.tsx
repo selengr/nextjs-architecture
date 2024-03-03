@@ -5,12 +5,11 @@ import {
   useAutocomplete,
   AutocompleteGetTagProps
 } from '@mui/base/useAutocomplete';
-import CheckIcon from '@mui/icons-material/Check';
 import { styled } from '@mui/material/styles';
+import { TAccount, TUICustomizedCombo } from '.';
+import CheckIcon from '@mui/icons-material/Check';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { autocompleteClasses } from '@mui/material/Autocomplete';
-import callApi from '@/services/axios';
-import { TAccount, TUICustomizedCombo } from '.';
 
 const Root = styled('div')(
   ({ theme }) => `
@@ -199,6 +198,7 @@ export default function UICustomizedCombo({
 
   React.useEffect(() => {
     selectedCredits(value);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (

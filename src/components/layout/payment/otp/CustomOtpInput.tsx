@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import OtpInput from 'react-otp-input';
-import styles from "./optStyle.module.css"
+import styles from './optStyle.module.css';
 import { Box } from '@mui/material';
 
 interface CustomOtpInputProps {
@@ -27,14 +27,12 @@ const CustomOtpInput: React.FC<CustomOtpInputProps> = ({
   return (
     <div className={styles.optStyle}>
       <OtpInput
-        
         value={otp}
         onChange={handleOtpChange}
         numInputs={numInputs}
         renderSeparator={separator}
         inputStyle={inputStyle}
         renderInput={(props) => <input {...props} />}
-        
       />
     </div>
   );

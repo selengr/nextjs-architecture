@@ -30,6 +30,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "build/types/**/*.ts"
-  ],
+, "src/components/Layout/accommodation/reserve"  ],
   "exclude": ["node_modules"]
 }

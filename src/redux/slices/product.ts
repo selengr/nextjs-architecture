@@ -77,7 +77,7 @@ const slice = createSlice({
       if (isEmptyCart) {
         state.checkout.cart = [...state.checkout.cart, newProduct];
       } else {
-        state.checkout.cart = state.checkout.cart.map((product:any) => {
+        state.checkout.cart = state.checkout.cart.map((product: any) => {
           const isExisted = product.id === newProduct.id;
 
           if (isExisted) {
@@ -93,13 +93,13 @@ const slice = createSlice({
       }
       state.checkout.cart = uniqBy([...state.checkout.cart, newProduct], 'id');
       state.checkout.totalItems = sum(
-        state.checkout.cart.map((product:any) => product.quantity)
+        state.checkout.cart.map((product: any) => product.quantity)
       );
     },
 
     deleteCart(state, action) {
       const updateCart = state.checkout.cart.filter(
-        (product:any) => product.id !== action.payload
+        (product: any) => product.id !== action.payload
       );
 
       state.checkout.cart = updateCart;
@@ -132,7 +132,7 @@ const slice = createSlice({
     increaseQuantity(state, action) {
       const productId = action.payload;
 
-      const updateCart = state.checkout.cart.map((product:any) => {
+      const updateCart = state.checkout.cart.map((product: any) => {
         if (product.id === productId) {
           return {
             ...product,
@@ -147,7 +147,7 @@ const slice = createSlice({
 
     decreaseQuantity(state, action) {
       const productId = action.payload;
-      const updateCart = state.checkout.cart.map((product:any) => {
+      const updateCart = state.checkout.cart.map((product: any) => {
         if (product.id === productId) {
           return {
             ...product,

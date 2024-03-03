@@ -45,7 +45,7 @@ const slice = createSlice({
     // UPDATE EVENT
     updateEventSuccess(state, action) {
       state.isLoading = false;
-      state.events = state.events.map((event:any) => {
+      state.events = state.events.map((event: any) => {
         if (event.id === action.payload.id) {
           return action.payload;
         }
@@ -56,7 +56,7 @@ const slice = createSlice({
     // DELETE EVENT
     deleteEventSuccess(state, action) {
       const eventId = action.payload;
-      state.events = state.events.filter((event:any) => event.id !== eventId);
+      state.events = state.events.filter((event: any) => event.id !== eventId);
     }
   }
 });
@@ -85,7 +85,10 @@ export function createEvent(newEvent: any) {
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await callApi().post('/api/calendar/events/new', newEvent);
+      const response = await callApi().post(
+        '/api/calendar/events/new',
+        newEvent
+      );
       dispatch(slice.actions.createEventSuccess(response.data.event));
     } catch (error) {
       dispatch(slice.actions.hasError(error));

@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import callApi from '@/services/axios';
 import { dispatch } from '@/redux/store';
@@ -43,7 +43,7 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({ type, onClose }) => {
       `/msafar/iata/custom-combo?customComboFilterModel=${encodedData}`
     );
     setAirports(response);
-    setLoading(false)
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -77,7 +77,6 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({ type, onClose }) => {
     }
     onClose();
   };
-
 
   return (
     <div className={styles.msCustomizedOptions}>
@@ -119,9 +118,15 @@ const CustomizedOptions: React.FC<SearchBarProps> = ({ type, onClose }) => {
           height: 'fitContent'
         }}
       >
-        {loading && 
-                <ReactLoading className='bg-ms-back-card-gray-12 p-2 pt-4' type={"spinningBubbles"} color={"#03693A"} height={50} width={50} />
-        }
+        {loading && (
+          <ReactLoading
+            className="bg-ms-back-card-gray-12 p-2 pt-4"
+            type={'spinningBubbles'}
+            color={'#03693A'}
+            height={50}
+            width={50}
+          />
+        )}
         {/* {suggestions.length>0&&
            <span className='text-ms-crimson pt-6 pb-4 pr-6 font-ms-medium text-ms-sm  border-b-solid  border-b-[#EDEDED] border-b-[1px]'>جستجو قبل</span>
        }  */}

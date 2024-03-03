@@ -1,4 +1,3 @@
-
 export type IUIAccordionProps = {
   label: string;
   details: string;
@@ -8,7 +7,6 @@ export type IUIAccordionProps = {
   handle_payWith: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-
 export type TAccount = {
   accountId: number;
   creditType: string;
@@ -17,13 +15,11 @@ export type TAccount = {
   availableAmount: number;
   order: number;
   expireDate: null | object | any;
-}
-
+};
 
 export type TUICustomizedCombo = {
   placeholder: string;
   label?: string;
-  account : TAccount[] | [];
-  selectedCredits : (value: TAccount[]) => void
-}
-
+  account: TAccount[] | [];
+  selectedCredits: (value: TAccount[]) => void;
+};

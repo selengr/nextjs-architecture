@@ -34,7 +34,7 @@ const OtpVerifycode = ({
   chosenCredits
 }: {
   issueRequestId: number | undefined;
-  chosenCredits :TAccount[]
+  chosenCredits: TAccount[];
 }) => {
   const [otp, setOtp] = useState('');
   const [secondsLeft, setSecondsLeft] = useState(5);
@@ -71,15 +71,15 @@ const OtpVerifycode = ({
   const onSubmit = (data: Inputs) => {
     console.log('otp :>> ', otp);
     console.log('data :>> ', data);
-    let model : CustomerAccountRequest = {
-      "confirmCode": otp,
-      "customerAccountDtoList": chosenCredits
-  }
-  model.customerAccountDtoList.map((item)=>{
-    if(typeof item.expireDate == "string"){
-      item.expireDate = null;
-    }
-  })
+    let model: CustomerAccountRequest = {
+      confirmCode: otp,
+      customerAccountDtoList: chosenCredits
+    };
+    model.customerAccountDtoList.map((item) => {
+      if (typeof item.expireDate == 'string') {
+        item.expireDate = null;
+      }
+    });
     try {
       const response: any = callApi().post(
         `/msafar/booking/${issueRequestId}`,
@@ -93,35 +93,32 @@ const OtpVerifycode = ({
     // updateSendCode(true);
   };
 
-
   const resent_confirmcode = () => {
-    if(sendCode){
+    if (sendCode) {
       if (secondsLeft === 0) {
-        return(
+        return (
           <Typography
-              onClick={handle_send_code}
-              variant="subtitle2"
-              component="span"
-              className="text-ms-sm font-ms-medium text-ms-crimson cursor-pointer"
-      >
-        {`دریافت مجدد کد تایید `}
-      </Typography>
-        )   
-      }else{
-        return(
+            onClick={handle_send_code}
+            variant="subtitle2"
+            component="span"
+            className="text-ms-sm font-ms-medium text-ms-crimson cursor-pointer"
+          >
+            {`دریافت مجدد کد تایید `}
+          </Typography>
+        );
+      } else {
+        return (
           <Typography
-        variant="subtitle2"
-        component="span"
-        className="text-ms-sm font-ms-medium text-ms-crimson"
-      >
-        {`دریافت مجدد کد تایید در: ${secondsLeft} ثانیه`}
-      </Typography>
-        )
+            variant="subtitle2"
+            component="span"
+            className="text-ms-sm font-ms-medium text-ms-crimson"
+          >
+            {`دریافت مجدد کد تایید در: ${secondsLeft} ثانیه`}
+          </Typography>
+        );
       }
     }
   };
-
-
 
   return (
     <Box className="flex flex-col p-4 bg-ms-white rounded-2xl">
@@ -154,7 +151,7 @@ const OtpVerifycode = ({
 
       <form className="mt-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex justify-center ltr">
-        <CustomOtpInput
+          <CustomOtpInput
             otp={otp}
             setOtp={setOtp}
             numInputs={6}
@@ -174,24 +171,24 @@ const OtpVerifycode = ({
         <div className="mt-6 w-full">
           {resent_confirmcode()}
           {sendCode && (
-              <UiButton
-                type="submit"
-                className="m-8  p-2 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
-              >
-                تایید کد دو عاملی
-              </UiButton>
+            <UiButton
+              type="submit"
+              className="m-8  p-2 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-2xl bg-ms-btn-green-23"
+            >
+              تایید کد دو عاملی
+            </UiButton>
           )}
         </div>
       </form>
 
       {!sendCode && (
-          <UiButton
-            onClick={handle_send_code}
-            type="button"
-            className="m-8 p-2 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
-          >
-            ارسال کد دو عاملی
-          </UiButton>
+        <UiButton
+          onClick={handle_send_code}
+          type="button"
+          className="m-8 p-2 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-2xl bg-ms-btn-green-23"
+        >
+          ارسال کد دو عاملی
+        </UiButton>
       )}
     </Box>
   );

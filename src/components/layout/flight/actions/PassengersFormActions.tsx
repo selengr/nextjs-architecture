@@ -13,7 +13,7 @@ interface FieldProps {
   name: any;
   register: any;
   errors: any;
-  styleClass? : string
+  styleClass?: string;
 }
 
 // ========================================================input component
@@ -64,7 +64,7 @@ export const CustomFieldBirthDay: React.FC<
     selectedDay: string
   ) => {
     const formattedDate = `${selectedYear}/${selectedMonth}/${selectedDay}`;
-    setValue(formattedDate); 
+    setValue(formattedDate);
     setOpenCBirthDay(false);
   };
 
@@ -77,7 +77,7 @@ export const CustomFieldBirthDay: React.FC<
         <input
           id={id}
           content={value}
-          {...register(name, { required: true})}
+          {...register(name, { required: true })}
           placeholder={placeholder}
           value={value}
           defaultValue={value}

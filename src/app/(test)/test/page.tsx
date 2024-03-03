@@ -38,11 +38,11 @@ const getPhotosData = async () => {
 
 export default async function Page() {
   // const [optimisticLikes,addOptimisticLikes] = experimental_useOptimistic(null)
-//   const [posts, comments, photos] = await Promise.all([
-//     getPostData(),
-//     getCommentsData(),
-//     getPhotosData()
-//   ]);
+  //   const [posts, comments, photos] = await Promise.all([
+  //     getPostData(),
+  //     getCommentsData(),
+  //     getPhotosData()
+  //   ]);
 
   return (
     <Box

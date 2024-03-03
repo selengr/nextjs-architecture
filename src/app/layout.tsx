@@ -4,15 +4,15 @@ import type { Metadata } from 'next';
 import AuthVerify from './@auth/page';
 import { Providers } from '@/redux/provider';
 import { AuthProvider } from '@/auth/JwtContext';
+import { ThemeProvider } from '@mui/material';
+import theme from '@/utils/theme';
 
-
-
-export const metadata : Metadata = {
+export const metadata: Metadata = {
   title: 'ام سفر',
   description: 'booking flight,bus, train tickets',
   icons: {
-    icon: '/static/illustrations/favicon/logo2.png',
-  },  
+    icon: '/static/illustrations/favicon/logo2.png'
+  }
 };
 
 // export const dynamic = 'force-dynamic'
@@ -25,12 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en" className=" w-full ms-center bg-ms-white">
       <body className="ms-max-w w-full h-full bg-ms-back-card-gray-12 flex flex-col relative overflow-scroll justify-start">
-        <AuthVerify>
-          <AuthProvider>
-            <Providers>{children}</Providers>
-          </AuthProvider>
-          <Toaster richColors />
-        </AuthVerify>
+        <ThemeProvider theme={theme}>
+          <AuthVerify>
+            <AuthProvider>
+              <Providers>{children}</Providers>
+            </AuthProvider>
+            <Toaster richColors />
+          </AuthVerify>
+        </ThemeProvider>
       </body>
     </html>
   );

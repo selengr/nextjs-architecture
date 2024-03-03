@@ -31,7 +31,7 @@ const PassengersVeiw: React.FC<{ confirm: () => void }> = ({ confirm }) => {
 
   return (
     <div>
-      <div className="bg-ms-back-card-gray-12 rounded-[15px] flex flex-col items-center">
+      <div className="bg-ms-back-card-gray-12 rounded-2xl flex flex-col items-center">
         {passengers?.map((passenger, index) => {
           return (
             <div

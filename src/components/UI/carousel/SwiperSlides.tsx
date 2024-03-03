@@ -8,7 +8,7 @@ import 'swiper/css';
 import './uiCarousel.css';
 import 'swiper/css/pagination';
 import { SwiperSlidesProps } from './types';
-import { Box } from '@mui/material';
+import { Autoplay } from 'swiper/modules';
 
 // Component definition
 
@@ -21,7 +21,9 @@ export default function SwiperSlides({
   breakpointsSm = 3,
   breakpointsMd = 3,
   breakpointsLg = 3,
-  className = 'mySwiper'
+  className = 'mySwiper',
+  data = null,
+  autoplay
 }: SwiperSlidesProps) {
   return (
     <>
@@ -46,14 +48,19 @@ export default function SwiperSlides({
             spaceBetween: spaceBetween ?? 22
           }
         }}
-        // modules={[Navigation]}
+        modules={[Autoplay]}
         className={className}
+        autoplay={autoplay}
       >
-        {Array.apply(0, Array(30)).map((item, key) => (
+        {/* {data&&
+        
+        } */}
+        {children && children}
+        {/* {!data&&Array.apply(0, Array(30)).map((item, key) => (
           <Box key={key}>
             <SwiperSlide>{children && children}</SwiperSlide>
           </Box>
-        ))}
+        ))} */}
       </Swiper>
     </>
   );

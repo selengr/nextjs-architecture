@@ -61,7 +61,7 @@ async function getData(
     return response;
   } catch (error) {
     // Handle the error
-    console.error("error in search",error);
+    console.error('error in search', error);
   }
 }
 
@@ -102,9 +102,8 @@ async function AvailableTickets({ params, searchParams }: ISearchFlightsUrl) {
       </Banner>
 
       <div className="relative flex justify-center align-middle items-center">
-        <TransportTypeSelector />
+        <TransportTypeSelector mood="flights" />
       </div>
-
 
       <div>
         <PriceCalendar

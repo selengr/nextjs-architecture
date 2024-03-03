@@ -25,7 +25,6 @@ export default function DestinationView({ onClose }: IProps) {
   const [loading, setLoading] = useState<boolean>(true);
 
   const getCity = async (val: string | null) => {
-
     const encodedData = encodeURIComponent(
       JSON.stringify(highRankAirportsData)
     );

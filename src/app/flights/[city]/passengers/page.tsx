@@ -5,7 +5,6 @@ import {
   Passenger,
   PassengerType,
   operationType
-  
 } from '@/@types/flight/bookingProcess';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -14,9 +13,9 @@ import { usePathname } from 'next/navigation';
 import { Box, Typography } from '@mui/material';
 import UiButton from '@/components/UI/ui-button';
 import { Banner } from '@/components/UI/ui-banner';
-import PassengersVeiwNew, {
+import PassengersViewNew, {
   IPassenger
-} from '@/components/Layout/flight/PassengersVeiwNew';
+} from '@/components/Layout/flight/PassengersViewNew';
 import { UIAccordion } from '@/components/UI/accordion';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { addPassenger } from '@/redux/slices/flight/bookingProcess';
@@ -44,10 +43,10 @@ type Props = {
 export interface IPay_method {
   maghsad: boolean;
   mhessam: boolean;
-  selected:any
-    // | null
-    // | EPay_method.PAYMENT_WITH_MAGHSAT_PLUS
-    // | EPay_method.PAYMENT_WITH_MHESSAM;
+  selected: any;
+  // | null
+  // | EPay_method.PAYMENT_WITH_MAGHSAT_PLUS
+  // | EPay_method.PAYMENT_WITH_MHESSAM;
 }
 
 const PassengersInformation = ({ searchParams }: Props) => {
@@ -112,6 +111,7 @@ const PassengersInformation = ({ searchParams }: Props) => {
         payload: initiate_passenger
       })
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ChoosePassengers = () => setOpenPassengers(true);
@@ -226,19 +226,19 @@ const PassengersInformation = ({ searchParams }: Props) => {
   };
 
   const handle_payWith = (e: any) => {
-    if (e.target?.name == "PAYMENT_WITH_MAGHSAT_PLUS") {
+    if (e.target?.name == 'PAYMENT_WITH_MAGHSAT_PLUS') {
       if (error) setError(false);
       setPaymentMethod({
         maghsad: true,
         mhessam: false,
-        selected: "PAYMENT_WITH_MAGHSAT_PLUS"
+        selected: 'PAYMENT_WITH_MAGHSAT_PLUS'
       });
-    } else if (e.target.name == "PAYMENT_WITH_MHESSAM") {
+    } else if (e.target.name == 'PAYMENT_WITH_MHESSAM') {
       if (error) setError(false);
       setPaymentMethod({
         maghsad: false,
         mhessam: true,
-        selected: "PAYMENT_WITH_MHESSAM"
+        selected: 'PAYMENT_WITH_MHESSAM'
       });
     }
   };
@@ -249,16 +249,16 @@ const PassengersInformation = ({ searchParams }: Props) => {
         parseInt(item.payable_Fare) != 0 &&
         parseInt(item.payable_Fare) != null
       ) {
-        if ("PAYMENT_WITH_MAGHSAT_PLUS" == paymentMethod.selected) {
+        if ('PAYMENT_WITH_MAGHSAT_PLUS' == paymentMethod.selected) {
           router.push(
             // '/flights/' + EPay_url.PAYMENT + '/' + EPay_url.MAGHSAT_PLUS
-            '/flights/' + "payment" + '/' + "maghsat_plus"
+            '/flights/' + 'payment' + '/' + 'maghsat_plus'
           );
-        } else if ("PAYMENT_WITH_MHESSAM" == paymentMethod.selected) {
-          router.push('/flights/' + "payment" + '/' + "mhesam");
+        } else if ('PAYMENT_WITH_MHESSAM' == paymentMethod.selected) {
+          router.push('/flights/' + 'payment' + '/' + 'mhesam');
         }
-      } else setVerifyPassenger(true)
-       if (!paymentMethod.maghsad && !paymentMethod.mhessam) setError(true);
+      } else setVerifyPassenger(true);
+      if (!paymentMethod.maghsad && !paymentMethod.mhessam) setError(true);
     });
   };
 
@@ -277,7 +277,7 @@ const PassengersInformation = ({ searchParams }: Props) => {
           <div
             //   onClick={handle_booking}
             //     key={index}
-            className="py-4 px-6 bg-ms-back-card-gray-12 rounded-[15px] w-full flex flex-col my-3"
+            className="py-4 px-6 bg-ms-back-card-gray-12 rounded-2xl w-full flex flex-col my-3"
           >
             <div className="flex flex-row w-full justify-between p-2">
               <span className="text-ms-thick-green text-ms-lg font-ms-medium">
@@ -329,7 +329,7 @@ const PassengersInformation = ({ searchParams }: Props) => {
             <div
               //   onClick={handle_booking}
               //     key={index}
-              className="py-4 px-6 bg-ms-back-card-gray-12 rounded-[15px] w-full flex flex-col my-3"
+              className="py-4 px-6 bg-ms-back-card-gray-12 rounded-2xl w-full flex flex-col my-3"
             >
               <div className="flex flex-row w-full justify-between p-2">
                 <span className="text-ms-thick-green text-ms-lg font-ms-medium">
@@ -438,7 +438,7 @@ const PassengersInformation = ({ searchParams }: Props) => {
               label="پرداخت با ام اقساط پلاس"
               details="توضیحات توضیحات توضیحات ......"
               tabIndex={0}
-              name={"PAYMENT_WITH_MAGHSAT_PLUS"}
+              name={'PAYMENT_WITH_MAGHSAT_PLUS'}
               checked={paymentMethod.maghsad}
               error={error}
             />
@@ -446,7 +446,7 @@ const PassengersInformation = ({ searchParams }: Props) => {
               handle_payWith={handle_payWith}
               label="پرداخت با ام حسام"
               details="توضیحات توضیحات توضیحات ......"
-              name={"PAYMENT_WITH_MHESSAM"}
+              name={'PAYMENT_WITH_MHESSAM'}
               checked={paymentMethod.mhessam}
               error={error}
             />
@@ -455,7 +455,7 @@ const PassengersInformation = ({ searchParams }: Props) => {
             <Box sx={{ height: '45px' }}></Box>
             <UiButton
               onClick={handle_pay}
-              className="mb-6 mt-4 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]"
+              className="mb-6 mt-4 hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-2xl"
               text="پرداخت"
             />
           </div>
@@ -466,24 +466,25 @@ const PassengersInformation = ({ searchParams }: Props) => {
 
       {/* ======================================== */}
 
-
       {verifyPassenger && (
         <div>
-           <TransitionsModal className="rounded-2xl bg-ms-white w-[80%] h-36 flex justify-center align-middle items-center p-2" open={verifyPassenger} handleClose={()=>setVerifyPassenger(false)}>
+          <TransitionsModal
+            className="rounded-2xl bg-ms-white w-[80%] h-36 flex justify-center align-middle items-center p-2"
+            open={verifyPassenger}
+            handleClose={() => setVerifyPassenger(false)}
+          >
+            <Image
+              className="mx-2"
+              src={'/static/icons/components/worn-out.png'}
+              alt={'flight'}
+              width={25} //automatically provided
+              height={25} //automatically provide
+            />
 
-           <Image
-                className="mx-2"
-                src={'/static/icons/components/worn-out.png'}
-                alt={'flight'}
-                width={25} //automatically provided
-                height={25} //automatically provide
-              />
-
-            <Typography className='text-ms-lg' component="span">
-                لطفا اطلاعات شخص را وارد کنید  
+            <Typography className="text-ms-lg" component="span">
+              لطفا اطلاعات شخص را وارد کنید
             </Typography>
-          
-           </TransitionsModal>
+          </TransitionsModal>
         </div>
       )}
 
@@ -515,7 +516,7 @@ const PassengersInformation = ({ searchParams }: Props) => {
             className="overflow-scroll"
             // initialSnap={7}
           >
-            <PassengersVeiwNew confirm={confirm} />
+            <PassengersViewNew confirm={confirm} />
           </ModalGestures>
         </div>
       )}

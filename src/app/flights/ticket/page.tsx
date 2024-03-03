@@ -19,7 +19,7 @@ const Ticket = () => {
         />
 
         <div className="px-9">
-          <section className="py-3 bg-ms-back-card-gray-12 rounded-[15px] w-full flex flex-col my-6">
+          <section className="py-3 bg-ms-back-card-gray-12 rounded-2xl w-full flex flex-col my-6">
             <div className="flex flex-row p-2  px-6">
               <div className="flex flex-col w-2/12">
                 <span className="text-ms-thick-green text-ms-lg font-ms-bold">
@@ -108,7 +108,7 @@ const Ticket = () => {
             </div>
           </section>
 
-          <section className="py-3 bg-ms-back-card-gray-12 rounded-[15px] w-full flex flex-col my-6">
+          <section className="py-3 bg-ms-back-card-gray-12 rounded-2xl w-full flex flex-col my-6">
             <div className="flex flex-row p-2  px-6">
               <div className="flex flex-col w-2/12">
                 <span className="text-ms-thick-green text-ms-lg font-ms-bold">

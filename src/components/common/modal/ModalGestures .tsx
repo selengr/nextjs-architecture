@@ -13,7 +13,7 @@ interface ModalProps {
   className?: string;
   title?: string | React.ReactNode;
   initialSnap?: number;
-  customStyle?: any
+  customStyle?: any;
 }
 
 const ModalGestures = ({
@@ -33,7 +33,6 @@ const ModalGestures = ({
     <>
       <div className={styles.msModalGestures}>
         <Sheet
-        
           // detent="content-height"
           initialSnap={initialSnap}
           ref={ref}
@@ -43,7 +42,7 @@ const ModalGestures = ({
           // onCloseStart={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest44")}
           // onCloseEnd={()=>alert("teeeeeeeeeeeeeeeeeeeeeeeest55")}
           // snapPoints={[0,200,400,600,800,2000,2500,3000]}
-          // snapPoints={[1200, 1000, 800, 700, 600, 500, 400, 300, 200, 0]}
+          snapPoints={[1200, 1000, 800, 700, 600, 500, 400, 300, 200, 0]}
           // snapPoints={[600, 400, 100, 0]}
           isOpen={isOpen}
           onClose={onClose}
@@ -54,7 +53,7 @@ const ModalGestures = ({
             justifyContent: 'center',
             // transform:" translate(-50%, 0%)",
             left: '49%',
-            width: '100%',
+            width: '100%'
             // direction:"ltr"
             // marginLeft:"1rem"
             // maxHeight:"",

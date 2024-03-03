@@ -1,4 +1,4 @@
-const page = () => {
+const Page = () => {
   return (
     <div>
       Enter international international international international
@@ -8,4 +8,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

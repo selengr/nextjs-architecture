@@ -80,7 +80,7 @@ const slice = createSlice({
 
       state.board.columns[columnId].cardIds = state.board.columns[
         columnId
-      ].cardIds.filter((id:any) => id !== cardId);
+      ].cardIds.filter((id: any) => id !== cardId);
 
       state.board.cards = omit(state.board.cards, [cardId]);
     },
@@ -102,7 +102,7 @@ const slice = createSlice({
       state.board.columns = omit(state.board.columns, [columnId]);
       state.board.cards = omit(state.board.cards, [...deletedColumn.cardIds]);
       state.board.columnOrder = state.board.columnOrder.filter(
-        (c:any) => c !== columnId
+        (c: any) => c !== columnId
       );
     }
   }
@@ -133,7 +133,10 @@ export function createColumn(newColumn: { name: string }) {
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await callApi().post('/api/kanban/columns/new', newColumn);
+      const response = await callApi().post(
+        '/api/kanban/columns/new',
+        newColumn
+      );
       dispatch(slice.actions.createColumnSuccess(response.data.column));
     } catch (error) {
       dispatch(slice.actions.hasError(error));

@@ -212,7 +212,7 @@ const config: Config = {
       md: '0.375rem',
       lg: '0.5rem',
       xl: '0.75rem',
-      '2xl': '1rem',
+      '2xl': '1rem !important',
       '3xl': '1.5rem'
       // full: '9999px',
     },
@@ -284,16 +284,18 @@ const config: Config = {
         'ms-back-card-gray-22': '#FFFFFF',
 
         // کد رنگ های سبز دکمه ها F3FCF8 00D170 06AB5F
-        'ms-btn-green-13': '#F3FCF8',
-        'ms-btn-green-23': '#00D170',
-        'ms-btn-green-33': '#06AB5F',
+        'ms-btn-green-13': '#F3FCF8 !important',
+        'ms-btn-green-23': '#00D170 !important',
+        'ms-btn-green-33': '#06AB5F !important',
         // کد رنگ زرشکی
         'ms-crimson-11': '#B40000',
+        'ms-crimson-300': '#FA4D56',
         // کد رنگ های زرد داخل صفحات
         'ms-yellow-14': '#FFF0C5',
         'ms-yellow-24': '#E0C653',
         'ms-yellow-33': '#F8C206',
         'ms-yellow-44': '#F5BB00',
+        'ms-yellow-200': '#FAF0CF',
         'ms-light-green': '#F1FFF9',
 
         // رنگ صفحات پرداخت
@@ -303,15 +305,19 @@ const config: Config = {
 
       // کد رنگ های فونت
       colors: {
-        'ms-white': '#FFFFFF',
+        'ms-white': '#FFFFFF !important',
         'ms-yellow': '#F5BB00',
         'ms-crimson': '#B40000',
+        'ms-crimson-300': '#FA4D56',
+        'ms-crimson-500': '#D90000',
         'ms-green': '#03693A',
         'ms-gray': '#878787',
         'ms-thick-gray': '#605858',
         'ms-light-gray': '#9CA4A4',
+        'ms-light-gray-300': '#A7A7A7',
         'ms-light-green': '#06AB5F',
         'ms-thick-green': '#1B3D13',
+        'ms-medium-green': '#217B52',
         'ms-light-black': '#22232A',
         'ms-disable': '#D3D4D3',
         'ms-orange': '#FF8A00'
@@ -346,11 +352,13 @@ const config: Config = {
       },
 
       borderColor: {
-        'ms-gray': '#D2D2D2',
         'ms-border-green-33': '#06AB5F',
-        'ms-gray-23': '#DADCDC',
+        'ms-crimson-300': '#FA4D56',
         'ms-yellow-13': '#F5BB00',
-        'ms-disable': '#D3D4D3'
+        'ms-yellow-500': '#FFC107',
+        'ms-gray-23': '#DADCDC',
+        'ms-disable': '#D3D4D3',
+        'ms-gray': '#D2D2D2'
       }
     }
   },

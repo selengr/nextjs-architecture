@@ -9,7 +9,7 @@ export default function RootLayout({
     // <>{children}</>
     <Container className="w-full bg-ms-back-card-gray-12 px-1">
       <Box className="w-full max-w-[576px] bg-ms-white flex flex-col relative">
-      {children}
+        {children}
       </Box>
     </Container>
     // <html

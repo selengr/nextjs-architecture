@@ -11,7 +11,7 @@ import gregorian_en from 'react-date-object/locales/gregorian_en';
 import './CustomMultiDatePicker.css';
 
 export interface PersianDatePickerProps {
-  value?: Date | Date[] | unknown |any;
+  value?: Date | Date[] | unknown | any;
   onChange?: any;
   locale: 'persian' | 'gregorian';
   selectDateRange?: boolean;

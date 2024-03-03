@@ -1,5 +1,4 @@
-
-.optStyle input:focus{
-   border : none !important;
-   outline : none !important
+.optStyle input:focus {
+  border: none !important;
+  outline: none !important;
 }

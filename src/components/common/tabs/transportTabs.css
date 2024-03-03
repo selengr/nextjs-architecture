@@ -1,0 +1,19 @@
+.transportTabs .MuiTabs-indicator {
+  display: none !important;
+}
+.MuiTab-textColorPrimary {
+  color: #404040;
+  font-weight: 600 !important;
+}
+.transportTabs .css-kk5cq6-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #cda010 !important;
+  font-weight: 700 !important;
+
+  /* font-size: small; */
+}
+
+.transportTabs .css-jpln7h-MuiTabs-scroller,
+.transportTabs .css-69z67c-MuiTabs-scroller {
+  background-color: #fff !important;
+  z-index: 9999999;
+}

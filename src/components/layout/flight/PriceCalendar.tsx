@@ -44,14 +44,14 @@ const PriceCalendar = async ({ city, departing, returning }: PriceDate) => {
       <>
         <Box sx={{ height: '74px' }}></Box>
         <div className="h-[70px] -mb-4 bg-ms-white w-full overflow-auto flex flex-row justify-start items-center relative">
-          {cheapestList?.map((cheapest: any,index:number) => {
+          {cheapestList?.map((cheapest: any, index: number) => {
             return (
               <Box key={index}>
                 <DayAndPrice
-                returning={returning}
-                departing={departing}
-                cheapest={cheapest}
-              />
+                  returning={returning}
+                  departing={departing}
+                  cheapest={cheapest}
+                />
               </Box>
             );
           })}

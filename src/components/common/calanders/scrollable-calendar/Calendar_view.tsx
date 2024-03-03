@@ -5,7 +5,6 @@ import { ICalendarProps } from '../types';
 import UiButton from '@/components/UI/ui-button/UiButton';
 // import Picker from 'react-scrollable-picker';
 
-
 // export const dynamic = 'dynamic';
 
 const Calendar_view = ({
@@ -89,7 +88,7 @@ const Calendar_view = ({
         <div className="w-1/2 m-2">
           <UiButton
             onClick={submit_btn}
-            className=" hover:bg-ms-btn-green-33 text-ms-lg h-[40px] p-4 justify-center flex-1 w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-[15px]"
+            className=" hover:bg-ms-btn-green-33 text-ms-lg h-[40px] p-4 justify-center flex-1 w-full border-none text-ms-white font-ms-medium bg-ms-btn-green-23 rounded-2xl"
             text="انتخاب"
           />
         </div>

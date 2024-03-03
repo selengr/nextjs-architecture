@@ -8,6 +8,7 @@ import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 // import calendarReducer from './slices/calendar';
 import flightSlice from './slices/flight/flights';
 import booking from './slices/flight/bookingProcess';
+import register from './slices/accommodation/register';
 
 // ----------------------------------------------------------------------
 
@@ -41,11 +42,18 @@ export const productPersistConfig = {
   keyPrefix: 'redux-',
   whitelist: ['sortBy', 'checkout']
 };
+export const registerPersistConfig = {
+  key: 'register',
+  storage
+  // keyPrefix: 'redux-',
+  // whitelist: ['navigation']
+};
 
 const rootReducer = combineReducers({
   //add your slices  here and blew you can see two example
   flight: flightSlice,
-  booking: booking
+  booking: booking,
+  register: persistReducer(registerPersistConfig, register)
   // chat: chatReducer,
   // calendar: calendarReducer,
   // kanban: kanbanReducer,

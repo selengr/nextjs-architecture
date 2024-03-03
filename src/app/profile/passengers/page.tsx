@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import UiButton from '@/components/UI/ui-button';
 import { Banner } from '@/components/UI/ui-banner';

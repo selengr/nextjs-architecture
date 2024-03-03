@@ -109,7 +109,7 @@
 //       <UiButton
 //           // onClick={() => console.log("object")}
 //           type="submit"
-//           className="m-6 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
+//           className="m-6 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-2xl bg-ms-btn-green-23"
 //           text="ثبت"
 //         />
 //     </form>
@@ -118,13 +118,13 @@
 
 import * as React from 'react';
 import Radio from '@mui/material/Radio';
+import UiButton from '@/components/UI/ui-button';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import UiButton from '@/components/UI/ui-button';
-import { Checkbox, Stack, TextareaAutosize, Typography } from '@mui/material';
 import FileUploader from '@/components/common/fileUploader/FileUploader';
+import { Checkbox, Stack, TextareaAutosize, Typography } from '@mui/material';
 import TransitionsModal from '@/components/common/modal/modal_center/TransitionsModal';
 import Image from 'next/image';
 
@@ -149,8 +149,8 @@ export default function RefundReason() {
   const onSubmit: SubmitHandler<IFormInputs> = (data) => console.log(data);
 
   const handle_confirm_Refund = () => {
-      setOpenEnsureRefund(true)   
-  } 
+    setOpenEnsureRefund(true);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="overflow-scroll">
@@ -230,7 +230,7 @@ export default function RefundReason() {
           className=" flex items-start w-full mt-8"
         ></Stack>
 
-        <FileUploader register={register} />
+        <FileUploader />
 
         <Stack
           direction="column"
@@ -240,7 +240,7 @@ export default function RefundReason() {
         <UiButton
           onClick={handle_confirm_Refund}
           type="submit"
-          className="m-6 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-[15px] bg-ms-btn-green-23"
+          className="m-6 mb-[32px] hover:bg-ms-btn-green-33 text-ms-lg h-[50px] w-full border-none text-ms-white font-ms-medium rounded-2xl bg-ms-btn-green-23"
           text="ثبت"
         />
       </FormControl>
@@ -261,7 +261,7 @@ export default function RefundReason() {
             />
 
             <Typography className="text-ms-lg" component="span">
-                   آیا از استرداد بلیط خود اطمینان دارید؟ 
+              آیا از استرداد بلیط خود اطمینان دارید؟
             </Typography>
           </TransitionsModal>
         </div>

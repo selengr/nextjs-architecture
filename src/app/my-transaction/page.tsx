@@ -21,7 +21,10 @@ export default function Home() {
       {/* <Box sx={{ mt: '2rem', px: '.5rem' }}></Box> */}
 
       <div className="w-full flex justify-center align-middle items-center mt-[24px] mb-[24px]">
-        <UiCustomizedTabs highlightColor="#F5BB00" tabsName={{ first: 'جاری', second: 'نهایی شده' }}>
+        <UiCustomizedTabs
+          highlightColor="#F5BB00"
+          tabsName={{ first: 'جاری', second: 'نهایی شده' }}
+        >
           <TabPanel
             value={0}
             sx={{
@@ -32,7 +35,7 @@ export default function Home() {
               flexDirection: 'column'
             }}
           >
-          <MyTrip status={"current"} />
+            <MyTrip status={'current'} />
           </TabPanel>
 
           <TabPanel
@@ -45,17 +48,14 @@ export default function Home() {
               flexDirection: 'column'
             }}
           >
-            <MyTrip status={"finalized"} />
+            <MyTrip status={'finalized'} />
           </TabPanel>
         </UiCustomizedTabs>
       </div>
 
-
-
       <div className="relative flex align-middle items-center">
         <MobileBottomNavigation />
       </div>
-
     </div>
   );
 }

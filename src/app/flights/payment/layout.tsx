@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <Container className="w-full h-screen justify-center inline-flex align-middle p-0">
-        {children}
+      {children}
     </Container>
     // <html lang="en" className="w-full h-screen justify-center inline-flex align-middle">
     //   {/* <body className="max-w-[576px] w-full flex flex-col relative overflow-scroll"> */}

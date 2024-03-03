@@ -21,4 +21,3 @@ export type FemaleProps = {
 export type PersonStatusProps = {
   name: string;
 } & (MaleProps | FemaleProps);
-
