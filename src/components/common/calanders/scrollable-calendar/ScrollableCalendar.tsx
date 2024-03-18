@@ -15,7 +15,7 @@ let years: any[] = [],
 
 //   external functions ===========================================
 
-export const Version_zero_date: FC<ICalendarSubmit> = ({
+const Version_zero_date: FC<ICalendarSubmit> = ({
   handle_submit,
   ageHood
 }) => {
@@ -151,3 +151,6 @@ export const Version_zero_date: FC<ICalendarSubmit> = ({
     />
   );
 };
+
+
+export default Version_zero_date;

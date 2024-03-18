@@ -1,5 +1,5 @@
 import { Box, Stack, TextField, TextFieldProps } from '@mui/material';
-import { ITextFieldProps } from './type';
+import { ITextFieldProps } from './types';
 
 export default function UiTextField(props: ITextFieldProps) {
   return (

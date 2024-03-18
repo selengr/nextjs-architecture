@@ -124,7 +124,7 @@ export default function TransportTabs({ control }: { control: number | null }) {
           return (
             <Tab
               key={index}
-              className={`w-1/5 border-none `}
+              className={`w-1/5 border-none bg-ms-white`}
               sx={{ border: 'none' }}
               icon={
                 <Image

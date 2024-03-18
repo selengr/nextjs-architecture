@@ -10,6 +10,7 @@ import SpecialOfferSlider from './_slider/specialOfferSlider';
 import PilgrimageAndTourismSlider from './_slider/pilgrimageAndTourismSlider';
 import MostAttractiveHostingSlider from './_slider/mostAttractiveHostingSlider';
 import MostPopularHostingSlider from './_slider/mostAttractiveHostingSlider';
+import GetWay from '@/components/Layout/getWay/GetWay';
 
 export default async function Home() {
   return (
@@ -36,6 +37,9 @@ export default async function Home() {
       <TransportTabs control={null} />
 
       <Box sx={{ mt: '2rem', pb: '100px' }}>
+
+            <GetWay />
+        
         {/* <Image
           src={`/static/images/msafar/first-page-slider.svg`}
           alt={'No-passengers-found'}

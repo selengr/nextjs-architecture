@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import ModalGestures from '@/components/common/modal/ModalGestures ';
-import { Version_zero_date } from '@/components/common/calanders/scrollable-calendar/ScrollableCalendar';
+import Version_zero_date from '@/components/common/calanders/scrollable-calendar/ScrollableCalendar';
+
 
 // export const dynamic = 'dynamic';
 
