@@ -26,12 +26,12 @@ export default function RootLayout({
     <html lang="en" className=" w-full ms-center bg-ms-white">
       <body className="ms-max-w w-full h-full bg-ms-back-card-gray-12 flex flex-col relative overflow-scroll justify-start">
         <ThemeProvider theme={theme}>
-          <AuthVerify>
-            <AuthProvider>
+          {/* <AuthVerify>
+            <AuthProvider> */}
               <Providers>{children}</Providers>
-            </AuthProvider>
+            {/* </AuthProvider> */}
             <Toaster richColors />
-          </AuthVerify>
+          {/* </AuthVerify> */}
         </ThemeProvider>
       </body>
     </html>
